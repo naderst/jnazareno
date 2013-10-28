@@ -30,28 +30,15 @@ App::uses('AppController', 'Controller');
  * @link http://book.cakephp.org/2.0/en/controllers/pages-controller.html
  */
 class PagesController extends AppController {
-
-/**
- * Controller name
- *
- * @var string
- */
 	public $name = 'Pages';
-
-/**
- * This controller does not use a model
- *
- * @var array
- */
 	public $uses = array();
-
-/**
- * Displays a view
- *
- * @param mixed What page to display
- * @return void
- */
-	public function display() {
+    
+    function beforeFilter() {
+        if(!$this->Auth->loggedIn())
+            $this->redirect('/usuarios/login');
+    }
+    
+	function display() {
 		$this->render('home');
 	}
 }

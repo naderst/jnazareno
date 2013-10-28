@@ -32,4 +32,23 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+    public $components = array(
+        'Auth' => array(
+            'loginAction' => array('controller' => 'usuarios', 'action' => 'login'),
+            'authError' => 'Debe iniciar sesión',
+            'loginRedirect' => '/',
+            'authenticate' => array(
+                'Form' => array(
+                    'userModel' => 'Usuario',
+                    'fields' => array('username' => 'usuario')
+                )
+            )
+        ),
+        'Session'
+    );
+    
+    function beforeRender() {
+        $this->set('rol', $this->Auth->user('rol'));
+        $this->set('usuario', $this->Auth->user('usuario'));
+    }
 }
