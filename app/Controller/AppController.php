@@ -47,8 +47,16 @@ class AppController extends Controller {
         'Session'
     );
     
+    public $helpers = array('Form');
+    
     function beforeRender() {
-        $this->set('rol', $this->Auth->user('rol'));
-        $this->set('usuario', $this->Auth->user('usuario'));
+        if($this->Auth->loggedIn()) {
+            $this->set('rol', $this->Auth->user('rol'));
+            $this->set('usuario', $this->Auth->user('usuario'));
+        }
+    }
+    
+    function isAdmin() {
+        return $this->Auth->user('rol') == 'A';
     }
 }

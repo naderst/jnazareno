@@ -107,6 +107,13 @@ input[type="button"][disabled] {
     cursor: auto !important;
 }
 
+select {
+    font-family: "Lato", sans-serif;
+    font-size: 14px;
+    padding: 8px 5px;
+    width: 100%;
+}
+
 h1, h2, h3, h4, h5, h6 {
     color: #8E44AD
 }
@@ -131,6 +138,10 @@ table, th, td {
 
 td, th {
     padding: 10px
+}
+
+td a {
+    text-decoration: none
 }
 
 th {
@@ -238,4 +249,34 @@ tr:hover {
 
 .fix {
     clear: both
+}
+
+form .error-message:before {
+    content: "* ";
+    color: red;
+}
+
+form .error-message {
+    font-weight: bold;
+}
+
+#goodMessage, #badMessage {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 90%;
+    color: #fff;
+    font-size: 18px;
+    text-shadow: 1px 1px #000;
+    margin: auto;
+}
+
+#goodMessage {
+    background-color: #1fa20d
+}
+
+#badMessage {
+    background-color: #e93838
 }

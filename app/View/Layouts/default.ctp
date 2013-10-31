@@ -27,7 +27,7 @@
                         /* Admin stuff */
                 ?>
                 <li><li><a href="<?php echo Router::url('/usuarios'); ?>"<?php echo $this->name == 'Usuarios'?'class="active"':'' ?>><i class="fa fa-user"></i> USUARIOS DEL SISTEMA</a></li>
-                <li><a href="<?php echo Router::url('/configuracion'); ?>"><i class="fa fa-wrench"></i>CONFIG. DEL SISTEMA</a></li>
+                <li><a href="<?php echo Router::url('/configuracion'); ?>"><i class="fa fa-cog"></i>CONFIG. DEL SISTEMA</a></li>
                 <?php } ?>
                 
                 <li><a href="<?php echo Router::url('/usuarios/logout'); ?>"><i class="fa fa-power-off"></i> CERRAR SESIÓN</a></li>
