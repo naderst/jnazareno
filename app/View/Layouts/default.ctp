@@ -26,7 +26,8 @@
                     if($rol == 'A') {
                         /* Admin stuff */
                 ?>
-                <li><li><a href="<?php echo Router::url('/usuarios'); ?>"<?php echo $this->name == 'Usuarios'?'class="active"':'' ?>><i class="fa fa-user"></i> USUARIOS DEL SISTEMA</a></li>
+                <li><a href="<?php echo Router::url('/personas'); ?>"><i class="fa fa-angle-double-right"></i> PERSONAS</a></li>
+                <li><a href="<?php echo Router::url('/usuarios'); ?>"<?php echo $this->name == 'Usuarios'?'class="active"':'' ?>><i class="fa fa-user"></i> USUARIOS DEL SISTEMA</a></li>
                 <li><a href="<?php echo Router::url('/configuracion'); ?>"><i class="fa fa-cog"></i>CONFIG. DEL SISTEMA</a></li>
                 <?php } ?>
                 
@@ -39,11 +40,6 @@
             <?php echo $this->fetch('content'); ?>
         </section>
         <?php echo $this->Html->script('jquery-1.10.2.min')."\n"; ?>
-        <script type="text/javascript">
-            $('#buscador').submit(function(){
-                alert($('#buscar').val());
-                return false;
-            });
-        </script>
+        <?php echo $this->Html->script('functions')."\n"; ?>
     </body>
 </html>

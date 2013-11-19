@@ -1,6 +1,10 @@
 <?php
 class BautizosController extends AppController {
-    function index() {   
+    function index() {
+        $this->set('bautizos', $this->Bautizo->find('all'));
+    }
+    
+    function agregar() {
     }
 }
 ?>

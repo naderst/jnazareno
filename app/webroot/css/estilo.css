@@ -145,18 +145,42 @@ td a {
 }
 
 th {
-    background-color: #EBEBE1;
+    background-color: #8E44AD;
     text-align: center;
-    color: #777
+    color: #fff;
+    text-shadow: 1px 1px 2px #000;
 }
 
 tr:nth-child(odd) {
     background-color: #F2F2EA
 }
 
-tr:hover {
-    background-color: rgba(142,68,173,0.4)
+.tform {
+    border: 0px;
+    margin: auto;
+    width: 80%;
 }
+
+.tform th, td {
+    padding: 10px;
+    border: 0px;
+    
+}
+
+.tform td[colspan="2"] {
+    background-color: #fff;
+}
+
+.tform td {
+    width: 50%;
+}
+
+.tform input[type="text"] {
+    width: 80%;
+}
+/*tr:hover {
+    background-color: rgba(142,68,173,0.4)
+}*/
 
 #cabecera {
     width: 100%;
