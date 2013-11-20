@@ -41,5 +41,9 @@
         </section>
         <?php echo $this->Html->script('jquery-1.10.2.min')."\n"; ?>
         <?php echo $this->Html->script('functions')."\n"; ?>
+        <?php
+            if($this->name == 'Bautizos')
+                echo $this->Html->script('bautizos')."\n";
+        ?>
     </body>
 </html>
