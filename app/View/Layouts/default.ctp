@@ -20,8 +20,10 @@
             </form>
             <ul>
                 <li><a href="<?php echo Router::url('/'); ?>"<?php echo $this->name == 'Pages'?'class="active"':'' ?>><i class="fa fa-home"></i> INICIO</a></li>
-                <li><li><a href="<?php echo Router::url('/bautizos'); ?>"<?php echo $this->name == 'Bautizos'?'class="active"':'' ?>><i class="fa fa-angle-double-right"></i> BAUTIZOS</a></li>
-                <li><li><a href="<?php echo Router::url('/matrimonios'); ?>"<?php echo $this->name == 'Matrimonios'?'class="active"':'' ?>><i class="fa fa-angle-double-right"></i> MATRIMONIOS</a></li>
+                <li><a href="<?php echo Router::url('/bautizos'); ?>"<?php echo $this->name == 'Bautizos'?'class="active"':'' ?>><i class="fa fa-angle-double-right"></i> BAUTIZOS</a></li>
+                <li><a href="<?php echo Router::url('/matrimonios'); ?>"<?php echo $this->name == 'Matrimonios'?'class="active"':'' ?>><i class="fa fa-angle-double-right"></i> COMUNIONES</a></li>
+                <li><a href="<?php echo Router::url('/matrimonios'); ?>"<?php echo $this->name == 'Matrimonios'?'class="active"':'' ?>><i class="fa fa-angle-double-right"></i> CONFIRMACIONES</a></li>
+                <li><a href="<?php echo Router::url('/matrimonios'); ?>"<?php echo $this->name == 'Matrimonios'?'class="active"':'' ?>><i class="fa fa-angle-double-right"></i> MATRIMONIOS</a></li>
                 <?php
                     if($rol == 'A') {
                         /* Admin stuff */

@@ -13,6 +13,7 @@ if(!count($bautizos)) {
 		<th>Madre</th>
 		<th>Padrino</th>
 		<th>Madrina</th>
+		<th>Ministro celebrante</th>
 		<th>Libro</th>
 		<th>Folio</th>
 		<th>Número</th>
@@ -33,6 +34,7 @@ foreach($bautizos as $e) {
 		<td><?php echo $e['Bautizo']['madre']; ?></td>
 		<td><?php echo $e['Bautizo']['padrino']; ?></td>
 		<td><?php echo $e['Bautizo']['madrina']; ?></td>
+		<td><?php echo $e['Bautizo']['ministro']; ?></td>
 		<td><?php echo $e['Bautizo']['libro']; ?></td>
 		<td><?php echo $e['Bautizo']['folio']; ?></td>
 		<td><?php echo $e['Bautizo']['numero']; ?></td>

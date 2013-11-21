@@ -47,7 +47,7 @@ echo $this->Form->create('Bautizo', array(
       <td><?php echo $this->Form->input('madrina'); ?></td>
     </tr>
     <tr>
-      <td><?php echo $this->Form->input('ministro'); ?></td>
+      <td><?php echo $this->Form->input('ministro', array('label' => 'Ministro celebrante')); ?></td>
       <td></td>
     </tr>
     <tr>
