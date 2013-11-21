@@ -1,4 +1,4 @@
 $('#buscador').submit(function(){
-    alert($('#buscar').val());
+	document.location = baseDir + 'buscador/' + $('#buscar').val().replace(/\s/g, '-');
     return false;
 });

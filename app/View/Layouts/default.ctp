@@ -38,6 +38,9 @@
             <?php echo $this->Session->flash('bad'); ?>
             <?php echo $this->fetch('content'); ?>
         </section>
+        <script type="text/javascript">
+            baseDir = '<?php echo Router::url('/'); ?>';
+        </script>
         <?php echo $this->Html->script('jquery-1.10.2.min')."\n"; ?>
         <?php echo $this->Html->script('functions')."\n"; ?>
         <?php

@@ -5,7 +5,8 @@ class UsuariosController extends AppController {
         
         if($this->request->is('post')) {
             if ($this->Auth->login()) {
-                return $this->redirect($this->Auth->redirectUrl());
+                //return $this->redirect($this->Auth->redirectUrl());
+                $this->redirect('/');
             } else {
                 $this->Session->setFlash('Usuario o contraseña incorrecta', 'default', array(), 'auth');
             }

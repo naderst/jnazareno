@@ -78,5 +78,12 @@ class BautizosController extends AppController {
     		throw new NotFoundException('La página no existe');
     	}
     }
+
+    function ciudades($estado) {
+        $this->layout = 'ajax';
+
+        $ciudades = parent::getRawEstados();
+        $this->set('ciudades', $ciudades[$estado]);
+    }
 }
 ?>

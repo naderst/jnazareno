@@ -27,6 +27,7 @@
  * to use (in this case, /app/View/Pages/home.ctp)...
  */
 	Router::connect('/', array('controller' => 'pages', 'action' => 'display'));
+	Router::connect('/buscador/*', array('controller' => 'buscador', 'action' => 'index'));
 
 /**
  * Load all plugin routes. See the CakePlugin documentation on
