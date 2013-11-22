@@ -1,0 +1,1 @@
+Búsqueda: <?php echo $q; ?>
