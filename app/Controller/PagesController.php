@@ -38,7 +38,24 @@ class PagesController extends AppController {
             $this->redirect('/usuarios/login');
     }
     
+    // Mostrar estadísticas del sitio
 	function display() {
 		$this->render('home');
+	}
+
+	private function edad($fnac, $fact = null) {
+		if(!$fact)
+			$fact = time();
+
+		$fnac = strtotime($fnac);
+		$edad = date('Y', $fact) - date('Y', $fnac);
+
+		if(date('m', $fact) < date('m', $fnac)) {
+			--$edad;
+		} elseif((date('m', $fact) == date('m', $fnac)) && (date('d', $fact) < date('d', $fnac))) {
+			--$edad;
+		}
+
+		return $edad;
 	}
 }
