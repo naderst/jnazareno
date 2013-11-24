@@ -38,8 +38,9 @@ class PagesController extends AppController {
             $this->redirect('/usuarios/login');
     }
     
-    // Mostrar estadísticas del sitio
 	function display() {
+		$this->loadModel('Bautizo');
+		$this->set('bautizos', $this->Bautizo->find('count'));
 		$this->render('home');
 	}
 
