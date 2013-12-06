@@ -22,6 +22,11 @@ class BautizosController extends AppController {
 	    	$this->set('ciudad_selected', $this->request->data('Bautizo.ciudad_nacimiento'));
 	    	$this->set('sexo_selected', $this->request->data('Bautizo.sexo'));
 
+            if($this->request->data('Bautizo.pais_nacimiento') != 'Venezuela') {
+                $this->request->data['Bautizo']['estado_nacimiento'] = $this->request->data['Bautizo']['estado_nacimiento_2'];
+                $this->request->data['Bautizo']['ciudad_nacimiento'] = $this->request->data['Bautizo']['ciudad_nacimiento_2'];
+            }
+
 	    	if($this->Bautizo->save($this->request->data)) {
 	    		$this->Session->setFlash('Bautizo agregado con éxito', 'default', array(), 'good');
 	    		$this->redirect(array('action' => 'index'));
@@ -33,7 +38,8 @@ class BautizosController extends AppController {
     		$this->set('ciudades', parent::getCiudades('Bolívar'));
     		$this->set('estado_selected', 'Bolívar');
     		$this->set('ciudad_selected', 'Ciudad Guayana');
-    		$this->set('sexo_selected', 'M');
+            $this->set('sexo_selected', 'M');
+    		$this->set('pais_selected', 'Venezuela');
     	}
     }
 
@@ -51,6 +57,11 @@ class BautizosController extends AppController {
         $this->Bautizo->id = $id;
 
     	if($this->request->is('put')) {
+            if($this->request->data('Bautizo.pais_nacimiento') != 'Venezuela') {
+                $this->request->data['Bautizo']['estado_nacimiento'] = $this->request->data['Bautizo']['estado_nacimiento_2'];
+                $this->request->data['Bautizo']['ciudad_nacimiento'] = $this->request->data['Bautizo']['ciudad_nacimiento_2'];
+            }
+
             if($this->Bautizo->save($this->request->data)) {
                 $this->Session->setFlash('Se ha modificado el bautizo con éxito', 'default', array(), 'good');
             } else {
@@ -61,11 +72,21 @@ class BautizosController extends AppController {
     	$this->request->data = $this->Bautizo->read();
         $this->set('paises', parent::getPaises());
         $this->set('estados', parent::getEstados());
-        $this->set('ciudades', parent::getCiudades($this->request->data('Bautizo.estado_nacimiento')));
-        $this->set('estado_selected', $this->request->data('Bautizo.estado_nacimiento'));
-        $this->set('ciudad_selected', $this->request->data('Bautizo.ciudad_nacimiento'));
-        $this->set('sexo_selected', $this->request->data('Bautizo.sexo'));
 
+        if($this->request->data('Bautizo.pais_nacimiento') != 'Venezuela') {
+            $this->request->data['Bautizo']['estado_nacimiento_2'] = $this->request->data['Bautizo']['estado_nacimiento'];
+            $this->request->data['Bautizo']['ciudad_nacimiento_2'] = $this->request->data['Bautizo']['ciudad_nacimiento'];
+            $this->set('ciudades', parent::getCiudades('Bolívar'));
+            $this->set('estado_selected', 'Bolívar');
+            $this->set('ciudad_selected', 'Ciudad Guayana');
+        } else {
+            $this->set('ciudades', parent::getCiudades($this->request->data('Bautizo.estado_nacimiento')));
+            $this->set('estado_selected', $this->request->data('Bautizo.estado_nacimiento'));
+            $this->set('ciudad_selected', $this->request->data('Bautizo.ciudad_nacimiento'));
+        }
+
+        $this->set('pais_selected', $this->request->data('Bautizo.pais_nacimiento'));
+        $this->set('sexo_selected', $this->request->data('Bautizo.sexo'));
     	$this->render('agregar');
     }
 

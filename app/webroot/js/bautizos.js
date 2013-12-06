@@ -1,8 +1,8 @@
 $('#BautizoEstadoNacimiento').change(function(){
 	$.ajax({
-		url: './ciudades/' + $(this).val(),
+		url: baseDir + '/bautizos/ciudades/' + $(this).val(),
 		beforeSend: function() {
-			$('#BautizoCiudadNacimiento').parent().append('<div id="loading">Cargando ciudades...</div>');
+			$('#loading').show();
 		},
 		success: function(html) {
 			$('#BautizoCiudadNacimiento').html(html);
@@ -18,3 +18,26 @@ $('#BautizoEstadoNacimiento').change(function(){
 		}
 	});
 });
+
+$('#BautizoPaisNacimiento').change(function(){
+	if($(this).val() == 'Venezuela') {
+		$('#BautizoEstadoNacimiento2').parent().hide();
+		$('#BautizoCiudadNacimiento2').parent().hide();
+		$('#BautizoEstadoNacimiento').parent().show();
+		$('#BautizoCiudadNacimiento').parent().show();
+	} else {
+		$('#BautizoEstadoNacimiento2').parent().show();
+		$('#BautizoCiudadNacimiento2').parent().show();
+		$('#BautizoEstadoNacimiento').parent().hide();
+		$('#BautizoCiudadNacimiento').parent().hide();
+	}
+});
+
+$(document).ready(function(){
+	$('#loading').hide();
+	$('#BautizoEstadoNacimiento2').parent().hide();
+	$('#BautizoCiudadNacimiento2').parent().hide();
+
+	if($('#BautizoPaisNacimiento').val() != 'Venezuela')
+		$('#BautizoPaisNacimiento').trigger('change');
+}); 
