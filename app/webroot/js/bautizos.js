@@ -8,7 +8,7 @@ $('#BautizoEstadoNacimiento').change(function(){
 			$('#BautizoCiudadNacimiento').html(html);
 
 			if($('#BautizoEstadoNacimiento').val() == 'Bolívar')
-				$('#BautizoCiudadNacimiento').val('Ciudad Guayana');
+				$('#BautizoCiudadNacimiento').val('Puerto Ordaz');
 		},
 		error: function() {
 			alert('Ha ocurrido un error cargando las ciudades, por favor intente nuevamente.');

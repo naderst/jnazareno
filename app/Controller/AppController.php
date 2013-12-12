@@ -56,7 +56,7 @@ class AppController extends Controller {
         'Apure' => array('Achaguas', 'Apurito', 'Arichuna', 'Biruaca', 'Bruzual', 'El Amparo', 'El Nula', 'El Recreo', 'El Samán de Apure', 'El Yagual', 'Elorza', 'Guachara', 'Guasdualito', 'Guasimal', 'La Estacada', 'La Trinidad de Orichuna', 'La Victoria', 'Mantecal', 'Palmarito', 'Puerto Páez', 'Quintero', 'San Fernando de Apure', 'San Juan de Payara', 'San Miguel de Cunaviche', 'San Rafael de Atamaica', 'San Vicente'),
         'Aragua' => array('19 de Abril', 'Barbacoas', 'Bella Vista', 'Cagua', 'Camatagua', 'Caña de Azúcar', 'Carmen de Cura', 'Choroní', 'Chuao', 'El Consejo', 'El Limón', 'Francisco de Miranda', 'Güiripa', 'La Colonia Tovar', 'La Pica', 'La Victoria', 'Las Guacamayas', 'Las Mercedes', 'Las Peñitas', 'Las Tejerías', 'Los Bagres', 'Magdaleno', 'Maracay', 'Ocumare de la Costa', 'Ollas de Caramacate', 'Palo Negro', 'Pao de Zárate', 'Paraparal', 'Rosario de Paya', 'San Casimiro', 'San Francisco de Asís', 'San Francisco de Cara', 'San Joaquín', 'San Mateo', 'San Sebastián', 'Santa Cruz', 'Santa Rita', 'Taguay', 'Tiara', 'Tocorón', 'Turmero', 'Valle Morín', 'Villa de Cura', 'Zuata'),
         'Barinas' => array('Altamira', 'Arismendi', 'Barinas', 'Barinitas', 'Barrancas', 'Bum-Bum', 'Calderas', 'Capitanejo', 'Chameta', 'Ciudad Bolivia', 'Ciudad de Nutrias', 'Curbatí', 'Dolores', 'El Cantón', 'El Corozo', 'El Real', 'El Regalo', 'Guadarrama', 'La Caramuca', 'La Luz', 'La Mula', 'La Unión', 'La Yuca', 'Libertad', 'Los Guasimitos', 'Maporal', 'Masparrito', 'Mijagual', 'Obispos', 'Pedraza La Vieja', 'Puerto de Nutrias', 'Puerto Vivas', 'Punta de Piedra', 'Quebrada Seca', 'Sabaneta', 'San Antonio', 'San Rafael de Canaguá', 'San Silvestre', 'Santa Bárbara', 'Santa Catalina', 'Santa Cruz de Guacas', 'Santa Inés', 'Santa Lucía', 'Santa Rosa', 'Socopó', 'Torunos', 'Veguitas'),
-        'Bolívar' => array('Almacén', 'Aripao', 'Caicara del Orinoco', 'Ciudad Bolívar', 'Ciudad Guayana', 'Ciudad Piar', 'El Callao', 'El Dorado', 'El Manteco', 'El Miamo', 'El Milagro', 'El Palmar', 'El Pao de El Hierro', 'El Rosario', 'Guarataro', 'Guasipati', 'Ikabarú', 'La Carolina', 'La Paragua', 'La Urbana', 'Las Bonitas', 'Las Claritas', 'Las Majadas', 'Maripa', 'Moitaco', 'Morichalito', 'Pozo Verde', 'San Francisco', 'San José de Bongo', 'Santa Bárbara de Centurión', 'Santa Elena de Uairén', 'Santa Rosalía', 'Tumeremo', 'Upata'),
+        'Bolívar' => array('Almacén', 'Aripao', 'Caicara del Orinoco', 'Ciudad Bolívar', 'Ciudad Piar', 'El Callao', 'El Dorado', 'El Manteco', 'El Miamo', 'El Milagro', 'El Palmar', 'El Pao de El Hierro', 'El Rosario', 'Guarataro', 'Guasipati', 'Ikabarú', 'La Carolina', 'La Paragua', 'La Urbana', 'Las Bonitas', 'Las Claritas', 'Las Majadas', 'Maripa', 'Moitaco', 'Morichalito', 'Pozo Verde', 'Puerto Ordaz', 'San Félix', 'San Francisco', 'San José de Bongo', 'Santa Bárbara de Centurión', 'Santa Elena de Uairén', 'Santa Rosalía', 'Tumeremo', 'Upata'),
         'Carabobo' => array('Bejuma', 'Belén', 'Borburata', 'Canoabo', 'Central Tacarigua', 'Chirgua', 'Guacara', 'Güigüe', 'Los Guayos', 'Los Naranjos', 'Mariara', 'Miranda', 'Montalbán', 'Morón', 'Naguanagua', 'Patanemo', 'Puerto Cabello', 'San Diego', 'San Joaquín', 'Tocuyito', 'Urama', 'Valencia', 'Yagua'),
         'Cojedes' => array('Apartaderos', 'Cojedes', 'El Amparo', 'El Baúl', 'El Pao', 'La Aguadita', 'La Sierra', 'Las Vegas', 'Libertad', 'Macapo', 'Manrique', 'San Carlos', 'Sucre', 'Tinaco', 'Tinaquillo'),
         'Delta Amacuro' => array('Araguabisi', 'Araguaimujo', 'Boca de Cuyubini', 'Capure', 'Carapal de Guara', 'Curiapo', 'El Triunfo', 'Hacienda del Medio', 'La Horqueta', 'Manoa', 'Moruca', 'Paloma', 'Pedernales', 'Piacoa', 'San Francisco de Guayo', 'San Rafael', 'Santa Catalina', 'Sierra Imataca', 'Tucupita', 'Urbanización Delfín Mendoza', 'Urbanización Leonardo Ruíz Pineda'),
@@ -76,6 +76,9 @@ class AppController extends Controller {
         'Yaracuy' => array('Albarico', 'Aroa', 'Boraure', 'Cambural', 'Campo Elías', 'Casimiro Vásquez', 'Chivacoa', 'Cocorote', 'Farriar', 'Guama', 'Independencia', 'Marín', 'Nirgua', 'Sabana de Parra', 'Salom', 'San Felipe', 'San Pablo', 'Temerla', 'Urachiche', 'Yaritagua', 'Yumare'),
         'Zulia' => array('Bachaquero', 'Barranquitas', 'Bobures', 'Cabimas', 'Cachirí', 'Caja Seca', 'Campo Lara', 'Carrasquero', 'Casigua El Cubo', 'Ceuta', 'Ciudad Â Ojeda', 'Ciudad Ojeda', 'Cojoro', 'Concepción', 'Concha', 'Cuatro Esquinas', 'El Bajo', 'El Batey', 'El Carmelo', 'El Consejo de Ciruma', 'El Corozo', 'El Cruce', 'El Guanábano', 'El Guayabo', 'El Mecocal', 'El Mene', 'El Molinete', 'El Moralito', 'El Silencio', 'El Tigre', 'El Toro', 'El Venado', 'Encontrados', 'Gibraltar', 'Jobo Alto (Kilómetro 25)', 'Kilómetro 48 (Santo Domingo)', 'La Concepción', 'La Ensenada', 'La Paz', 'La Sierrita', 'La Villa del Rosario', 'Lagunillas', 'Las Parcelas', 'Las Piedras', 'Los Cortijos', 'Los Naranjos', 'Los Puertos de Altagracia', 'Machiques', 'Maracaibo', 'Mene Grande', 'Palito Blanco', 'Palmarejo', 'Paraguaipoa', 'Picapica', 'Potreritos', 'Pueblo Nuevo', 'Pueblo Nuevo El Chivo', 'Punta Gorda', 'Quisiro', 'Río Negro', 'Sabana de la Plata', 'Sabaneta de Palmas', 'San Antonio', 'San Carlos', 'San Carlos del Zulia', 'San Francisco', 'San Ignacio', 'San Isidro', 'San José', 'San Rafael de El Moján', 'San Timoteo', 'Santa Bárbara', 'Santa Cruz de Mara', 'Santa Cruz del Zulia', 'Santa María', 'Santa Rita', 'Sierra Maestra', 'Sinamaica', 'Sur América', 'Tamare', 'Tía Juana'),
     );
+
+    private $default_ciudad = 'Puerto Ordaz';
+    private $default_estado = 'Bolívar';
 
     function beforeRender() {
         if($this->Auth->loggedIn()) {
@@ -97,6 +100,14 @@ class AppController extends Controller {
         return $paises;
     }
 
+    protected function getEstado() {
+        return $this->default_estado;
+    }
+
+    protected function getCiudad() {
+        return $this->default_ciudad;
+    }
+
     protected function getEstados() {
         $estados = array();
 
@@ -109,7 +120,9 @@ class AppController extends Controller {
         return $this->estados;
     }
 
-    protected function getCiudades($estado) {
+    protected function getCiudades($estado = null) {
+        if(!$estado)
+            $estado = $this->default_estado;
         $ciudades = array();
 
         foreach($this->estados[$estado] as $c)
