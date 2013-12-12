@@ -1,7 +1,15 @@
 <?php
 class BautizosController extends AppController {
+    public $components = array('Paginator');
+    public $helpers = array('Paginator');
+    public $paginate = array(
+        'limit' => 5,
+        'order' => array('Bautizo.id' => 'DESC')
+    );
+
     function index() {
-        $this->set('bautizos', $this->Bautizo->find('all'));
+        $this->Paginator->settings = $this->paginate;
+        $this->set('bautizos', $this->Paginator->paginate('Bautizo'));
     }
     
     function agregar() {

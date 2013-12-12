@@ -4,6 +4,21 @@ if(!count($bautizos)) {
     echo '<center>No hay bautizos registrados.</center>';
 } else {
 ?>
+
+<?php
+//echo '<center>';
+/*echo $this->Paginator->first('<input type="button" value="<<">', array('escape' => false));
+echo $this->Paginator->prev('<input type="button" value="< Anterior">', array('escape' => false), ' ',array()).' ';
+echo $this->Paginator->next('<input type="button" value="Siguiente >">', array('escape' => false), ' ',array());
+echo $this->Paginator->last('<input type="button" value=">>">', array('escape' => false));
+echo '<input type="button" value="Nuevo bautizo" onclick="javascript:document.location=\''.Router::url('/bautizos/agregar').'\';">';
+echo '<br><br>';
+echo '<b>'.$this->Paginator->counter(array(
+    'format' => 'Página {:page} de {:pages}, mostrando {:current} bautizo(s) de
+             {:count} totales'
+)).'</b><br><br>';*/
+//echo '</center>';
+?>
 <table>
 	<tr>
 		<th>Nombre</th>
@@ -48,4 +63,19 @@ foreach($bautizos as $e) {
 </table>
 <?php } ?>
 <br>
-<center><input type="button" value="Nuevo bautizo" onclick="javascript:document.location='<?php echo Router::url('/bautizos/agregar'); ?>';"></center>
+<center>
+<?php
+echo '<b>'.$this->Paginator->counter(array(
+    'format' => 'Página {:page} de {:pages}, mostrando {:current} bautizo(s) de
+             {:count} totales'
+)).'</b><br><br>';
+echo $this->Paginator->first('<input type="button" value="<<">', array('escape' => false));
+echo $this->Paginator->prev('<input type="button" value="< Anterior">', array('escape' => false), ' ',array()).' ';
+echo $this->Paginator->next('<input type="button" value="Siguiente >">', array('escape' => false), ' ',array());
+echo $this->Paginator->last('<input type="button" value=">>">', array('escape' => false));
+?>
+	<input type="button" value="Nuevo bautizo" onclick="javascript:document.location='<?php echo Router::url('/bautizos/agregar'); ?>';"><br><br>
+<?php
+echo $this->Paginator->numbers(array('before' => '<b>Ir a la página:</b> '));
+?>
+</center>
