@@ -29,13 +29,24 @@ class BautizosController extends AppController {
 	    	$this->set('estado_selected', $this->request->data('Bautizo.estado_nacimiento'));
 	    	$this->set('ciudad_selected', $this->request->data('Bautizo.ciudad_nacimiento'));
 	    	$this->set('sexo_selected', $this->request->data('Bautizo.sexo'));
+            $this->set('pais_selected', $this->request->data('Bautizo.pais_nacimiento'));
 
             if($this->request->data('Bautizo.pais_nacimiento') != 'Venezuela') {
                 $this->request->data['Bautizo']['estado_nacimiento'] = $this->request->data['Bautizo']['estado_nacimiento_2'];
                 $this->request->data['Bautizo']['ciudad_nacimiento'] = $this->request->data['Bautizo']['ciudad_nacimiento_2'];
             }
 
-	    	if($this->Bautizo->save($this->request->data)) {
+            $existeBautizo = $this->Bautizo->find('first', array(
+                'conditions' => array(
+                    'Bautizo.libro' => $this->request->data('Bautizo.libro'),
+                    'Bautizo.folio' => $this->request->data('Bautizo.folio'),
+                    'Bautizo.numero' => $this->request->data('Bautizo.numero')
+                )
+            ));
+
+            if($existeBautizo) {
+                $this->Session->setFlash('Ya existe un bautizo con el mismo Libro, Folio y número', 'default', array(), 'bad');
+	    	} elseif($this->Bautizo->save($this->request->data)) {
 	    		$this->Session->setFlash('Bautizo agregado con éxito', 'default', array(), 'good');
 	    		$this->redirect(array('action' => 'index'));
 	    	} else {
@@ -70,7 +81,17 @@ class BautizosController extends AppController {
                 $this->request->data['Bautizo']['ciudad_nacimiento'] = $this->request->data['Bautizo']['ciudad_nacimiento_2'];
             }
 
-            if($this->Bautizo->save($this->request->data)) {
+            $existeBautizo = $this->Bautizo->find('first', array(
+                'conditions' => array(
+                    'Bautizo.libro' => $this->request->data('Bautizo.libro'),
+                    'Bautizo.folio' => $this->request->data('Bautizo.folio'),
+                    'Bautizo.numero' => $this->request->data('Bautizo.numero')
+                )
+            ));
+
+            if($existeBautizo && $existeBautizo['Bautizo']['id'] != $id)
+                $this->Session->setFlash('Ya existe un bautizo con el mismo Libro, Folio y número', 'default', array(), 'bad');
+            elseif($this->Bautizo->save($this->request->data)) {
                 $this->Session->setFlash('Se ha modificado el bautizo con éxito', 'default', array(), 'good');
             } else {
                 $this->Session->setFlash('Ha ocurrido un error modificando el bautizo', 'default', array(), 'bad');
