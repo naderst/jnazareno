@@ -1,9 +1,9 @@
 ![Parroquia Jesús de Nazareno](/app/webroot/img/logo.png)
-Sistema de la parroquia Jesús de Nazareno
------------------------------------------
+Sistema de la parroquia Jesús Nazareno
+---------------------------------------
 
 Este es un proyecto de servicio comunitario de la UCAB Guayana
-desarrollado para la parroquia Jesús de Nazareno ubicada en 
+desarrollado para la parroquia Jesús Nazareno ubicada en 
 Villa Brasil, Puerto Ordaz. Edo. Bolívar. Venezuela.
 
 El proyecto se encarga de automatizar la gestión de los distintos
