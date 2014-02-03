@@ -24,6 +24,7 @@
                 <li><a href="<?php echo Router::url('/comuniones'); ?>"<?php echo $this->name == 'Comuniones'?'class="active"':'' ?>><i class="fa fa-angle-double-right"></i> COMUNIONES</a></li>
                 <li><a href="<?php echo Router::url('/confirmaciones'); ?>"<?php echo $this->name == 'Confirmaciones'?'class="active"':'' ?>><i class="fa fa-angle-double-right"></i> CONFIRMACIONES</a></li>
                 <li><a href="<?php echo Router::url('/matrimonios'); ?>"<?php echo $this->name == 'Matrimonios'?'class="active"':'' ?>><i class="fa fa-angle-double-right"></i> MATRIMONIOS</a></li>
+                <li><a href="<?php echo Router::url('/documentos'); ?>"<?php echo $this->name == 'Documentos'?'class="active"':'' ?>><i class="fa fa-file-text-o"></i> DOCUMENTOS</a></li>
                 <?php
                     if($rol == 'A') {
                         /* Admin stuff */
@@ -48,6 +49,8 @@
         <?php
             if($this->name == 'Bautizos')
                 echo $this->Html->script('bautizos')."\n";
+            if($this->name == 'Documentos')
+                echo $this->Html->script('documentos')."\n";
         ?>
     </body>
 </html>

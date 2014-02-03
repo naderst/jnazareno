@@ -3,6 +3,8 @@ App::import('Vendor', 'jpgraph/jpgraph');
 App::import('Vendor', 'jpgraph/jpgraph_pie');
 
 class GraficosController extends AppController {
+	public $uses = array();
+
 	function bautizosEdades() {
 		$this->autoRender = false;
 
