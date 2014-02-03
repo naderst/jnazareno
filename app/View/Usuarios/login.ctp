@@ -1,13 +1,10 @@
-<form id="UsuarioLoginForm" action="<?php echo Router::url(array('controller' => 'usuarios', 'action' => 'login')); ?>" method="post">
-    <div class="form-group">
-        <input name="data[Usuario][usuario]" type="text" placeholder="Nombre de usuario" id="username">
-        <i class="fa fa-user"></i>
-    </div>
-    <br>
-    <div class="form-group">
-        <input name="data[Usuario][password]" type="password" class="login-password" placeholder="Contraseña" id="password">
-        <i class="fa fa-lock"></i>
-    </div>
-    <br>
-    <input type="submit" id="login-button" value="Iniciar sesión">
-</form>
+<?php
+echo $this->Form->create('Usuario');
+echo '<div class="form-group">';
+echo $this->Form->input('usuario', array('label' => false, 'div' => false, 'placeholder' => 'Nombre de usuario', 'id' => 'username'));
+echo '<i class="fa fa-user"></i></div><br>';
+echo '<div class="form-group">';
+echo $this->Form->input('password', array('label' => false, 'div' => false, 'placeholder' => 'Contraseña', 'id' => 'password', 'class' => 'login-password'));
+echo '<i class="fa fa-lock"></i></div><br>';
+echo $this->Form->end('Iniciar sesión');
+?>

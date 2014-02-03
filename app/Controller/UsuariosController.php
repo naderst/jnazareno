@@ -8,6 +8,7 @@ class UsuariosController extends AppController {
                 //return $this->redirect($this->Auth->redirectUrl());
                 $this->redirect('/');
             } else {
+                unset($this->request->data['Usuario']['password']);
                 $this->Session->setFlash('Usuario o contraseña incorrecta', 'default', array(), 'auth');
             }
         }
