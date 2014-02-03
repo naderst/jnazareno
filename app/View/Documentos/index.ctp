@@ -8,6 +8,12 @@
 </form>
 <?php } ?>
 <h2>Documentos</h2>
+
+<?php
+	if(!count($files)) {
+?>
+<center>No hay ningún archivo</center>
+<?php } else { ?>
 Para descargar los documentos debe hacer click en el nombre del mismo.<br><br>
 <table>
 	<tr>
@@ -36,3 +42,5 @@ Para descargar los documentos debe hacer click en el nombre del mismo.<br><br>
 	</tr>
 	<?php ++$i; } ?>
 </table>
+
+<?php } ?>
