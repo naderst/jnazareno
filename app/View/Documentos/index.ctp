@@ -1,3 +1,12 @@
+<?php
+	if($rol == 'A') { 
+?>
+<h2>Subir documento</h2>
+<form name="uploadDocument" enctype="multipart/form-data" action="<?php echo Router::url('/documentos/subir'); ?>" method="POST">
+	<input type="file" name="documento">
+	<input type="submit" value="Subir documento">
+</form>
+<?php } ?>
 <h2>Documentos</h2>
 Para descargar los documentos debe hacer click en el nombre del mismo.<br><br>
 <table>
@@ -22,7 +31,7 @@ Para descargar los documentos debe hacer click en el nombre del mismo.<br><br>
 		<?php
 			if($rol == 'A') {
 		?>
-		<td><a href="javascript:void(0);" class="rename" data-id="<?php echo $i; ?>"><i class="fa fa-edit"></i> Cambiar nombre</a> / <a href="javascript:void(0);" alt="Eliminar" class="delete"><i class="fa fa-times"></i> Eliminar</a></td>
+		<td width="240"><a href="javascript:void(0);" class="rename" data-id="<?php echo $i; ?>"><i class="fa fa-edit"></i> Cambiar nombre</a> / <a href="javascript:void(0);" alt="Eliminar" class="delete"><i class="fa fa-times"></i> Eliminar</a></td>
 		<?php } ?>
 	</tr>
 	<?php ++$i; } ?>
