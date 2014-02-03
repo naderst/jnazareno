@@ -1,5 +1,5 @@
 <h2>Documentos</h2>
-
+Para descargar los documentos debe hacer click en el nombre del mismo.<br><br>
 <table>
 	<tr>
 		<th>Documento</th>
@@ -15,7 +15,7 @@
 	?>
 	<tr>
 		<td>
-			<?php echo '<a href="'.Router::url('/documents/'.$f).'" id="ad-'.$i.'">'.$f.'</a>'; ?>
+			<?php echo '<a href="'.Router::url('/documents/'.$f).'" id="ad-'.$i.'" target="_blank">'.$f.'</a>'; ?>
 			<?php echo '<input type="text" class="dname" id="id-'.$i.'" value="'.$f.'">'; ?>
 			<span class="loading">Cargando...</span>
 		</td>

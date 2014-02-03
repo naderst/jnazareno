@@ -37,6 +37,7 @@ $(document).ready(function() {
 				},
 				success: function(html) {
 					$(a).html(html);
+					$(a).attr('href', baseDir + 'documents/' + html);
 				},
 				error: function() {
 					alert('Ocurrió un error inesperado renombrando el archivo, por favor vuelva a intentarlo');
