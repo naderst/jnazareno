@@ -2,8 +2,8 @@
 	if($rol == 'A') { 
 ?>
 <h2>Subir documento</h2>
-<form name="uploadDocument" enctype="multipart/form-data" action="<?php echo Router::url('/documentos/subir'); ?>" method="POST">
-	<input type="file" name="documento">
+<form name="uploadDocument" id="uploadDocument" enctype="multipart/form-data" action="<?php echo Router::url('/documentos/subir'); ?>" method="POST">
+	<input type="file" name="documento" id="fdocumento">
 	<input type="submit" value="Subir documento">
 </form>
 <?php } ?>

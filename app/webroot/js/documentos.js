@@ -58,4 +58,14 @@ $(document).ready(function() {
 		if(event.which == 13)
 			$(this).trigger('blur');
 	});
+
+        $('#uploadDocument').submit(function(){
+            var size = document.getElementById('fdocumento').files[0].size;
+            var MAX_SIZE = 5; // Megabytes (MB)
+            
+            if(size > (MAX_SIZE * 1048576)) {
+                alert('El archivo debe pesar máximo ' + MAX_SIZE + ' MB');
+                return false;
+            }
+        });
 });
