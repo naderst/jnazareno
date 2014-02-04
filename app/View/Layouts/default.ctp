@@ -6,6 +6,7 @@
 		echo $this->Html->meta('icon')."\n";
 		echo "\t".$this->Html->css('estilo')."\n";
 		echo "\t".$this->Html->css('font-awesome')."\n";
+                echo "\t".$this->Html->css('jquery.datetimepicker')."\n";
         ?>
         <meta charset="utf-8">
     </head>
@@ -45,12 +46,15 @@
             baseDir = '<?php echo Router::url('/'); ?>';
         </script>
         <?php echo $this->Html->script('jquery-1.10.2.min')."\n"; ?>
+        <?php echo $this->Html->script('jquery.datetimepicker')."\n"; ?>
         <?php echo $this->Html->script('functions')."\n"; ?>
         <?php
             if($this->name == 'Bautizos')
                 echo $this->Html->script('bautizos')."\n";
             if($this->name == 'Documentos')
                 echo $this->Html->script('documentos')."\n";
+            if($this->name == 'Matrimonios')
+                echo $this->Html->script('matrimonios')."\n";
         ?>
     </body>
 </html>

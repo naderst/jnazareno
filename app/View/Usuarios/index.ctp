@@ -7,7 +7,7 @@ else
     $total_usuarios = 'usuarios';
 ?>
 <h2>Usuarios del sistema (<?php echo $total.' '.$total_usuarios; ?>)</h2>
-<table>
+<table class="tabla">
     <tr>
         <th></th>
         <th>Nombre de usuario</th>

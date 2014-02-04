@@ -2,7 +2,7 @@
 <?php
 	echo $this->Form->create('Configuracion');
 	$i = 0;
-	echo '<table>';
+	echo '<table class="tabla">';
 	echo '<tr><th width="50%">Parámetro</th><th>Valor</th></tr>';
 	foreach($params as $p) {
 		echo '<tr>';

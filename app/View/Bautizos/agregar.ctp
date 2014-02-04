@@ -17,7 +17,7 @@ echo $this->Form->create('Bautizo', array(
     </tr>
     <tr>
         <td><?php echo $this->Form->input('sexo', array('type' => 'radio', 'options' => array('M' => 'Masculino', 'F' => 'Femenino'), 'value' => $sexo_selected)); ?></td>
-        <td><?php echo $this->Form->input('fecha_nacimiento', array('type' => 'date', 'dateFormat' => 'DMY', 'minYear' => '1940', 'maxYear' => date('Y', time()), 'label' => 'Fecha de nacimiento', 'style' => 'width:30%;')); ?></td>
+        <td><?php echo $this->Form->input('fecha_nacimiento', array('label' => 'Fecha de nacimiento', 'id' => 'datetimepicker1')); ?></td>
     </tr>
     <tr>
         <td><?php echo $this->Form->input('pais_nacimiento', array('label' => 'País de nacimiento', 'type' => 'select', 'options' => $paises, 'selected' => $pais_selected)); ?></td>
@@ -40,7 +40,7 @@ echo $this->Form->create('Bautizo', array(
     </tr>
     <tr>
         <td><?php echo $this->Form->input('numero', array('label' => 'Número')); ?></td>
-        <td><?php echo $this->Form->input('fecha', array('type' => 'date', 'dateFormat' => 'DMY', 'label' => 'Fecha del bautizo', 'maxYear' => date('Y', time()), 'style' => 'width:30%')); ?></td>
+        <td><?php echo $this->Form->input('fecha', array('id' => 'datetimepicker2')); ?></td>
     </tr>
     <tr>
       <td><?php echo $this->Form->input('padrino'); ?></td>
@@ -55,7 +55,7 @@ echo $this->Form->create('Bautizo', array(
     </tr>
     <tr>
       <td><?php echo $this->Form->input('prefectura_municipio', array('label' => 'Municipio')); ?></td>
-      <td><?php echo $this->Form->input('prefectura_fecha', array('label' => 'Fecha', 'type' => 'date', 'style' => 'width:30%', 'dateFormat' => 'DMY', 'maxYear' => date('Y', time()))); ?></td>
+      <td><?php echo $this->Form->input('prefectura_fecha', array('label' => 'Fecha', 'id' => 'datetimepicker3')); ?></td>
     </tr>
     <tr>
       <td><?php echo $this->Form->input('prefectura_numero', array('label' => 'Número')); ?></td>

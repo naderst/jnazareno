@@ -15,7 +15,7 @@
 <center>No hay ningún archivo</center>
 <?php } else { ?>
 Para descargar los documentos debe hacer click en el nombre del mismo.<br><br>
-<table>
+<table class="tabla">
 	<tr>
 		<th>Documento</th>
 		<?php

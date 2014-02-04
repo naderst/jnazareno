@@ -127,31 +127,31 @@ a:hover {
     color: #000
 }
 
-table {
+.tabla {
     border-collapse: collapse;
-    width: 100%
+    width: 100%;
 }
 
-table, th, td {
+.tabla, .tabla th, .tabla td {
     border: 1px solid #EBEBE1
 }
 
-td, th {
+.tabla td, .tabla th {
     padding: 10px
 }
 
-td a {
+.tabla td a {
     text-decoration: none
 }
 
-th {
+.tabla th {
     background-color: #9b59b6;
     text-align: center;
     color: #fff;
     text-shadow: 1px 1px 2px #000;
 }
 
-tr:nth-child(odd) {
+.tabla tr:nth-child(odd) {
     background-color: #F2F2EA
 }
 
@@ -260,7 +260,7 @@ tr:nth-child(odd) {
     position: relative;
 }
 
-#nav ul li a:hover, .active {
+#nav ul li a:hover, #nav ul li a.active {
     background-color: #9b59b6 !important;
     color: #FFF !important;
 }
