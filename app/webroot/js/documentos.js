@@ -63,9 +63,11 @@ $(document).ready(function() {
             var size = document.getElementById('fdocumento').files[0].size;
             var name = document.getElementById('fdocumento').files[0].name;
             var MAX_SIZE = 5; // Megabytes (MB)
+            var valid_ext = 'csv|xls|xlsx|doc|docx|pdf|jpg|png|gif|bmp|txt';
+            var regex = new RegExp('/\.(' + valid_ext + ')$/i');
             
-            if(!name.match(/\.(csv|xls|xlsx|doc|docx|pdf|jpg|png|gif|bmp|txt)$/gi)) {
-                alert('El tipo del archivo no es válido, solo le aceptan los siguientes tipos: csv|xls|xlsx|doc|docx|pdf|jpg|png|gif|bmp|txt');
+            if(!name.match(regex)) {
+                alert('El tipo del archivo no es válido, solo le aceptan los siguientes tipos: ' + valid_ext);
                 $(this).val('');
             } else if(size > (MAX_SIZE * 1048576)) {
                 alert('El archivo debe pesar máximo ' + MAX_SIZE + ' MB');
