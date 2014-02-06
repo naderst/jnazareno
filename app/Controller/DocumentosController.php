@@ -1,14 +1,15 @@
 <?php
 class DocumentosController extends AppController {
 	public $uses = array();
-
+        private $valid_ext = 'csv|xls|xlsx|doc|docx|pdf|jpg|png|gif|bmp|txt'; // Extensiones aceptadas
+        
 	function index() {
 		$dr = opendir('../webroot/documents');
 		$files = array();
 
 		if($dr !== FALSE) {
 			while(($file = readdir($dr)) !== FALSE) {
-				if($file != '.' && $file != '..')
+				if($file != '.' && $file != '..' && !preg_match('/^readme(\.(.+))?/i', $file))
 					$files[] = $file;
 			}
 
@@ -41,7 +42,7 @@ class DocumentosController extends AppController {
 		$old = $this->request->data('old');
 		$new = $this->request->data('new');
 
-		if(rename('../webroot/documents/'.$old, '../webroot/documents/'.$new))
+		if(preg_match('/\.('.$this->valid_ext.')$/i', $new) && rename('../webroot/documents/'.$old, '../webroot/documents/'.$new))
 			$this->set('name', $new);
 		else
 			$this->set('name', $old);
@@ -53,7 +54,6 @@ class DocumentosController extends AppController {
 		}
 
 		$MAX_SIZE = 5; // Tamaño en megabytes (MB)
-		$valid_ext = 'doc|docx|pdf|jpg|png|gif|bmp|txt'; // Extensiones aceptadas
 		$nombre = $_FILES['documento']['name'];
 		$src = $_FILES['documento']['tmp_name'];
 		$dst = '../webroot/documents/'.$nombre;
@@ -61,7 +61,7 @@ class DocumentosController extends AppController {
 
 		if($size > ($MAX_SIZE*1048576)) {
 			$this->Session->setFlash('El tamaño del archivo debe ser menor o igual a '.$MAX_SIZE.' MB', 'default', array(), 'bad');
-		} elseif (!preg_match('/\.('.$valid_ext.')$/i', $nombre)) {
+		} elseif (!preg_match('/\.('.$this->valid_ext.')$/i', $nombre)) {
 			$this->Session->setFlash('Formato inválido', 'default', array(), 'bad');
 		} elseif(file_exists($dst)) {
 			$this->Session->setFlash('El archivo ya existe', 'default', array(), 'bad');

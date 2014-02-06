@@ -59,13 +59,19 @@ $(document).ready(function() {
 			$(this).trigger('blur');
 	});
 
-        $('#uploadDocument').submit(function(){
+        $('#fdocumento').change(function(){
             var size = document.getElementById('fdocumento').files[0].size;
+            var name = document.getElementById('fdocumento').files[0].name;
             var MAX_SIZE = 5; // Megabytes (MB)
             
-            if(size > (MAX_SIZE * 1048576)) {
+            if(!name.match(/\.(csv|xls|xlsx|doc|docx|pdf|jpg|png|gif|bmp|txt)$/gi)) {
+                alert('El tipo del archivo no es válido, solo le aceptan los siguientes tipos: csv|xls|xlsx|doc|docx|pdf|jpg|png|gif|bmp|txt');
+                $(this).val('');
+            } else if(size > (MAX_SIZE * 1048576)) {
                 alert('El archivo debe pesar máximo ' + MAX_SIZE + ' MB');
-                return false;
+                $(this).val('');
+            } else {
+                $('#uploadDocument').submit();
             }
         });
 });
