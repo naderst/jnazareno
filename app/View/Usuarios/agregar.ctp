@@ -24,7 +24,7 @@ if($this->action == 'modificar') {
     )));
     echo '<br>';
     echo '<center>';
-    echo '<input type="button" value="Cancelar" onclick="javascript:document.location=\''.Router::url(array('action' => 'index')).'\'">';
+    echo '<input type="button" value="Cancelar" class="cancel" data-location="'.Router::url(array('action' => 'index')).'">';
     echo $this->Form->end(array('div' => false, 'label' => $this->action == 'modificar'?'Guardar':'Agregar'));
     echo '</center>'
 ?>

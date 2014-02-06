@@ -79,5 +79,5 @@ echo $this->Form->create('Bautizo', array(
         $submit = 'Agregar';
     }
     ?>
-    <center><input type="button" value="Cancelar" onclick="document.location='<?php echo Router::url('/bautizos'); ?>';"><input type="submit" value="<?php echo $submit; ?>"></center>
+    <center><input type="button" value="Cancelar" class="cancel" data-location="<?php echo Router::url('/bautizos'); ?>"><input type="submit" value="<?php echo $submit; ?>"></center>
 </form>

@@ -10,6 +10,13 @@ echo $this->Form->create('Matrimonio', array(
 
 <table class="tform">
     <tr>
+        <td colspan="2"><h3>Datos del matrimonio</h3></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
         <td colspan="2"><h3>Datos del novio</h3></td>
     </tr>
     <tr>
@@ -58,6 +65,10 @@ echo $this->Form->create('Matrimonio', array(
     </tr>
     <tr>
         <td><?php echo $this->Form->input('direccion_testigo_novio', array('label' => 'Dirección')); ?></td>
+        <td><?php echo $this->Form->input('tnovio_testigo_novio', array('label' => 'Tiempo que conoce al novio (años)')); ?></td>
+    </tr>
+    <tr>
+        <td><?php echo $this->Form->input('tnovia_testigo_novio', array('label' => 'Tiempo que conoce a la novia (años)')); ?></td>
         <td></td>
     </tr>
 </table>
@@ -69,5 +80,5 @@ if ($this->action == 'modificar') {
 }
 ?>
 <br>
-<center><input type="button" value="Cancelar" onclick="document.location='<?php echo Router::url('/matrimonios'); ?>';"><input type="submit" value="<?php echo $submit; ?>"></center>
+<center><input type="button" value="Cancelar" class="cancel" data-location="<?php echo Router::url('/matrimonios'); ?>"><input type="submit" value="<?php echo $submit; ?>"></center>
 </form>
