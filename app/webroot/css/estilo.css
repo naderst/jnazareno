@@ -107,6 +107,10 @@ input[type="button"][disabled] {
     cursor: auto !important;
 }
 
+input[type="text"].dname {
+    width: 95%
+}
+
 select {
     font-family: "Lato", sans-serif;
     font-size: 14px;
@@ -114,8 +118,12 @@ select {
     width: 100%;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3 {
     color: #9b59b6
+}
+
+h4, h5, h6 {
+    color: #777
 }
 
 a {
@@ -179,8 +187,18 @@ a:hover {
     width: 80%;
 }
 
+.tform fieldset {
+    width: 80%;
+}
+
 .tform select {
     width: 80%
+}
+
+.tform td[colspan="2"] h4{
+    margin: 0px;
+    border-bottom: #777 1px dashed;
+    padding: 2px;
 }
 /*tr:hover {
     background-color: rgba(142,68,173,0.4)

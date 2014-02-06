@@ -33,7 +33,7 @@ $(document).ready(function(){
                             alert('Ha ocurrido un error cargando las ciudades, por favor intente nuevamente.');
                     },
                     complete: function() {
-                            $("#loading").remove();
+                            $("#loading").hide();
                     }
             });
     });
