@@ -46,6 +46,15 @@ class MatrimoniosController extends AppController {
                 $this->set('estado_actual_selected', parent::getEstado());
                 $this->set('ciudad_actual_selected', parent::getCiudad());
                 $this->set('pais_actual_selected', 'Venezuela');
+                
+                $this->set('ciudades_novia', parent::getCiudades());
+                $this->set('estado_selected_novia', parent::getEstado());
+                $this->set('ciudad_selected_novia', parent::getCiudad());
+                $this->set('pais_selected_novia', 'Venezuela');
+                $this->set('ciudades_actual_novia', parent::getCiudades());
+                $this->set('estado_actual_selected_novia', parent::getEstado());
+                $this->set('ciudad_actual_selected_novia', parent::getCiudad());
+                $this->set('pais_actual_selected_novia', 'Venezuela');
         }
     }
 }

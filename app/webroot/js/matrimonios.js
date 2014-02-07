@@ -5,6 +5,12 @@ $(document).ready(function() {
         format: 'd/m/Y'
     });
     
+    $('#datetimepicker2').datetimepicker({
+        lang: 'es',
+        timepicker: false,
+        format: 'd/m/Y'
+    });
+    
     $('#MatrimonioEstadoNacimientoNovio').change(function(){
             $.ajax({
                     url: baseDir + '/bautizos/ciudades/' + $(this).val(),
@@ -75,6 +81,78 @@ $(document).ready(function() {
             }
     });    
 
+    // Eventos de la novia
+    $('#MatrimonioEstadoNacimientoNovia').change(function(){
+            $.ajax({
+                    url: baseDir + '/bautizos/ciudades/' + $(this).val(),
+                    beforeSend: function() {
+                            $('#loading_novia').show();
+                    },
+                    success: function(html) {
+                            $('#MatrimonioCiudadNacimientoNovia').html(html);
+
+                            if($('#MatrimonioEstadoNacimientoNovia').val() == 'Bolívar')
+                                    $('#MatrimonioCiudadNacimientoNovia').val('Puerto Ordaz');
+                    },
+                    error: function() {
+                            alert('Ha ocurrido un error cargando las ciudades, por favor intente nuevamente.');
+                    },
+                    complete: function() {
+                            $("#loading_novia").hide();
+                    }
+            });
+    });
+    
+    $('#MatrimonioEstadoActualNovia').change(function(){
+            $.ajax({
+                    url: baseDir + '/bautizos/ciudades/' + $(this).val(),
+                    beforeSend: function() {
+                            $('#loading_actual_novia').show();
+                    },
+                    success: function(html) {
+                            $('#MatrimonioCiudadActualNovia').html(html);
+
+                            if($('#MatrimonioEstadoActualNovia').val() == 'Bolívar')
+                                    $('#MatrimonioCiudadActualNovia').val('Puerto Ordaz');
+                    },
+                    error: function() {
+                            alert('Ha ocurrido un error cargando las ciudades, por favor intente nuevamente.');
+                    },
+                    complete: function() {
+                            $("#loading_actual_novia").hide();
+                    }
+            });
+    });
+
+    $('#MatrimonioPaisNacimientoNovia').change(function(){
+            if($(this).val() == 'Venezuela') {
+                    $('#MatrimonioEstadoNacimientoNovia2').parent().hide();
+                    $('#MatrimonioCiudadNacimientoNovia2').parent().hide();
+                    $('#MatrimonioEstadoNacimientoNovia').parent().show();
+                    $('#MatrimonioCiudadNacimientoNovia').parent().show();
+            } else {
+                    $('#MatrimonioEstadoNacimientoNovia2').parent().show();
+                    $('#MatrimonioCiudadNacimientoNovia2').parent().show();
+                    $('#MatrimonioEstadoNacimientoNovia').parent().hide();
+                    $('#MatrimonioCiudadNacimientoNovia').parent().hide();
+            }
+    });    
+    
+    $('#MatrimonioPaisActualNovia').change(function(){
+            if($(this).val() == 'Venezuela') {
+                    $('#MatrimonioEstadoActualNovia2').parent().hide();
+                    $('#MatrimonioCiudadActualNovia2').parent().hide();
+                    $('#MatrimonioEstadoActualNovia').parent().show();
+                    $('#MatrimonioCiudadActualNovia').parent().show();
+            } else {
+                    $('#MatrimonioEstadoActualNovia2').parent().show();
+                    $('#MatrimonioCiudadActualNovia2').parent().show();
+                    $('#MatrimonioEstadoActualNovia').parent().hide();
+                    $('#MatrimonioCiudadActualNovia').parent().hide();
+            }
+    });
+
+
     $('#loading').hide();
     $('#MatrimonioEstadoNacimientoNovio2').parent().hide();
     $('#MatrimonioCiudadNacimientoNovio2').parent().hide();
@@ -82,10 +160,24 @@ $(document).ready(function() {
     $('#loading_actual').hide();
     $('#MatrimonioEstadoActualNovio2').parent().hide();
     $('#MatrimonioCiudadActualNovio2').parent().hide();
+    
+    $('#loading_novia').hide();
+    $('#MatrimonioEstadoNacimientoNovia2').parent().hide();
+    $('#MatrimonioCiudadNacimientoNovia2').parent().hide();
+    
+    $('#loading_actual_novia').hide();
+    $('#MatrimonioEstadoActualNovia2').parent().hide();
+    $('#MatrimonioCiudadActualNovia2').parent().hide();
 
     if($('#MatrimonioPaisNacimientoNovio').val() != 'Venezuela')
             $('#MatrimonioPaisNacimientoNovio').trigger('change');
         
     if($('#MatrimonioPaisActualNovio').val() != 'Venezuela')
             $('#MatrimonioPaisActualNovio').trigger('change');
+        
+    if($('#MatrimonioPaisNacimientoNovia').val() != 'Venezuela')
+            $('#MatrimonioPaisNacimientoNovia').trigger('change');
+        
+    if($('#MatrimonioPaisActualNovia').val() != 'Venezuela')
+            $('#MatrimonioPaisActualNovia').trigger('change');
 });
