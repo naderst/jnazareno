@@ -64,9 +64,9 @@ $(document).ready(function() {
             var name = document.getElementById('fdocumento').files[0].name;
             var MAX_SIZE = 5; // Megabytes (MB)
             var valid_ext = 'csv|xls|xlsx|doc|docx|pdf|jpg|png|gif|bmp|txt';
-            var regex = new RegExp('/\.(' + valid_ext + ')$/i');
+            var regex = new RegExp('\.(' + valid_ext + ')$', 'i');
             
-            if(!name.match(regex)) {
+            if(!regex.test(name)) {
                 alert('El tipo del archivo no es válido, solo le aceptan los siguientes tipos: ' + valid_ext);
                 $(this).val('');
             } else if(size > (MAX_SIZE * 1048576)) {
