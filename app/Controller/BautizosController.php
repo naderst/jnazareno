@@ -44,6 +44,8 @@ class BautizosController extends AppController {
                 )
             ));
 
+            $this->request->data['Bautizo']['fecha'] = date('d/m/Y',strtotime($this->request->data('Bautizo.fecha')));
+
             if($existeBautizo) {
                 $this->Session->setFlash('Ya existe un bautizo con el mismo Libro, Folio y número', 'default', array(), 'bad');
 	    	} elseif($this->Bautizo->save($this->request->data)) {
