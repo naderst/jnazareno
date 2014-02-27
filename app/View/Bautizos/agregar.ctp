@@ -55,7 +55,7 @@ echo $this->Form->create('Bautizo', array(
     </tr>
     <tr>
       <td><?php echo $this->Form->input('prefectura_municipio', array('label' => 'Municipio')); ?></td>
-      <td><?php echo $this->Form->input('prefectura_fecha', array('label' => 'Fecha', 'id' => 'datetimepicker3')); ?></td>
+      <td><?php echo $this->Form->input('prefectura_fecha', array('label' => 'Fecha')); ?></td>
     </tr>
     <tr>
       <td><?php echo $this->Form->input('prefectura_numero', array('label' => 'Número')); ?></td>

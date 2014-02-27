@@ -11,12 +11,6 @@ $(document).ready(function(){
         format: 'd/m/Y'
     });
     
-    $('#datetimepicker3').datetimepicker({
-        lang: 'es',
-        timepicker: false,
-        format: 'd/m/Y'
-    });
-    
     $('#BautizoEstadoNacimiento').change(function(){
             $.ajax({
                     url: baseDir + '/bautizos/ciudades/' + $(this).val(),

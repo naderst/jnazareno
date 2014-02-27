@@ -6,9 +6,10 @@ if(!count($bautizos)) {
 ?>
 <table class="tabla">
 	<tr>
+		<th>Fecha de bautizo</th>
 		<th>Nombre</th>
 		<th>Fecha de Nac.</th>
-		<th>Ciudad de Nac.</th>
+		<th>Lugar de Nac.</th>
 		<th>Padre</th>
 		<th>Madre</th>
 		<th>Padrino</th>
@@ -27,9 +28,10 @@ if(!count($bautizos)) {
 foreach($bautizos as $e) {
 ?>
 	<tr>
+		<td><?php echo $e['Bautizo']['fecha']; ?></td>
 		<td><?php echo $e['Bautizo']['nombres']; ?> <?php echo $e['Bautizo']['apellidos']; ?></td>
 		<td><?php echo date('d/m/Y', strtotime($e['Bautizo']['fecha_nacimiento'])); ?></td>
-		<td><?php echo $e['Bautizo']['ciudad_nacimiento']; ?></td>
+		<td><?php echo $e['Bautizo']['ciudad_nacimiento']; ?>, Edo. <?php echo $e['Bautizo']['estado_nacimiento']; ?>. <?php echo $e['Bautizo']['pais_nacimiento']; ?></td>
 		<td><?php echo $e['Bautizo']['padre']; ?></td>
 		<td><?php echo $e['Bautizo']['madre']; ?></td>
 		<td><?php echo $e['Bautizo']['padrino']; ?></td>
