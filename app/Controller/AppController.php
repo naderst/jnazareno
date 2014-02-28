@@ -129,4 +129,15 @@ class AppController extends Controller {
             $ciudades[$c] = $c;
         return $ciudades;
     }
+
+    function strtoupper_utf8($str) {
+        $str = strtoupper($str);
+        $str = str_replace(array('á','é','í','ó','ú','ñ'), array('Á','É','Í','Ó','Ú','Ñ'), $str);
+        return $str;
+    }
+
+    function month2string($m) {
+        $months = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
+        return $months[$m-1];
+    }
 }
