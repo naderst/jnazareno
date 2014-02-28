@@ -21,8 +21,9 @@ if(!count($bautizos)) {
 		<?php
 		if ($rol == 'A') {
 		?>
-		<th width="180">Acción</th>
+		<th width="115">Acción</th>
 		<?php } ?>
+		<th width="100">Certificado</th>
 	</tr>
 <?php
 foreach($bautizos as $e) {
@@ -45,6 +46,7 @@ foreach($bautizos as $e) {
 		?>
 		<td><a href="<?php echo Router::url(array('action' => 'modificar', $e['Bautizo']['id'])); ?>"><i class="fa fa-edit"></i> Modificar</a> / <a href="<?php echo Router::url(array('action' => 'eliminar', $e['Bautizo']['id'])); ?>" onclick="javascript: return confirm('¿Está seguro que desea eliminar el bautizo de <?php echo $e['Bautizo']['nombres'].' '.$e['Bautizo']['apellidos'];?>?');" alt="Eliminar"><i class="fa fa-times"></i> Eliminar</a></td>
 		<?php } ?>
+		<td><a href="<?php echo Router::url('/bautizos/certificado/' . $e['Bautizo']['id']); ?>" target="_blank">Generar certificado</a></td>
 	</tr>
 <?php } ?>
 </table>

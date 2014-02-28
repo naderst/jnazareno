@@ -41,6 +41,7 @@
             <?php echo $this->Session->flash('good'); ?>
             <?php echo $this->Session->flash('bad'); ?>
             <?php echo $this->fetch('content'); ?>
+            <?php #echo $this->element('sql_dump'); ?>
         </section>
         <script type="text/javascript">
             baseDir = '<?php echo Router::url('/'); ?>';

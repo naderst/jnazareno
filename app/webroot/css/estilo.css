@@ -138,6 +138,7 @@ a:hover {
 .tabla {
     border-collapse: collapse;
     width: 100%;
+    font-size: 11px;
 }
 
 .tabla, .tabla th, .tabla td {
