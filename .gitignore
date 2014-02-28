@@ -5,6 +5,9 @@
 /app/webroot/documents/*
 !/app/webroot/documents/README.md
 /lib/Cake/Console/Templates/skel/tmp/
+/app/Vendor/*
+!/app/Vendor/MPDF57/README*
+!/app/Vendor/jpgraph/README*
 /plugins
 /vendors
 /build

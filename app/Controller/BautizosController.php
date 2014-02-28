@@ -1,4 +1,7 @@
 <?php
+App::import('Vendor', 'MPDF57/mpdf');
+#require_once(APP . 'Vendor' . DS . 'MPDF57' . DS . 'mpdf.php');
+
 class BautizosController extends AppController {
     public $components = array('Paginator');
     public $helpers = array('Paginator');
@@ -136,6 +139,14 @@ class BautizosController extends AppController {
 
         $ciudades = parent::getRawEstados();
         $this->set('ciudades', $ciudades[$estado]);
+    }
+
+    function certificado($id) {
+        Configure::write('debug',0);
+        $this->layout = 'pdf';
+        $mpdf = new mPDF();
+        $mpdf->WriteHTML('<p>Your first taste of creating PDF from HTML</p>', 2);
+        $mpdf->Output();
     }
 }
 ?>
