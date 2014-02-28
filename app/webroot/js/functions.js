@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $('#buscador').submit(function(){
-            document.location = baseDir + 'buscador/' + $('#buscar').val().replace(/\s/g, '-');
+            document.location = baseDir + controller + '/buscar?q=' + $('#buscar').val().toLowerCase();
         return false;
     });
 

@@ -219,5 +219,23 @@ class BautizosController extends AppController {
         $mpdf->WriteHTML($html, 2);
         $mpdf->Output('CERTIFICADO DE BAUTIZO DE '.parent::strtoupper_utf8($bautizado), 'I');
     }
+
+    function buscar() {
+        $q = $_GET['q'];
+        $keywords = preg_split('/ /', $q);
+        $like = '';
+
+        foreach($keywords as $k) {
+            $like .= 'LOWER(nombres) LIKE \'%' . $k . '%\' OR LOWER(apellidos) LIKE \'%' . $k . '%\' OR fecha LIKE \'%' . $k . '%\' OR ';
+        }
+
+        $like = substr($like, 0, strlen($like)-3);
+
+        $this->paginate['conditions'] = ' ' . $like;
+        $this->Paginator->settings = $this->paginate;
+
+        $this->set('bautizos', $this->Paginator->paginate('Bautizo'));
+        $this->set('q', $q);
+    }
 }
 ?>

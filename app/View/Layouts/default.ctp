@@ -45,6 +45,7 @@
         </section>
         <script type="text/javascript">
             baseDir = '<?php echo Router::url('/'); ?>';
+            controller = '<?php echo strtolower($this->name); ?>';
         </script>
         <?php echo $this->Html->script('jquery-1.10.2.min')."\n"; ?>
         <?php echo $this->Html->script('jquery.datetimepicker')."\n"; ?>
