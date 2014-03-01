@@ -222,11 +222,16 @@ class BautizosController extends AppController {
 
     function buscar() {
         $q = $_GET['q'];
-        $keywords = preg_split('/ /', $q);
+
+        if(empty($q))
+            $keywords = array();
+        else
+            $keywords = preg_split('/ /', $q);
+        
         $like = '';
 
-        foreach($keywords as $k) {
-            $like .= 'LOWER(nombres) LIKE \'%' . $k . '%\' OR LOWER(apellidos) LIKE \'%' . $k . '%\' OR fecha LIKE \'%' . $k . '%\' OR ';
+        foreach($keywords as $k => $v) {
+            $like .= 'LOWER(nombres) LIKE \'%' . $v . '%\' OR LOWER(apellidos) LIKE \'%' . $v . '%\' OR fecha_nacimiento LIKE \'%' . $v . '%\' OR ';
         }
 
         $like = substr($like, 0, strlen($like)-3);
@@ -234,6 +239,7 @@ class BautizosController extends AppController {
         $this->paginate['conditions'] = ' ' . $like;
         $this->Paginator->settings = $this->paginate;
 
+        $this->set('keywords', $keywords);
         $this->set('bautizos', $this->Paginator->paginate('Bautizo'));
         $this->set('q', $q);
     }
