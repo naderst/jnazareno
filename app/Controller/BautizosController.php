@@ -239,7 +239,6 @@ class BautizosController extends AppController {
         $this->paginate['conditions'] = ' ' . $like;
         $this->Paginator->settings = $this->paginate;
 
-        $this->set('keywords', $keywords);
         $this->set('bautizos', $this->Paginator->paginate('Bautizo'));
         $this->set('q', $q);
     }

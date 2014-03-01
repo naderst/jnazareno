@@ -29,20 +29,11 @@ if(!count($bautizos)) {
 	</tr>
 <?php
 foreach($bautizos as $e) {
-	foreach($keywords as $k) {
-		$k = str_replace('/', '\/', $k);
-		preg_match('/' . $k . '/i', $e['Bautizo']['nombres'], $matches);
-		$nombres = preg_replace('/' . $k . '/i', '<span style="background-color:yellow">' . @$matches[0] . '</span>', $e['Bautizo']['nombres']);
-		preg_match('/' . $k . '/i', $e['Bautizo']['apellidos'], $matches);
-		$apellidos = preg_replace('/' . $k . '/i', '<span style="background-color:yellow">' . @$matches[0] . '</span>', $e['Bautizo']['apellidos']);
-		preg_match('/' . $k . '/i', $e['Bautizo']['fecha_nacimiento'], $matches);
-		$fecha_nacimiento = preg_replace('/' . $k . '/i', '<span style="background-color:yellow">' . @$matches[0] . '</span>', $e['Bautizo']['fecha_nacimiento']);
-	}
 ?>
 	<tr>
 		<td><?php echo $e['Bautizo']['fecha']; ?></td>
-		<td><?php echo $nombres; ?> <?php echo $apellidos; ?></td>
-		<td><?php echo $fecha_nacimiento; ?></td>
+		<td><?php echo $e['Bautizo']['nombres']; ?> <?php echo $e['Bautizo']['apellidos']; ?></td>
+		<td><?php echo $e['Bautizo']['fecha_nacimiento']; ?></td>
 		<td><?php echo $e['Bautizo']['ciudad_nacimiento']; ?>, Edo. <?php echo $e['Bautizo']['estado_nacimiento']; ?>. <?php echo $e['Bautizo']['pais_nacimiento']; ?></td>
 		<td><?php echo $e['Bautizo']['padre']; ?></td>
 		<td><?php echo $e['Bautizo']['madre']; ?></td>
