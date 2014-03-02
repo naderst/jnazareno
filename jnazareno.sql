@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 22, 2013 at 12:23 AM
--- Server version: 5.5.31
--- PHP Version: 5.4.4-14+deb7u5
+-- Generation Time: Mar 02, 2014 at 01:21 PM
+-- Server version: 5.5.35
+-- PHP Version: 5.4.4-14+deb7u7
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -31,27 +31,27 @@ CREATE TABLE IF NOT EXISTS `bautizos` (
   `nombres` varchar(50) NOT NULL,
   `apellidos` varchar(50) NOT NULL,
   `sexo` char(1) NOT NULL,
-  `fecha_nacimiento` date NOT NULL,
+  `fecha_nacimiento` varchar(10) NOT NULL,
   `ciudad_nacimiento` varchar(30) NOT NULL,
   `estado_nacimiento` varchar(30) NOT NULL,
   `pais_nacimiento` varchar(30) NOT NULL,
   `padre` varchar(100) NOT NULL,
   `madre` varchar(100) NOT NULL,
-  `libro` int(11) NOT NULL,
-  `folio` int(11) NOT NULL,
-  `numero` int(11) NOT NULL,
-  `fecha` date NOT NULL,
+  `libro` varchar(20) NOT NULL,
+  `folio` varchar(20) NOT NULL,
+  `numero` varchar(20) NOT NULL,
+  `fecha` varchar(10) NOT NULL,
   `padrino` char(100) DEFAULT NULL,
   `madrina` char(100) DEFAULT NULL,
   `ministro` char(50) NOT NULL,
   `prefectura_municipio` char(20) DEFAULT NULL COMMENT 'Solo administrador puede pasar este campo por alto.\r\nUsuarios comunes deben rellenar este campo.\r\nVALIDAR A NIVEL DE PHP\r\nToda la información de la prefectura',
-  `prefectura_fecha` date DEFAULT NULL,
-  `prefectura_numero` int(11) DEFAULT NULL,
-  `prefectura_folio` int(11) DEFAULT NULL,
+  `prefectura_fecha` varchar(10) DEFAULT NULL,
+  `prefectura_numero` varchar(20) DEFAULT NULL,
+  `prefectura_folio` varchar(20) DEFAULT NULL,
   `prefectura_libro` char(20) DEFAULT NULL,
   `nota_marginal` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -62,9 +62,9 @@ CREATE TABLE IF NOT EXISTS `bautizos` (
 CREATE TABLE IF NOT EXISTS `configuracion` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parametro` char(20) NOT NULL,
-  `valor` char(20) DEFAULT NULL,
+  `valor` char(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -89,12 +89,33 @@ CREATE TABLE IF NOT EXISTS `matrimonios` (
   `madre_novio` varchar(100) NOT NULL,
   `telefono_novio` varchar(14) NOT NULL,
   `condicion_novio` varchar(30) NOT NULL DEFAULT 'NO',
-  `testigo_nombre_novio` varchar(100) NOT NULL,
-  `ceedula_testigo_novio` varchar(11) NOT NULL,
+  `nombre_testigo_novio` varchar(100) NOT NULL,
+  `cedula_testigo_novio` varchar(11) NOT NULL,
   `direccion_testigo_novio` text NOT NULL,
   `estado_testigo_novio` varchar(30) NOT NULL,
   `tnovio_testigo_novio` int(11) NOT NULL,
   `tnovia_testigo_novio` int(11) NOT NULL,
+  `nombres_novia` varchar(50) NOT NULL,
+  `apellidos_novia` varchar(50) NOT NULL,
+  `cedula_novia` varchar(11) NOT NULL,
+  `fecha_nacimiento_novia` date NOT NULL,
+  `estado_civil_novia` varchar(10) NOT NULL,
+  `ciudad_nacimiento_novia` varchar(30) NOT NULL,
+  `estado_nacimiento_novia` varchar(30) NOT NULL,
+  `pais_nacimiento_novia` varchar(30) NOT NULL,
+  `ciudad_actual_novia` varchar(30) NOT NULL,
+  `estado_actual_novia` varchar(30) NOT NULL,
+  `pais_actual_novia` varchar(30) NOT NULL,
+  `padre_novia` varchar(100) NOT NULL,
+  `madre_novia` varchar(100) NOT NULL,
+  `telefono_novia` varchar(14) NOT NULL,
+  `condicion_novia` varchar(30) NOT NULL DEFAULT 'NO',
+  `nombre_testigo_novia` varchar(100) NOT NULL,
+  `cedula_testigo_novia` varchar(11) NOT NULL,
+  `direccion_testigo_novia` text NOT NULL,
+  `estado_testigo_novia` varchar(30) NOT NULL,
+  `tnovio_testigo_novia` int(11) NOT NULL,
+  `tnovia_testigo_novia` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
@@ -111,7 +132,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `rol` char(1) NOT NULL DEFAULT 'N' COMMENT 'N = Normal A = Admin',
   PRIMARY KEY (`id`),
   UNIQUE KEY `usuario` (`usuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
