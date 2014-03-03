@@ -140,8 +140,6 @@ class BautizosController extends AppController {
 
     function certificado($id) {
         Configure::write('debug',0);
-
-        $this->layout = 'pdf';
         $this->loadModel('Configuracion');
 
         $config = $this->Configuracion->find('all');
@@ -217,6 +215,10 @@ class BautizosController extends AppController {
         $mpdf->setHTMLHeader('<div id="logo"><img src="' . Router::url('/img/logo.png') . '"></div>');
         $mpdf->setHTMLFooter('<div id="footer">Urbanización Villa Brasil, Final Senda Curitiva. Puerto Ordaz, Estado Bolívar.<br><b>Telf.:</b> (0286) 923.27.85</div>');
         $mpdf->WriteHTML($html, 2);
+        
+        $this->layout = 'pdf';
+        $this->response->type('application/pdf');
+        
         $mpdf->Output('CERTIFICADO DE BAUTIZO DE '.parent::strtoupper_utf8($bautizado), 'I');
     }
 
