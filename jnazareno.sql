@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.11.1deb2
+-- version 4.0.4
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 02, 2014 at 01:21 PM
--- Server version: 5.5.35
--- PHP Version: 5.4.4-14+deb7u7
+-- Generation Time: Mar 03, 2014 at 02:44 AM
+-- Server version: 5.6.12-log
+-- PHP Version: 5.4.16
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `jnazareno`
 --
+CREATE DATABASE IF NOT EXISTS `jnazareno` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
+USE `jnazareno`;
 
 -- --------------------------------------------------------
 
@@ -51,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `bautizos` (
   `prefectura_libro` char(20) DEFAULT NULL,
   `nota_marginal` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -64,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `configuracion` (
   `parametro` char(20) NOT NULL,
   `valor` char(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -132,8 +134,11 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `rol` char(1) NOT NULL DEFAULT 'N' COMMENT 'N = Normal A = Admin',
   PRIMARY KEY (`id`),
   UNIQUE KEY `usuario` (`usuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+INSERT INTO usuarios (usuario, password, rol) VALUES('admin', '128abc50bdc2f73b2c0d75fc476debfbb799cce3', 'A');
+INSERT INTO configuracion (parametro, valor) VALUES('presbitero', '');
