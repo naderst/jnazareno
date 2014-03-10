@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `bautizos` (
   `padrino` char(100) DEFAULT NULL,
   `madrina` char(100) DEFAULT NULL,
   `ministro` char(50) NOT NULL,
-  `prefectura_municipio` char(20) DEFAULT NULL COMMENT 'Solo administrador puede pasar este campo por alto.\r\nUsuarios comunes deben rellenar este campo.\r\nVALIDAR A NIVEL DE PHP\r\nToda la información de la prefectura',
+  `prefectura_estado` char(20) DEFAULT NULL COMMENT 'Solo administrador puede pasar este campo por alto.\r\nUsuarios comunes deben rellenar este campo.\r\nVALIDAR A NIVEL DE PHP\r\nToda la información de la prefectura',
   `prefectura_fecha` varchar(10) DEFAULT NULL,
   `prefectura_numero` varchar(20) DEFAULT NULL,
   `prefectura_folio` varchar(20) DEFAULT NULL,

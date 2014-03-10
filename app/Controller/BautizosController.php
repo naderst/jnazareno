@@ -17,7 +17,7 @@ class BautizosController extends AppController {
     function agregar() {
     	if(parent::isAdmin()) {
     		$this->Bautizo->validator()
-    		->remove('prefectura_municipio')
+    		->remove('prefectura_estado')
     		->remove('prefectura_libro')
     		->remove('prefectura_folio')
     		->remove('prefectura_numero');
@@ -67,7 +67,7 @@ class BautizosController extends AppController {
     function modificar($id = null) {
         if(parent::isAdmin()) {
             $this->Bautizo->validator()
-            ->remove('prefectura_municipio')
+            ->remove('prefectura_estado')
             ->remove('prefectura_libro')
             ->remove('prefectura_folio')
             ->remove('prefectura_numero');
@@ -140,6 +140,9 @@ class BautizosController extends AppController {
 
     function certificado($id) {
         Configure::write('debug',0);
+        
+        $this->autoRender = false;
+        $this->response->type('application/pdf');
         $this->loadModel('Configuracion');
 
         $config = $this->Configuracion->find('all');
@@ -183,7 +186,7 @@ class BautizosController extends AppController {
         $columna1 .= '<tr><td><b>Número:</b></td><td>'.$bautizo['Bautizo']['numero'] . '</td></tr>';
         $columna1 .= '<tr><td colspan="2"><b>Nota marginal:</b></td></tr>';
         $columna1 .= '<tr><td colspan="2" style="height: 200px;text-align:justify;font-size:11px" valign="top">' . (empty($bautizo['Bautizo']['nota_marginal'])?'<img width="100%" height="200" src="' . Router::url('/img/diagonal.png') . '">':$bautizo['Bautizo']['nota_marginal']) . '</td></tr>';
-        $columna1 .= '<tr><td colspan="2"><b>Registro Civil<br>Prefectura Civil<br>Municipio: </b>' . $bautizo['Bautizo']['prefectura_municipio'] . '<br><b>Fue presentado</b></td></tr>';
+        $columna1 .= '<tr><td colspan="2"><b>Registro Civil<br>Prefectura Civil<br>Estado: </b>' . $bautizo['Bautizo']['prefectura_estado'] . '<br><b>Fue presentado</b></td></tr>';
         $columna1 .= '<tr><td><b>Número:</b></td><td>'.$bautizo['Bautizo']['prefectura_numero'] . '</td></tr>';
         $columna1 .= '<tr><td><b>Folio:</b></td><td>'.$bautizo['Bautizo']['prefectura_folio'] . '</td></tr>';
         $columna1 .= '<tr><td><b>Año:</b></td><td>'.$bautizo['Bautizo']['prefectura_fecha'] . '</td></tr>';
@@ -215,10 +218,6 @@ class BautizosController extends AppController {
         $mpdf->setHTMLHeader('<div id="logo"><img src="' . Router::url('/img/logo.png') . '"></div>');
         $mpdf->setHTMLFooter('<div id="footer">Urbanización Villa Brasil, Final Senda Curitiva. Puerto Ordaz, Estado Bolívar.<br><b>Telf.:</b> (0286) 923.27.85</div>');
         $mpdf->WriteHTML($html, 2);
-        
-        $this->layout = 'pdf';
-        $this->response->type('application/pdf');
-        
         $mpdf->Output('CERTIFICADO DE BAUTIZO DE '.parent::strtoupper_utf8($bautizado), 'I');
     }
 

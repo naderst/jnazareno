@@ -4,49 +4,43 @@ if(!count($bautizos)) {
     echo '<center>No hay bautizos registrados.</center>';
 } else {
 ?>
-<table class="tabla">
+<table class="tabla small">
 	<tr>
 		<th>Fecha de bautizo</th>
-		<th>Nombre</th>
+		<th width="100">Nombre</th>
 		<th>Fecha de Nac.</th>
-		<th>Lugar de Nac.</th>
-		<th>Padre</th>
-		<th>Madre</th>
-		<th>Padrino</th>
-		<th>Madrina</th>
+		<th width="90">Lugar de Nac.</th>
+		<th>Padres</th>
+		<th>Padrinos</th>
 		<th>Ministro celebrante</th>
-		<th>Libro</th>
-		<th>Folio</th>
-		<th>Número</th>
+		<th width="80">Libro</th>
 		<?php
 		if ($rol == 'A') {
 		?>
-		<th width="115">Acción</th>
+		<th width="70">Acción</th>
 		<?php } ?>
-		<th width="100">Certificado</th>
+		<th width="70">Certificado</th>
 	</tr>
 <?php
 foreach($bautizos as $e) {
+    $nombre = preg_replace('/ (.+)$/', '', $e['Bautizo']['nombres']);
+    $apellido = preg_replace('/ (.+)$/', '', $e['Bautizo']['apellidos']);
 ?>
 	<tr>
 		<td><?php echo $e['Bautizo']['fecha']; ?></td>
-		<td><?php echo $e['Bautizo']['nombres']; ?> <?php echo $e['Bautizo']['apellidos']; ?></td>
+		<td><?php echo $nombre; ?> <?php echo $apellido; ?></td>
 		<td><?php echo $e['Bautizo']['fecha_nacimiento']; ?></td>
-		<td><?php echo $e['Bautizo']['ciudad_nacimiento']; ?>, Edo. <?php echo $e['Bautizo']['estado_nacimiento']; ?>. <?php echo $e['Bautizo']['pais_nacimiento']; ?></td>
-		<td><?php echo $e['Bautizo']['padre']; ?></td>
-		<td><?php echo $e['Bautizo']['madre']; ?></td>
-		<td><?php echo $e['Bautizo']['padrino']; ?></td>
-		<td><?php echo $e['Bautizo']['madrina']; ?></td>
+		<td><?php echo $e['Bautizo']['ciudad_nacimiento']; ?><br><?php echo $e['Bautizo']['estado_nacimiento']; ?><br><?php echo $e['Bautizo']['pais_nacimiento']; ?></td>
+		<td><b><?php echo $e['Bautizo']['padre']; ?></b> y<br><b><?php echo $e['Bautizo']['madre']; ?></b></td>
+		<td><b><?php echo $e['Bautizo']['padrino']; ?></b> y<br><b><?php echo $e['Bautizo']['madrina']; ?></b></td>
 		<td><?php echo $e['Bautizo']['ministro']; ?></td>
-		<td><?php echo $e['Bautizo']['libro']; ?></td>
-		<td><?php echo $e['Bautizo']['folio']; ?></td>
-		<td><?php echo $e['Bautizo']['numero']; ?></td>
+		<td><b>Libro: </b><?php echo $e['Bautizo']['libro']; ?><br><b>Folio: </b><?php echo $e['Bautizo']['folio']; ?><br><b>Número: </b><?php echo $e['Bautizo']['numero']; ?></td>
 		<?php
 		if($rol == 'A') {
 		?>
-		<td><a href="<?php echo Router::url(array('action' => 'modificar', $e['Bautizo']['id'])); ?>"><i class="fa fa-edit"></i> Modificar</a> / <a href="<?php echo Router::url(array('action' => 'eliminar', $e['Bautizo']['id'])); ?>" onclick="javascript: return confirm('¿Está seguro que desea eliminar el bautizo de <?php echo $e['Bautizo']['nombres'].' '.$e['Bautizo']['apellidos'];?>?');" alt="Eliminar"><i class="fa fa-times"></i> Eliminar</a></td>
+		<td><a href="<?php echo Router::url(array('action' => 'modificar', $e['Bautizo']['id'])); ?>"><i class="fa fa-edit"></i> Modificar</a><br><a href="<?php echo Router::url(array('action' => 'eliminar', $e['Bautizo']['id'])); ?>" onclick="javascript: return confirm('¿Está seguro que desea eliminar el bautizo de <?php echo $e['Bautizo']['nombres'].' '.$e['Bautizo']['apellidos'];?>?');" alt="Eliminar"><i class="fa fa-times"></i> Eliminar</a></td>
 		<?php } ?>
-		<td><a href="<?php echo Router::url('/bautizos/certificado/' . $e['Bautizo']['id']); ?>" target="_blank">Generar certificado</a></td>
+		<td><a href="<?php echo Router::url('/bautizos/certificado/' . $e['Bautizo']['id']); ?>" target="_blank">Generar<br>certificado</a></td>
 	</tr>
 <?php } ?>
 </table>

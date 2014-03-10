@@ -140,6 +140,11 @@ a:hover {
     width: 100%;
 }
 
+.small {
+    font-size: 12px;
+    text-align:center;
+}
+
 .tabla, .tabla th, .tabla td {
     border: 1px solid #EBEBE1
 }
@@ -216,7 +221,7 @@ a:hover {
 
 #nav {
     position: fixed;
-    width: 237px;
+    width: 200px;
     height: 100%;
     top: 94px;
     background: #F2F2EA;
@@ -288,7 +293,7 @@ a:hover {
 }
 
 #contenido {
-    margin-left: 241px;
+    margin-left: 205px;
     margin-top: 94px;
     padding: 5px 30px;
 }

@@ -64,7 +64,7 @@ class Bautizo extends AppModel {
     		'rule' => array('between', 5, 50),
     		'message' => 'El nombre del ministro debe tener entre 5 y 50 caracteres'
     	),
-    	'prefectura_municipio' => array(
+    	'prefectura_estado' => array(
     		'rule' => array('between', 2, 20),
     		'message' => 'Debe completar este campo'
     	),

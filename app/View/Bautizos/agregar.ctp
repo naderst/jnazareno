@@ -54,7 +54,7 @@ echo $this->Form->create('Bautizo', array(
       <td colspan="2"><h3>Datos de la prefectura</h3></td>
     </tr>
     <tr>
-      <td><?php echo $this->Form->input('prefectura_municipio', array('label' => 'Municipio')); ?></td>
+      <td><?php echo $this->Form->input('prefectura_estado', array('label' => 'Estado')); ?></td>
       <td><?php echo $this->Form->input('prefectura_fecha', array('label' => 'Fecha')); ?></td>
     </tr>
     <tr>
