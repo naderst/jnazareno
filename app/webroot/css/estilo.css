@@ -242,8 +242,8 @@ a:hover {
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     border-radius: 0px;
-    padding-right: 27px;
-    width: 195px;
+    padding-right: 40px;
+    width: 160px;
 }
 
 #nav input[type="text"]:focus {

@@ -232,6 +232,11 @@ class BautizosController extends AppController {
         $like = '';
 
         foreach($keywords as $k => $v) {
+            $v = trim($v);
+            
+            if(empty($v))
+                continue;
+            
             $like .= 'LOWER(nombres) LIKE \'%' . $v . '%\' OR LOWER(apellidos) LIKE \'%' . $v . '%\' OR fecha_nacimiento LIKE \'%' . $v . '%\' OR ';
         }
 
