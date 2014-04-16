@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 03, 2014 at 02:44 AM
+-- Generation Time: Apr 16, 2014 at 05:15 AM
 -- Server version: 5.6.12-log
 -- PHP Version: 5.4.16
 
@@ -46,14 +46,14 @@ CREATE TABLE IF NOT EXISTS `bautizos` (
   `padrino` char(100) DEFAULT NULL,
   `madrina` char(100) DEFAULT NULL,
   `ministro` char(50) NOT NULL,
-  `prefectura_estado` char(20) DEFAULT NULL COMMENT 'Solo administrador puede pasar este campo por alto.\r\nUsuarios comunes deben rellenar este campo.\r\nVALIDAR A NIVEL DE PHP\r\nToda la información de la prefectura',
+  `prefectura_estado` char(20) DEFAULT NULL COMMENT 'Solo administrador puede pasar este campo por alto.Usuarios comunes deben rellenar este campo.VALIDAR A NIVEL DE PHPToda la información de la prefectura',
   `prefectura_fecha` varchar(10) DEFAULT NULL,
   `prefectura_numero` varchar(20) DEFAULT NULL,
   `prefectura_folio` varchar(20) DEFAULT NULL,
   `prefectura_libro` char(20) DEFAULT NULL,
   `nota_marginal` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `configuracion` (
   `parametro` char(20) NOT NULL,
   `valor` char(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -76,9 +76,21 @@ CREATE TABLE IF NOT EXISTS `configuracion` (
 
 CREATE TABLE IF NOT EXISTS `matrimonios` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha` varchar(10) NOT NULL,
+  `padrino_nombre` varchar(100) NOT NULL,
+  `padrino_cedula` varchar(15) NOT NULL,
+  `madrina_nombre` varchar(100) NOT NULL,
+  `madrina_cedula` varchar(15) NOT NULL,
+  `ministro` varchar(100) NOT NULL,
+  `fecha_proclamas` varchar(100) NOT NULL,
+  `observaciones` text,
   `nombres_novio` varchar(50) NOT NULL,
   `apellidos_novio` varchar(50) NOT NULL,
   `cedula_novio` varchar(11) NOT NULL,
+  `bautizo_libro_novio` varchar(20) NOT NULL,
+  `bautizo_folio_novio` varchar(20) NOT NULL,
+  `bautizo_numero_novio` varchar(20) NOT NULL,
+  `bautizo_parroquia_novio` varchar(100) NOT NULL,
   `fecha_nacimiento_novio` date NOT NULL,
   `estado_civil_novio` varchar(10) NOT NULL,
   `ciudad_nacimiento_novio` varchar(30) NOT NULL,
@@ -100,6 +112,10 @@ CREATE TABLE IF NOT EXISTS `matrimonios` (
   `nombres_novia` varchar(50) NOT NULL,
   `apellidos_novia` varchar(50) NOT NULL,
   `cedula_novia` varchar(11) NOT NULL,
+  `bautizo_libro_novia` varchar(20) NOT NULL,
+  `bautizo_folio_novia` varchar(20) NOT NULL,
+  `bautizo_numero_novia` varchar(20) NOT NULL,
+  `bautizo_parroquia_novia` varchar(100) NOT NULL,
   `fecha_nacimiento_novia` date NOT NULL,
   `estado_civil_novia` varchar(10) NOT NULL,
   `ciudad_nacimiento_novia` varchar(30) NOT NULL,
@@ -134,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `rol` char(1) NOT NULL DEFAULT 'N' COMMENT 'N = Normal A = Admin',
   PRIMARY KEY (`id`),
   UNIQUE KEY `usuario` (`usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

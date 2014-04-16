@@ -116,7 +116,7 @@
 		defaultSelect:true, // 2.1.0
 		scrollMonth:true,
 		scrollTime:true,
-		scrollInput:true,
+		scrollInput:false,
 		mask:false,
 		validateOnBlur:true,
 		allowBlank:false,

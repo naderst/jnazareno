@@ -25,15 +25,25 @@ class MatrimoniosController extends AppController {
             $this->set('estado_actual_selected', $this->request->data('Matrimonio.estado_actual_novio'));
             $this->set('ciudad_actual_selected', $this->request->data('Matrimonio.ciudad_actual_novio'));
             $this->set('pais_actual_selected', $this->request->data('Matrimonio.pais_actual_novio'));
+            
+            $this->set('ciudades_novia', parent::getCiudades($this->request->data('Matrimonio.estado_nacimiento_novia')));
+            $this->set('estado_selected_novia', $this->request->data('Matrimonio.estado_nacimiento_novia'));
+            $this->set('ciudad_selected_novia', $this->request->data('Matrimonio.ciudad_nacimiento_novia'));
+            $this->set('pais_selected_novia', $this->request->data('Matrimonio.pais_nacimiento_novia'));
+            $this->set('ciudades_actual_novia', parent::getCiudades($this->request->data('Matrimonio.estado_actual_novia')));
+            $this->set('estado_actual_selected_novia', $this->request->data('Matrimonio.estado_actual_novia'));
+            $this->set('ciudad_actual_selected_novia', $this->request->data('Matrimonio.ciudad_actual_novia'));
+            $this->set('pais_actual_selected_novia', $this->request->data('Matrimonio.pais_actual_novia'));
+
 
             if($this->request->data('Matrimonio.pais_nacimiento_novio') != 'Venezuela') {
                 $this->request->data['Matrimonio']['estado_nacimiento_novio'] = $this->request->data['Matrimonio']['estado_nacimiento_novio_2'];
                 $this->request->data['Matrimonio']['ciudad_nacimiento_novio'] = $this->request->data['Matrimonio']['ciudad_nacimiento_novio_2'];
             }
             
-            if($this->request->data('Matrimonio.pais_actual_novio') != 'Venezuela') {
-                $this->request->data['Matrimonio']['estado_actual_novio'] = $this->request->data['Matrimonio']['estado_actual_novio_2'];
-                $this->request->data['Matrimonio']['ciudad_actual_novio'] = $this->request->data['Matrimonio']['ciudad_actual_novio_2'];
+            if($this->request->data('Matrimonio.pais_actual_novia') != 'Venezuela') {
+                $this->request->data['Matrimonio']['estado_actual_novia'] = $this->request->data['Matrimonio']['estado_actual_novia_2'];
+                $this->request->data['Matrimonio']['ciudad_actual_novia'] = $this->request->data['Matrimonio']['ciudad_actual_novia_2'];
             }
 
 

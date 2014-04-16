@@ -13,8 +13,20 @@ echo $this->Form->create('Matrimonio', array(
         <td colspan="2"><h3>Datos del matrimonio</h3></td>
     </tr>
     <tr>
-        <td></td>
-        <td></td>
+        <td><?php echo $this->Form->input('fecha', array('label' => 'Fecha del matrimonio', 'id' => 'datetimepicker3')); ?></td>
+        <td><?php echo $this->Form->input('ministro', array('label' => 'Ministro')); ?></td>
+    </tr>
+    <tr>
+        <td><?php echo $this->Form->input('padrino_cedula', array('label' => 'Cédula del padrino')); ?></td>
+        <td><?php echo $this->Form->input('padrino_nombre', array('label' => 'Nombre del padrino')); ?></td>
+    </tr>
+    <tr>
+        <td><?php echo $this->Form->input('madrina_cedula', array('label' => 'Cédula de la madrina')); ?></td>
+        <td><?php echo $this->Form->input('madrina_nombre', array('label' => 'Nombre de la madrina')); ?></td>
+    </tr>
+    <tr>
+        <td><?php echo $this->Form->input('fecha_proclamas', array('label' => 'Fecha de proclamas (separadas por coma)')); ?></td>
+        <td><?php echo $this->Form->input('observaciones', array('type' => 'textarea', 'style' => 'width:100%')); ?></td>
     </tr>
     <tr>
         <td colspan="2"><h3>Datos del novio</h3></td>
@@ -29,6 +41,17 @@ echo $this->Form->create('Matrimonio', array(
     <tr>
         <td><?php echo $this->Form->input('cedula_novio', array('label' => 'Cédula')); ?></td>
         <td><?php echo $this->Form->input('estado_civil_novio', array('label' => 'Estado civil', 'type' => 'select', 'options' => array('Soltero' => 'Soltero', 'Divorciado' => 'Divorciado', 'Viudo' => 'Viudo'))); ?></td>
+    </tr>
+    <tr>
+        <td colspan="2"><h4>Información de bautizo</h4></td>
+    </tr>
+    <tr>
+        <td><?php echo $this->Form->input('bautizo_libro_novio', array('label' => 'Libro')); ?></td>
+        <td><?php echo $this->Form->input('bautizo_folio_novio', array('label' => 'Folio')); ?></td>
+    </tr>
+    <tr>
+        <td><?php echo $this->Form->input('bautizo_numero_novio', array('label' => 'Número')); ?></td>
+        <td><?php echo $this->Form->input('bautizo_parroquia_novio', array('label' => 'Parroquia')); ?></td>
     </tr>
     <tr>
         <td colspan="2"><h4>Información de nacimiento</h4></td>
@@ -84,6 +107,17 @@ echo $this->Form->create('Matrimonio', array(
     <tr>
         <td><?php echo $this->Form->input('cedula_novia', array('label' => 'Cédula')); ?></td>
         <td><?php echo $this->Form->input('estado_civil_novia', array('label' => 'Estado civil', 'type' => 'select', 'options' => array('Soltero' => 'Soltero', 'Divorciado' => 'Divorciado', 'Viudo' => 'Viudo'))); ?></td>
+    </tr>
+    <tr>
+        <td colspan="2"><h4>Información de bautizo</h4></td>
+    </tr>
+    <tr>
+        <td><?php echo $this->Form->input('bautizo_libro_novia', array('label' => 'Libro')); ?></td>
+        <td><?php echo $this->Form->input('bautizo_folio_novia', array('label' => 'Folio')); ?></td>
+    </tr>
+    <tr>
+        <td><?php echo $this->Form->input('bautizo_numero_novia', array('label' => 'Número')); ?></td>
+        <td><?php echo $this->Form->input('bautizo_parroquia_novia', array('label' => 'Parroquia')); ?></td>
     </tr>
     <tr>
         <td colspan="2"><h4>Información de nacimiento</h4></td>
