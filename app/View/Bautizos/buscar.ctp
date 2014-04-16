@@ -7,7 +7,7 @@ if(!count($bautizos)) {
 } else {
 ?>
 <div id="tabla-wrapper">
-<table class="tabla small">
+<table class="tabla bigtable">
 	<tr>
 		<th>Fecha de bautizo</th>
 		<th width="100">Nombre</th>

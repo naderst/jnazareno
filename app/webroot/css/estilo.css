@@ -142,15 +142,20 @@ a:hover {
     padding: 5px;
 }
 
-.tabla {
-    border-collapse: collapse;
-    width: 1500px;
+.tabla.bigtable {
+    width: 1500px !important;
     margin: auto;
+    
 }
 
-.small {
-    'font-size: 12px;
-    text-align:center;
+.tabla.bigtable td {
+    width: 150px;
+}
+
+.tabla {
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
 }
 
 .tabla, .tabla th, .tabla td {
@@ -159,10 +164,6 @@ a:hover {
 
 .tabla td, .tabla th {
     padding: 10px
-}
-
-.tabla td {
-    width: 150px;
 }
 
 .tabla td a {
