@@ -1,4 +1,4 @@
-![Parroquia Jesús de Nazareno](/app/webroot/img/logo.png)
+<p align="center"><img src="/app/webroot/img/logo.png"></p>
 Sistema de la parroquia Jesús Nazareno
 ---------------------------------------
 
