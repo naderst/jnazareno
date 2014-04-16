@@ -135,13 +135,21 @@ a:hover {
     color: #000
 }
 
+#tabla-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: auto;
+    padding: 5px;
+}
+
 .tabla {
     border-collapse: collapse;
-    width: 100%;
+    width: 1500px;
+    margin: auto;
 }
 
 .small {
-    font-size: 12px;
+    'font-size: 12px;
     text-align:center;
 }
 
@@ -151,6 +159,10 @@ a:hover {
 
 .tabla td, .tabla th {
     padding: 10px
+}
+
+.tabla td {
+    width: 150px;
 }
 
 .tabla td a {

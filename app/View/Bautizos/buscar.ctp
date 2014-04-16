@@ -6,6 +6,7 @@ if(!count($bautizos)) {
     echo '<center>No se encontraron bautizos.</center>';
 } else {
 ?>
+<div id="tabla-wrapper">
 <table class="tabla small">
 	<tr>
 		<th>Fecha de bautizo</th>
@@ -46,6 +47,7 @@ foreach($bautizos as $e) {
 	</tr>
 <?php } ?>
 </table>
+</div>
 <?php } ?>
 <br>
 <center>
