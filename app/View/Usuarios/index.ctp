@@ -28,10 +28,10 @@ foreach($usuarios as $e) {
     }
 ?>
     <tr>
-        <td><i class="fa fa-user" style="color:#6f6f6f;"></i></td>
-        <td width="60%"><?php echo $e['Usuario']['usuario']; ?></td>
-        <td width="20%"><?php echo $rol; ?></td>
-        <td><a href="<?php echo Router::url(array('action' => 'modificar', $e['Usuario']['id'])); ?>"><i class="fa fa-edit"></i> Modificar</a> / <a href="<?php echo Router::url(array('action' => 'eliminar', $e['Usuario']['id'])); ?>" onclick="javascript: return confirm('¿Está seguro que desea eliminar el usuario <?php echo $e['Usuario']['usuario'];?>?');" alt="Eliminar"><i class="fa fa-times"></i> Eliminar</a></td>
+        <td width="20"><i class="fa fa-user" style="color:#6f6f6f;"></i></td>
+        <td width="150"><?php echo $e['Usuario']['usuario']; ?></td>
+        <td width="100"><?php echo $rol; ?></td>
+        <td width="200"><a href="<?php echo Router::url(array('action' => 'modificar', $e['Usuario']['id'])); ?>"><i class="fa fa-edit"></i> Modificar</a> / <a href="<?php echo Router::url(array('action' => 'eliminar', $e['Usuario']['id'])); ?>" onclick="javascript: return confirm('¿Está seguro que desea eliminar el usuario <?php echo $e['Usuario']['usuario'];?>?');" alt="Eliminar"><i class="fa fa-times"></i> Eliminar</a></td>
     </tr>
 <?php } ?>
 </table>

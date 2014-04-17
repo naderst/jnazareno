@@ -286,6 +286,14 @@ a:hover {
     position: relative;
 }
 
+@media only screen and (max-width: 800px)  {
+    #nav ul {
+        height: 250px !important;
+        overflow-y: auto !important;
+        color: red !important;
+    }
+}
+
 #nav ul li a i {
     margin-right: 5px;
 }
