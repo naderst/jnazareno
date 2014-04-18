@@ -54,8 +54,8 @@ class Matrimonio extends AppModel {
     		'message' => 'Solo caracteres de 2 a 20 alfanuméricos'
     	),
         'bautizo_parroquia_novio' => array(
-    		'rule' => '/^(\w){2,100}$/',
-    		'message' => 'Solo caracteres de 2 a 100 alfanuméricos'
+    		'rule' => '/^[A-Za-zá-úñÑ ]{2,100}$/',
+    		'message' => 'Solo de 2 a 100 caracteres'
     	),
         'padre_novio' => array(
             'rule' => '/^[A-Za-zá-úñÑ ]{2,100}$/',
@@ -118,8 +118,8 @@ class Matrimonio extends AppModel {
     		'message' => 'Solo caracteres de 2 a 20 alfanuméricos'
     	),
         'bautizo_parroquia_novia' => array(
-    		'rule' => '/^(\w){2,100}$/',
-    		'message' => 'Solo caracteres de 2 a 100 alfanuméricos'
+    		'rule' => '/^[A-Za-zá-úñÑ ]{2,100}$/',
+    		'message' => 'Solo de 2 a 100 caracteres'
     	),
         'padre_novia' => array(
             'rule' => '/^[A-Za-zá-úñÑ ]{2,100}$/',
