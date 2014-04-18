@@ -45,6 +45,13 @@ class MatrimoniosController extends AppController {
                 $this->request->data['Matrimonio']['estado_actual_novia'] = $this->request->data['Matrimonio']['estado_actual_novia_2'];
                 $this->request->data['Matrimonio']['ciudad_actual_novia'] = $this->request->data['Matrimonio']['ciudad_actual_novia_2'];
             }
+            
+            if($this->Matrimonio->save($this->request->data)) {
+	    		$this->Session->setFlash('Matrimonio agregado con éxito', 'default', array(), 'good');
+	    		$this->redirect(array('action' => 'index'));
+	    	} else {
+	    		$this->Session->setFlash('Ha ocurrido un error agregando el matrimonio', 'default', array(), 'bad');
+	    	}
 
 
         } else {

@@ -290,7 +290,6 @@ a:hover {
     #nav ul {
         height: 250px !important;
         overflow-y: auto !important;
-        color: red !important;
     }
 }
 
