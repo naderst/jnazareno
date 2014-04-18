@@ -74,5 +74,15 @@ class MatrimoniosController extends AppController {
                 $this->set('pais_actual_selected_novia', 'Venezuela');
         }
     }
+    
+    function eliminar($id) {
+    	if(parent::isAdmin()) {
+    		$this->Matrimonio->delete($id);
+	        $this->Session->setFlash('Matrimonio eliminado con éxito', 'default', array(), 'good');
+	        $this->redirect(array('action' => 'index'));
+    	} else {
+    		throw new NotFoundException('La página no existe');
+    	}
+    }
 }
 ?>
