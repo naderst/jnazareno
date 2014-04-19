@@ -5,7 +5,7 @@ App::import('Vendor', 'jpgraph/jpgraph_pie');
 class GraficosController extends AppController {
 	public $uses = array();
 
-	function bautizosEdades() {
+	function bautizosEdades($tipo='del', $param1='dia', $param2=null) {
         Configure::write('debug',0);
         
         $this->autoRender = false;
@@ -14,6 +14,7 @@ class GraficosController extends AppController {
         $this->loadModel('Bautizo');
         
         $fechas = $this->Bautizo->find('all');
+        
         $hoy = time();
         $unanyo = 31536000;
         $sieteanyos = 220752000;
@@ -21,6 +22,32 @@ class GraficosController extends AppController {
         $hasta = $entre = $mayor = 0;
         
         foreach($fechas as $e) {
+            $fechabautizo = strtotime(str_replace('/', '-', $e['Bautizo']['fecha']));
+            
+            if($tipo == 'del') {
+                if($param1 == 'dia') {
+                    if(date('d/m/Y', time()) != date('d/m/Y', $fechabautizo))
+                        continue;
+                } elseif($param1 == 'mes') {
+                    if(date('m/Y', time()) != date('m/Y', $fechabautizo))
+                        continue;
+                } elseif($param1 == 'ano') {
+                    if(date('Y', time()) != date('Y', $fechabautizo))
+                        continue;
+                } elseif($param1 == 'todos') {
+                       
+                } else {
+                    break;   
+                }
+            } elseif($tipo == 'rango') {
+                $param1 = strtotime($param1);
+                $param2 = strtotime($param2);
+                if($fechabautizo < $param1 || $fechabautizo > $param2)
+                    continue;
+            } else {
+                break;   
+            }
+            
             $timestamp = strtotime(str_replace('/', '-', $e['Bautizo']['fecha_nacimiento']));
             $edad = $hoy - $timestamp;
             
@@ -50,16 +77,35 @@ class GraficosController extends AppController {
 		$graph->Stroke();
 	}
 
-	function bautizosGenero() {
+	function bautizosGenero($tipo='del', $param1='dia', $param2=null) {
         Configure::write('debug',0);
         
         $this->autoRender = false;
         $this->response->type('image/png');
         
 		$this->loadModel('Bautizo');
-
-		$cantidad_m = $this->Bautizo->find('count', array('conditions' => array('Bautizo.sexo' => 'M')));
-		$cantidad_f = $this->Bautizo->find('count', array('conditions' => array('Bautizo.sexo' => 'F')));
+        
+        if($tipo == 'del') {
+            if($param1 == 'dia') {
+                $condition = date('d/m/Y', time());
+            } elseif($param1 == 'mes') {
+                $condition = '%/' . date('m/Y', time());
+            } elseif($param1 == 'ano') {
+                $condition = '%/%/' . date('Y', time());
+            } elseif($param1 == 'todos') {
+                $condition = '%';
+            } else {
+                return;
+            }
+            
+            $cantidad_m = $this->Bautizo->find('count', array('conditions' => array('Bautizo.sexo' => 'M', 'Bautizo.fecha LIKE' => $condition)));
+            $cantidad_f = $this->Bautizo->find('count', array('conditions' => array('Bautizo.sexo' => 'F', 'Bautizo.fecha LIKE' => $condition)));
+        } elseif($tipo == 'rango') { 
+            $cantidad_m = $this->Bautizo->find('count', array('conditions' => array('Bautizo.sexo' => 'M', 'STR_TO_DATE(REPLACE(Bautizo.fecha, \'/\', \'.\'), \'%d.%m.%Y\') BETWEEN ? AND ?' => array($param1,$param2))));
+            $cantidad_f = $this->Bautizo->find('count', array('conditions' => array('Bautizo.sexo' => 'F', 'STR_TO_DATE(REPLACE(Bautizo.fecha, \'/\', \'.\'), \'%d.%m.%Y\') BETWEEN ? AND ?' => array($param1,$param2))));
+        } else {
+            return;
+        }
         
 		$data = array($cantidad_m, $cantidad_f);
 		$legends = array('Masculino ('.$cantidad_m.')', 'Femenino ('.$cantidad_f.')'); 

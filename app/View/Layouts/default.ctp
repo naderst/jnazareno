@@ -51,6 +51,8 @@
         <?php echo $this->Html->script('jquery.datetimepicker')."\n"; ?>
         <?php echo $this->Html->script('functions')."\n"; ?>
         <?php
+            if($this->name == 'Pages')
+                echo $this->Html->script('pages')."\n";
             if($this->name == 'Bautizos')
                 echo $this->Html->script('bautizos')."\n";
             if($this->name == 'Documentos')

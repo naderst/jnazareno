@@ -218,6 +218,11 @@ a:hover {
     border-bottom: #777 1px dashed;
     padding: 2px;
 }
+
+.consulta td {
+    padding:10px;
+    width:200px;
+}
 /*tr:hover {
     background-color: rgba(142,68,173,0.4)
 }*/

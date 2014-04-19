@@ -39,8 +39,6 @@ class PagesController extends AppController {
     }
     
 	function display() {
-		$this->loadModel('Bautizo');
-		$this->set('bautizos', $this->Bautizo->find('count'));
 		$this->render('home');
 	}
 
