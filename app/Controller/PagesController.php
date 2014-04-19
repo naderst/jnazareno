@@ -99,7 +99,9 @@ class PagesController extends AppController {
             
             $title = 'Estadística ';
             
-            if($anodesde == $anohasta && $mesdesde == $meshasta) {
+            if($anodesde == $anohasta && $mesdesde == $meshasta && $diadesde == $diahasta) {
+                $title .= 'del ' . $diadesde . ' de ' . $mesdesde . ' de ' . $anodesde;
+            } elseif($anodesde == $anohasta && $mesdesde == $meshasta) {
                 $title .= 'del ' . $diadesde . ' hasta ' . $diahasta . ' de ' . $mesdesde . ' de ' . $anodesde;
             } elseif($anodesde == $anohasta && $mesdesde != $meshasta) {
                 $title .= 'del ' .$diadesde . ' de ' . $mesdesde . ' hasta el ' . $diahasta . ' de ' . $meshasta . ' de ' . $anodesde;   

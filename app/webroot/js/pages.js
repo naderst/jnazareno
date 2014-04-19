@@ -37,7 +37,14 @@ $(document).ready(function() {
         if($('#del').prop('checked')) {
             window.open('estadisticas/del/' + $('#delselect').val());
         } else {
-            window.open('estadisticas/rango/' + $('#desde').val().replace(/\//g, '.') + '/' + $('#hasta').val().replace(/\//g, '.'), '_blank').focus();
+            var desde = $('#desde').val().replace(/\//g, '.');
+            var hasta = $('#hasta').val().replace(/\//g, '.');
+            
+            if(new Date(desde).getTime() <= new Date(hasta).getTime()) {
+                window.open('estadisticas/rango/' + desde + '/' + hasta, '_blank').focus();
+            } else {
+                alert('La fecha desde debe ser menor o igual a la fecha hasta');   
+            }
         }
     }); 
 });

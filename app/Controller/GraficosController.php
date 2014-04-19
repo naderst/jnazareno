@@ -102,6 +102,8 @@ class GraficosController extends AppController {
             $cantidad_m = $this->Bautizo->find('count', array('conditions' => array('Bautizo.sexo' => 'M', 'Bautizo.fecha LIKE' => $condition)));
             $cantidad_f = $this->Bautizo->find('count', array('conditions' => array('Bautizo.sexo' => 'F', 'Bautizo.fecha LIKE' => $condition)));
         } elseif($tipo == 'rango') { 
+            $param1 = date('Y-m-d',strtotime($param1));
+            $param2 = date('Y-m-d',strtotime($param2));
             $cantidad_m = $this->Bautizo->find('count', array('conditions' => array('Bautizo.sexo' => 'M', 'STR_TO_DATE(REPLACE(Bautizo.fecha, \'/\', \'.\'), \'%d.%m.%Y\') >=' => $param1, 'STR_TO_DATE(REPLACE(Bautizo.fecha, \'/\', \'.\'), \'%d.%m.%Y\') <=' => $param2)));
             $cantidad_f = $this->Bautizo->find('count', array('conditions' => array('Bautizo.sexo' => 'F', 'STR_TO_DATE(REPLACE(Bautizo.fecha, \'/\', \'.\'), \'%d.%m.%Y\') >=' => $param1, 'STR_TO_DATE(REPLACE(Bautizo.fecha, \'/\', \'.\'), \'%d.%m.%Y\') <=' => $param2)));
         } else {
