@@ -35,9 +35,9 @@ $(document).ready(function() {
     
     $('#consultar-button').click(function(){
         if($('#del').prop('checked')) {
-            window.open('/jnazareno/graficos/bautizosedades/del/' + $('#delselect').val());
+            window.open('estadisticas/del/' + $('#delselect').val());
         } else {
-            window.open('/jnazareno/graficos/bautizosedades/rango/' + $('#desde').val().replace(/\//g, '.') + '/' + $('#hasta').val().replace(/\//g, '.'), '_blank').focus();
+            window.open('estadisticas/rango/' + $('#desde').val().replace(/\//g, '.') + '/' + $('#hasta').val().replace(/\//g, '.'), '_blank').focus();
         }
     }); 
 });

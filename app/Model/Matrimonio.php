@@ -6,7 +6,7 @@ class Matrimonio extends AppModel {
             'message' => 'El formato de la fecha es inválido debe ser dd/mm/aaaa'
         ),
         'padrino_nombre' => array(
-            'rule' => '/^[A-Za-zá-úñÑ ]{2,100}$/',
+            'rule' => '/^[A-Za-zá-úÁ-ÚñÑ ]{2,100}$/',
             'message' => 'El nombre solo puede contener letras y tener entre 2 y 100 caracteres'
         ),
         'padrino_cedula' => array(
@@ -14,7 +14,7 @@ class Matrimonio extends AppModel {
             'message' => 'La cédula debe tener el siguiente formato V-12345678 o E-12345678 segun sea el caso'
         ),
         'madrina_nombre' => array(
-            'rule' => '/^[A-Za-zá-úñÑ ]{2,100}$/',
+            'rule' => '/^[A-Za-zá-úÁ-ÚñÑ ]{2,100}$/',
             'message' => 'El nombre solo puede contener letras y tener entre 2 y 100 caracteres'
         ),
         'madrina_cedula' => array(
@@ -22,7 +22,7 @@ class Matrimonio extends AppModel {
             'message' => 'La cédula debe tener el siguiente formato V-12345678 o E-12345678 segun sea el caso'
         ),
         'ministro' => array(
-            'rule' => '/^[A-Za-zá-úñÑ ]{2,100}$/',
+            'rule' => '/^[A-Za-zá-úÁ-ÚñÑ ]{2,100}$/',
             'message' => 'El nombre solo puede contener letras y tener entre 2 y 100 caracteres'
         ),
         'fecha_proclamas' => array(
@@ -30,11 +30,11 @@ class Matrimonio extends AppModel {
             'message' => 'Las fechas deben estar separadas por comas en el formato dd/mm/aaaa'
         ),
         'nombres_novio' => array(
-            'rule' => '/^[A-Za-zá-úñÑ ]{2,50}$/',
+            'rule' => '/^[A-Za-zá-úÁ-ÚñÑ ]{2,50}$/',
             'message' => 'El nombre solo puede contener letras y tener entre 2 y 50 caracteres'
         ),
         'apellidos_novio' => array(
-            'rule' => '/^[A-Za-zá-úñÑ ]{2,50}$/',
+            'rule' => '/^[A-Za-zá-úÁ-ÚñÑ ]{2,50}$/',
             'message' => 'El nombre solo puede contener letras y tener entre 2 y 50 caracteres'
         ),
         'cedula_novio' => array(
@@ -54,15 +54,15 @@ class Matrimonio extends AppModel {
     		'message' => 'Solo caracteres de 2 a 20 alfanuméricos'
     	),
         'bautizo_parroquia_novio' => array(
-    		'rule' => '/^[A-Za-zá-úñÑ ]{2,100}$/',
+    		'rule' => '/^[A-Za-zá-úÁ-ÚñÑ ]{2,100}$/',
     		'message' => 'Solo de 2 a 100 caracteres'
     	),
         'padre_novio' => array(
-            'rule' => '/^[A-Za-zá-úñÑ ]{2,100}$/',
+            'rule' => '/^[A-Za-zá-úÁ-ÚñÑ ]{2,100}$/',
             'message' => 'El nombre solo puede contener letras y tener entre 2 y 100 caracteres'
         ),
         'madre_novio' => array(
-            'rule' => '/^[A-Za-zá-úñÑ ]{2,100}$/',
+            'rule' => '/^[A-Za-zá-úÁ-ÚñÑ ]{2,100}$/',
             'message' => 'El nombre solo puede contener letras y tener entre 2 y 100 caracteres'
         ),
         'fecha_nacimiento_novio' => array(
@@ -78,7 +78,7 @@ class Matrimonio extends AppModel {
             'message' => 'La cédula debe tener el siguiente formato V-12345678 o E-12345678 segun sea el caso'
         ),
         'nombre_testigo_novio' => array(
-            'rule' => '/^[A-Za-zá-úñÑ ]{2,100}$/',
+            'rule' => '/^[A-Za-zá-úÁ-ÚñÑ ]{2,100}$/',
             'message' => 'El nombre solo puede contener letras y tener entre 2 y 100 caracteres'
         ),
         'direccion_testigo_novio' => array(
@@ -94,11 +94,11 @@ class Matrimonio extends AppModel {
             'message' => 'Solo números'
         ),
         	'nombres_novia' => array(
-            'rule' => '/^[A-Za-zá-úñÑ ]{2,50}$/',
+            'rule' => '/^[A-Za-zá-úÁ-ÚñÑ ]{2,50}$/',
             'message' => 'El nombre solo puede contener letras y tener entre 2 y 50 caracteres'
         ),
         'apellidos_novia' => array(
-            'rule' => '/^[A-Za-zá-úñÑ ]{2,50}$/',
+            'rule' => '/^[A-Za-zá-úÁ-ÚñÑ ]{2,50}$/',
             'message' => 'El nombre solo puede contener letras y tener entre 2 y 50 caracteres'
         ),
         'cedula_novia' => array(
@@ -118,15 +118,15 @@ class Matrimonio extends AppModel {
     		'message' => 'Solo caracteres de 2 a 20 alfanuméricos'
     	),
         'bautizo_parroquia_novia' => array(
-    		'rule' => '/^[A-Za-zá-úñÑ ]{2,100}$/',
+    		'rule' => '/^[A-Za-zá-úÁ-ÚñÑ ]{2,100}$/',
     		'message' => 'Solo de 2 a 100 caracteres'
     	),
         'padre_novia' => array(
-            'rule' => '/^[A-Za-zá-úñÑ ]{2,100}$/',
+            'rule' => '/^[A-Za-zá-úÁ-ÚñÑ ]{2,100}$/',
             'message' => 'El nombre solo puede contener letras y tener entre 2 y 100 caracteres'
         ),
         'madre_novia' => array(
-            'rule' => '/^[A-Za-zá-úñÑ ]{2,100}$/',
+            'rule' => '/^[A-Za-zá-úÁ-ÚñÑ ]{2,100}$/',
             'message' => 'El nombre solo puede contener letras y tener entre 2 y 100 caracteres'
         ),
         'fecha_nacimiento_novia' => array(
@@ -142,7 +142,7 @@ class Matrimonio extends AppModel {
             'message' => 'La cédula debe tener el siguiente formato V-12345678 o E-12345678 segun sea el caso'
         ),
         'nombre_testigo_novia' => array(
-            'rule' => '/^[A-Za-zá-úñÑ ]{2,100}$/',
+            'rule' => '/^[A-Za-zá-úÁ-ÚñÑ ]{2,100}$/',
             'message' => 'El nombre solo puede contener letras y tener entre 2 y 100 caracteres'
         ),
         'direccion_testigo_novia' => array(

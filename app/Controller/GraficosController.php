@@ -62,9 +62,10 @@ class GraficosController extends AppController {
 		$data = array($hasta,$entre,$mayor);
 		$legends = array('Hasta 1 año (' . $hasta . ')','De 1 a 7 años (' . $entre . ')','Mayores de 7 años (' . $mayor . ')'); 
 		 
-		$graph = new PieGraph(480,300);
+		$graph = new PieGraph(300,300);
 		$graph->SetShadow();
 		$graph->title->Set('Cantidad de bautizos por edades');
+        $graph->legend->SetLayout(LEGEND_VERT);
 		 
 		$p1 = new PiePlot($data);
 		
@@ -101,8 +102,8 @@ class GraficosController extends AppController {
             $cantidad_m = $this->Bautizo->find('count', array('conditions' => array('Bautizo.sexo' => 'M', 'Bautizo.fecha LIKE' => $condition)));
             $cantidad_f = $this->Bautizo->find('count', array('conditions' => array('Bautizo.sexo' => 'F', 'Bautizo.fecha LIKE' => $condition)));
         } elseif($tipo == 'rango') { 
-            $cantidad_m = $this->Bautizo->find('count', array('conditions' => array('Bautizo.sexo' => 'M', 'STR_TO_DATE(REPLACE(Bautizo.fecha, \'/\', \'.\'), \'%d.%m.%Y\') BETWEEN ? AND ?' => array($param1,$param2))));
-            $cantidad_f = $this->Bautizo->find('count', array('conditions' => array('Bautizo.sexo' => 'F', 'STR_TO_DATE(REPLACE(Bautizo.fecha, \'/\', \'.\'), \'%d.%m.%Y\') BETWEEN ? AND ?' => array($param1,$param2))));
+            $cantidad_m = $this->Bautizo->find('count', array('conditions' => array('Bautizo.sexo' => 'M', 'STR_TO_DATE(REPLACE(Bautizo.fecha, \'/\', \'.\'), \'%d.%m.%Y\') >=' => $param1, 'STR_TO_DATE(REPLACE(Bautizo.fecha, \'/\', \'.\'), \'%d.%m.%Y\') <=' => $param2)));
+            $cantidad_f = $this->Bautizo->find('count', array('conditions' => array('Bautizo.sexo' => 'F', 'STR_TO_DATE(REPLACE(Bautizo.fecha, \'/\', \'.\'), \'%d.%m.%Y\') >=' => $param1, 'STR_TO_DATE(REPLACE(Bautizo.fecha, \'/\', \'.\'), \'%d.%m.%Y\') <=' => $param2)));
         } else {
             return;
         }
@@ -110,9 +111,10 @@ class GraficosController extends AppController {
 		$data = array($cantidad_m, $cantidad_f);
 		$legends = array('Masculino ('.$cantidad_m.')', 'Femenino ('.$cantidad_f.')'); 
 		 
-		$graph = new PieGraph(400,300);
+		$graph = new PieGraph(300,300);
 		$graph->SetShadow();
 		$graph->title->Set('Cantidad de bautizos por género');
+        $graph->legend->SetLayout(LEGEND_VERT);
 		 
 		$p1 = new PiePlot($data);
 
@@ -123,5 +125,11 @@ class GraficosController extends AppController {
         $p1->value->SetColor('white');
 		$graph->Stroke();
 	}
+    
+    function beforeFilter() {
+        parent::beforeFilter();
+        $this->Auth->allow('bautizosedades');
+        $this->Auth->allow('bautizosgenero');
+    }
 }
 ?>

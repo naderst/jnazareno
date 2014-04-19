@@ -2,22 +2,22 @@
 class Bautizo extends AppModel {
     public $validate = array(
     	'nombres' => array(
-			'rule' => '/^[A-Za-zá-úñÑ ]{2,50}$/',
+			'rule' => '/^[A-Za-zá-úÁ-ÚñÑ ]{2,50}$/',
 			'message' => 'Los nombres deben tener entre 2 y 50 caracteres'
     	),
     	'apellidos' => array(
-			'rule' => '/^[A-Za-zá-úñÑ ]{2,50}$/',
+			'rule' => '/^[A-Za-zá-úÁ-ÚñÑ ]{2,50}$/',
 			'message' => 'Los apellidos deben tener entre 2 y 50 caracteres'
     	),
     	'fecha_nacimniento' => array(
     		'rule' => array('date', 'dmy')
     	),
     	'padre' => array(
-    		'rule' => '/^[A-Za-zá-úñÑ ]{2,100}$/',
+    		'rule' => '/^[A-Za-zá-úÁ-ÚñÑ ]{2,100}$/',
     		'message' => 'El nombre completo del padre debe tener entre 5 y 100 caracteres'
     	),
     	'madre' => array(
-    		'rule' => '/^[A-Za-zá-úñÑ ]{2,100}$/',
+    		'rule' => '/^[A-Za-zá-úÁ-ÚñÑ ]{2,100}$/',
     		'message' => 'El nombre completo de la madre debe tener entre 5 y 100 caracteres'
     	),
     	'estado_nacimiento' => array(

@@ -197,7 +197,7 @@ class BautizosController extends AppController {
         $columna2 .= ' Cura Párroco encargado de esta Parroquia, certifica que consta en el acta reseñada al margen correspondiente al libro de Bautizos:';
         $columna2 .= '<br><br><br><div class="titulo">' . parent::strtoupper_utf8($bautizado) . '</div><br><br>';
         $columna2 .= '<table>';
-        $columna2 .= '<tr><td><b>Fue ' . ($sexo == 'M'?'bautizado':'bautizada') . ' el:</b></td><td>' . $fecha_dia . ' DE ' . $fecha_mes . ' DEL AÑO ' . $fecha_ano . '</td></tr>';
+        $columna2 .= '<tr><td><b>Fue ' . ($sexo == 'M'?'bautizado':'bautizada') . ' el:</b></td><td>' . $fecha_dia . ' DE ' . $fecha_mes . ' DE ' . $fecha_ano . '</td></tr>';
         $columna2 .= '<tr><td><b>Nació en:</b></td><td>' . parent::strtoupper_utf8($lugarnac) . '</b></td></tr>';
         $columna2 .= '<tr><td><b>El dia:</b></td><td>' . $fecha_nac_dia . ' DE ' . $fecha_nac_mes . ' DEL AÑO ' . $fecha_nac_ano . '</td></tr>';
         $columna2 .= '<tr><td><b>Padre:</b></td><td>' . parent::strtoupper_utf8($padre) . '</b></td></tr>';
@@ -218,7 +218,7 @@ class BautizosController extends AppController {
         $mpdf->setHTMLHeader('<div id="logo"><img src="' . Router::url('/img/logo.png') . '"></div>');
         $mpdf->setHTMLFooter('<div id="footer">Urbanización Villa Brasil, Final Senda Curitiva. Puerto Ordaz, Estado Bolívar.<br><b>Telf.:</b> (0286) 923.27.85</div>');
         $mpdf->WriteHTML($html, 2);
-        $mpdf->Output('CERTIFICADO DE BAUTIZO DE '.parent::strtoupper_utf8($bautizado), 'I');
+        $mpdf->Output('Certificado de Bautizo de '.ucwords($bautizado), 'I');
     }
 
     function buscar() {
