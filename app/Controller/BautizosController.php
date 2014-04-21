@@ -17,7 +17,6 @@ class BautizosController extends AppController {
     function agregar() {
     	if(parent::isAdmin()) {
     		$this->Bautizo->validator()
-    		->remove('prefectura_estado')
     		->remove('prefectura_libro')
     		->remove('prefectura_folio')
     		->remove('prefectura_numero');
@@ -67,7 +66,6 @@ class BautizosController extends AppController {
     function modificar($id = null) {
         if(parent::isAdmin()) {
             $this->Bautizo->validator()
-            ->remove('prefectura_estado')
             ->remove('prefectura_libro')
             ->remove('prefectura_folio')
             ->remove('prefectura_numero');
@@ -186,7 +184,7 @@ class BautizosController extends AppController {
         $columna1 .= '<tr><td><b>Número:</b></td><td>'.$bautizo['Bautizo']['numero'] . '</td></tr>';
         $columna1 .= '<tr><td colspan="2"><b>Nota marginal:</b></td></tr>';
         $columna1 .= '<tr><td colspan="2" style="height: 200px;text-align:justify;font-size:11px" valign="top">' . (empty($bautizo['Bautizo']['nota_marginal'])?'<img width="100%" height="200" src="' . Router::url('/img/diagonal.png') . '">':$bautizo['Bautizo']['nota_marginal']) . '</td></tr>';
-        $columna1 .= '<tr><td colspan="2"><b>Registro Civil<br>Prefectura Civil<br>Estado: </b>' . $bautizo['Bautizo']['prefectura_estado'] . '<br><b>Fue presentado</b></td></tr>';
+        $columna1 .= '<tr><td colspan="2"><b>Registro Civil<br><b>Fue presentado</b></td></tr>';
         $columna1 .= '<tr><td><b>Número:</b></td><td>'.$bautizo['Bautizo']['prefectura_numero'] . '</td></tr>';
         $columna1 .= '<tr><td><b>Folio:</b></td><td>'.$bautizo['Bautizo']['prefectura_folio'] . '</td></tr>';
         $columna1 .= '<tr><td><b>Año:</b></td><td>'.$bautizo['Bautizo']['prefectura_fecha'] . '</td></tr>';

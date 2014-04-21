@@ -54,16 +54,12 @@ echo $this->Form->create('Bautizo', array(
       <td colspan="2"><h3>Datos de la prefectura</h3></td>
     </tr>
     <tr>
-      <td><?php echo $this->Form->input('prefectura_estado', array('label' => 'Estado')); ?></td>
       <td><?php echo $this->Form->input('prefectura_fecha', array('label' => 'Fecha')); ?></td>
+        <td><?php echo $this->Form->input('prefectura_numero', array('label' => 'Número')); ?></td>
     </tr>
     <tr>
-      <td><?php echo $this->Form->input('prefectura_numero', array('label' => 'Número')); ?></td>
-      <td><?php echo $this->Form->input('prefectura_folio', array('label' => 'Folio')); ?></td>
-    </tr>
-    <tr>
-      <td><?php echo $this->Form->input('prefectura_libro', array('label' => 'Libro')); ?></td>
-      <td></td>
+        <td><?php echo $this->Form->input('prefectura_folio', array('label' => 'Folio')); ?></td>
+        <td><?php echo $this->Form->input('prefectura_libro', array('label' => 'Libro')); ?></td>
     </tr>
     <tr>
       <td colspan="2"><h3>Nota marginal</h3></td>
