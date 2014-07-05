@@ -189,7 +189,33 @@ class MatrimoniosController extends AppController {
         $this->set('pais_selected_novia', $this->request->data('Matrimonio.pais_nacimiento_novia'));
         $this->set('pais_actual_selected_novia', $this->request->data('Matrimonio.pais_actual_novia'));
 
-    	$this->render('agregar');   
+    	$this->render('agregar');
+    }
+
+    function buscar() {
+        $q = $_GET['q'];
+
+        if(empty($q))
+            $keywords = array();
+        else
+            $keywords = preg_split('/ /', $q);
+
+        $like = '';
+
+        foreach($keywords as $k => $v) {
+            $v = trim($v);
+
+            if(!empty($v))
+                $like .= 'LOWER(nombres_novio) LIKE \'%' . $v . '%\' OR LOWER(apellidos_novio) LIKE \'%' . $v . '%\' OR LOWER(cedula_novio) LIKE \'%' . $v . '%\' OR LOWER(nombres_novia) LIKE \'%' . $v . '%\' OR LOWER(apellidos_novia) LIKE \'%' . $v . '%\' OR LOWER(cedula_novia) LIKE \'%' . $v . '%\' OR fecha LIKE \'%' . $v . '%\' OR ';
+        }
+
+        $like = substr($like, 0, strlen($like)-3);
+
+        $this->paginate['conditions'] = ' ' . $like;
+        $this->Paginator->settings = $this->paginate;
+
+        $this->set('matrimonios', $this->Paginator->paginate('Matrimonio'));
+        $this->set('q', $q);
     }
 }
 ?>
