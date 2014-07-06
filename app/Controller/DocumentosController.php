@@ -67,6 +67,7 @@ class DocumentosController extends AppController {
 		} elseif(file_exists($dst)) {
 			$this->Session->setFlash('El archivo ya existe', 'default', array(), 'bad');
 		} else {
+			$dst = preg_replace('/[^(\x20-\x7F)]*/','', $dst);
 			move_uploaded_file($src, $dst);
 			$this->Session->setFlash('Se ha subido el archivo con éxito', 'default', array(), 'good');
 		}
