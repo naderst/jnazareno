@@ -4,13 +4,17 @@ $(document).ready(function() {
 
 	$('.delete').click(function() {
 		var f = $(this).siblings()[0];
-
+        var cat = $(this).attr('data-cat');
 		f = $('#ad-' + $(f).attr('data-id')).html();
 
 		if(confirm('¿Está seguro que desea borrar el archivo "' + f + '"?')) {
-			document.location = baseDir + '/documentos/eliminar/' + f;
+			document.location = baseDir + '/documentos/eliminar/' + cat + '/' + f;
 		}
 	});
+
+    $('#cat').change(function() {
+        document.location = baseDir + 'documentos/index/' + $(this).val();
+    });
 
 	$('.rename').click(function() {
 		var input = '#id-' + $(this).attr('data-id');
@@ -25,10 +29,11 @@ $(document).ready(function() {
 		var input = this;
 		var a = $(this).siblings()[0];
 		var span = $(this).siblings()[1];
+        var cat = $(this).attr('data-cat');
 
 		if($(input).val() != $(a).html()) {
 			$.ajax({
-				url: baseDir + '/documentos/rename',
+				url: baseDir + '/documentos/rename/' + cat,
 				type: 'POST',
 				data: { old: $(a).html(), new: $(input).val() },
 				beforeSend: function() {
@@ -37,7 +42,7 @@ $(document).ready(function() {
 				},
 				success: function(html) {
 					$(a).html(html);
-					$(a).attr('href', baseDir + 'documents/' + html);
+					$(a).attr('href', baseDir + 'documents/' + cat + '/' + html);
 				},
 				error: function() {
 					alert('Ocurrió un error inesperado renombrando el archivo, por favor vuelva a intentarlo');

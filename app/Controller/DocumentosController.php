@@ -2,9 +2,9 @@
 class DocumentosController extends AppController {
 	public $uses = array();
         private $valid_ext = 'csv|xls|xlsx|doc|docx|pdf|jpg|png|gif|bmp|txt'; // Extensiones aceptadas
-        
-	function index() {
-		$dr = opendir('../webroot/documents');
+
+	function index($cat = 'bautizos') {
+		$dr = opendir('../webroot/documents/' . $cat);
 		$files = array();
 
 		if($dr !== FALSE) {
@@ -16,24 +16,25 @@ class DocumentosController extends AppController {
 			closedir($dr);
 		}
 
+        $this->set('cat', $cat);
 		$this->set('files', $files);
 	}
 
-	function eliminar($f) {
+	function eliminar($cat, $f) {
 		if(!parent::isAdmin()) {
 			throw new NotFoundException('La página no existe');
 		}
 
-		
-		if(unlink('../webroot/documents/'.$f))
+
+		if(unlink('../webroot/documents/' . $cat . '/' . $f))
 			$this->Session->setFlash('Se ha eliminado el documento con éxito', 'default', array(), 'good');
 		else
 			$this->Session->setFlash('Ocurrió un error eliminando el documento', 'default', array(), 'bad');
 
-		$this->redirect('/documentos');
+		$this->redirect('/documentos/index/' . $cat);
 	}
 
-	function rename() {
+	function rename($cat) {
 		if(!parent::isAdmin()) {
 			return;
 		}
@@ -42,13 +43,13 @@ class DocumentosController extends AppController {
 		$old = $this->request->data('old');
 		$new = $this->request->data('new');
 
-		if(preg_match('/\.('.$this->valid_ext.')$/i', $new) && rename('../webroot/documents/'.$old, '../webroot/documents/'.$new))
+		if(preg_match('/\.('.$this->valid_ext.')$/i', $new) && rename('../webroot/documents/'.$cat.'/'.$old, '../webroot/documents/'.$cat.'/'.$new))
 			$this->set('name', $new);
 		else
 			$this->set('name', $old);
 	}
 
-	function subir() {
+	function subir($cat) {
 		if(!parent::isAdmin()) {
 			return;
 		}
@@ -56,7 +57,7 @@ class DocumentosController extends AppController {
 		$MAX_SIZE = 5; // Tamaño en megabytes (MB)
 		$nombre = $_FILES['documento']['name'];
 		$src = $_FILES['documento']['tmp_name'];
-		$dst = '../webroot/documents/'.$nombre;
+		$dst = '../webroot/documents/' . $cat . '/' . $nombre;
 		$size = $_FILES['documento']['size'];
 
 		if($size > ($MAX_SIZE*1048576)) {
@@ -70,7 +71,7 @@ class DocumentosController extends AppController {
 			$this->Session->setFlash('Se ha subido el archivo con éxito', 'default', array(), 'good');
 		}
 
-		$this->redirect('/documentos');
+		$this->redirect('/documentos/index/' . $cat);
 	}
 }
 ?>
