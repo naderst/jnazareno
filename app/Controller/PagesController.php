@@ -33,7 +33,7 @@ App::import('Vendor', 'MPDF57/mpdf');
 class PagesController extends AppController {
 	public $name = 'Pages';
 	public $uses = array();
-    
+
     function beforeFilter() {
         if(!$this->Auth->loggedIn())
             $this->redirect('/usuarios/login');
@@ -61,65 +61,77 @@ class PagesController extends AppController {
     
     function estadisticas($tipo='del', $param1='dia', $param2=null) {
         Configure::write('debug',0);
-        
+
         $this->autoRender = false;
         $this->response->type('application/pdf');
         $this->loadModel('Configuracion');
         $this->loadModel('Bautizo');
-        
+
         if($tipo == 'del') {
             if($param1 == 'dia') {
                 $time = time();
                 $hoy = date('d', $time) . ' de ' . parent::month2string(date('m',$time)) . ' de ' . date('Y', $time);
                 $title = 'Estadística del ' . $hoy;
+                $totalbautizos = $this->Bautizo->find('count', array(
+                    'conditions' => array('Bautizo.fecha' => date('d/m/Y', $time))
+                ));
             } elseif($param1 == 'mes') {
                 $time = time();
                 $fecha = parent::month2string(date('m',$time)) . ' de ' . date('Y', $time);
                 $title = 'Estadística del mes de ' . $fecha;
+                $totalbautizos = $this->Bautizo->find('count', array(
+                    'conditions' => array('MONTH(STR_TO_DATE(REPLACE(Bautizo.fecha, \'/\', \'.\'), \'%d.%m.%Y\'))' => date('n', $time))
+                ));
             } elseif($param1 == 'ano') {
                 $time = time();
                 $fecha = date('Y', $time);
                 $title = 'Estadística del año ' . $fecha;
+                $totalbautizos = $this->Bautizo->find('count', array(
+                    'conditions' => array('YEAR(STR_TO_DATE(REPLACE(Bautizo.fecha, \'/\', \'.\'), \'%d.%m.%Y\'))' => date('y', $time))
+                ));
             } elseif($param1 == 'todos') {
                 $title = 'Estadística de todos los tiempos';
+                $totalbautizos = $this->Bautizo->find('count');
             } else {
                 return;
-            }  
+            }
         } elseif($tipo == 'rango') {
             $_param1 = strtotime($param1);
             $_param2 = strtotime($param2);
-            
+
+            $totalbautizos = $this->Bautizo->find('count', array(
+                'conditions' => array('STR_TO_DATE(REPLACE(Bautizo.fecha, \'/\', \'.\'), \'%d.%m.%Y\') BETWEEN ? AND ?' => array(date('d.m.Y', $_param1), date('d.m.Y', $_param2)))
+            ));
+
             $diadesde = date('d', $_param1);
             $mesdesde = parent::month2string(date('m', $_param1));
             $anodesde = date('Y', $_param1);
-            
+
             $diahasta = date('d', $_param2);
             $meshasta = parent::month2string(date('m', $_param2));
             $anohasta = date('Y', $_param2);
-            
+
             $title = 'Estadística ';
-            
+
             if($anodesde == $anohasta && $mesdesde == $meshasta && $diadesde == $diahasta) {
                 $title .= 'del ' . $diadesde . ' de ' . $mesdesde . ' de ' . $anodesde;
             } elseif($anodesde == $anohasta && $mesdesde == $meshasta) {
                 $title .= 'del ' . $diadesde . ' hasta ' . $diahasta . ' de ' . $mesdesde . ' de ' . $anodesde;
             } elseif($anodesde == $anohasta && $mesdesde != $meshasta) {
-                $title .= 'del ' .$diadesde . ' de ' . $mesdesde . ' hasta el ' . $diahasta . ' de ' . $meshasta . ' de ' . $anodesde;   
+                $title .= 'del ' .$diadesde . ' de ' . $mesdesde . ' hasta el ' . $diahasta . ' de ' . $meshasta . ' de ' . $anodesde;
             } else {
-                $title .= 'del ' .$diadesde . ' de ' . $mesdesde . ' de ' . $anodesde . ' hasta el ' . $diahasta . ' de ' . $meshasta . ' de ' . $anohasta;   
+                $title .= 'del ' .$diadesde . ' de ' . $mesdesde . ' de ' . $anodesde . ' hasta el ' . $diahasta . ' de ' . $meshasta . ' de ' . $anohasta;
             }
         } else {
             return;
         }
-        
+
         $url = 'http://' . $_SERVER['HTTP_HOST'] . Router::url('/graficos/bautizosedades/' . $tipo . '/' . $param1 . '/' . $param2);
-        $url2 = 'http://' . $_SERVER['HTTP_HOST'] . Router::url('/graficos/bautizosgenero/' . $tipo . '/' . $param1 . '/' . $param2);        
-        
-        $totalbautizos = $this->Bautizo->find('count');
-        
+        $url2 = 'http://' . $_SERVER['HTTP_HOST'] . Router::url('/graficos/bautizosgenero/' . $tipo . '/' . $param1 . '/' . $param2);
+
         $time = time();
         $presbitero = '';
-        
+
         $config = $this->Configuracion->find('all');
 
         foreach($config as $e)
