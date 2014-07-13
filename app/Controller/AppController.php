@@ -140,4 +140,28 @@ class AppController extends Controller {
         $months = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
         return $months[$m-1];
     }
+
+	function age($date) {
+		$dia = date('j', $date);
+		$mes = date('n', $date);
+		$ano = date('Y', $date);
+		$dia_actual = date('j', time());
+		$mes_actual = date('n', time());
+		$ano_actual = date('Y', time());
+
+		$edad = $ano_actual - $ano;
+
+		if($mes_actual < $mes) {
+			return $edad - 1;
+		} elseif ($mes_actual > $mes) {
+			return $edad;
+		} elseif ($mes_actual == $mes) {
+			if($dia_actual >= $dia)
+				return $edad;
+			else
+				return $edad - 1;
+		}
+
+		return -1;
+	}
 }
