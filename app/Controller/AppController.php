@@ -164,4 +164,14 @@ class AppController extends Controller {
 
 		return -1;
 	}
+
+	function number2word($n) {
+		$str = array('un', 'dos', 'tres', 'cuatro', 'cinco', 'seis', 'siete', 'ocho', 'nueve', 'diez',
+					'once', 'doce', 'trece', 'catorce', 'quince', 'dieciséis', 'diecisiete', 'dieciocho',
+					'diecinueve', 'veinte');
+		if($n > count($str))
+			return 'más de ' . $str[count($str) - 1];
+		else
+			return $str[$n - 1];
+	}
 }
