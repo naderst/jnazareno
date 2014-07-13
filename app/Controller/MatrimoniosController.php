@@ -47,12 +47,12 @@ class MatrimoniosController extends AppController {
                 $this->request->data['Matrimonio']['estado_actual_novio'] = $this->request->data['Matrimonio']['estado_actual_novio_2'];
                 $this->request->data['Matrimonio']['ciudad_actual_novio'] = $this->request->data['Matrimonio']['ciudad_actual_novio_2'];
             }
-            
+
             if($this->request->data('Matrimonio.pais_nacimiento_novia') != 'Venezuela') {
                 $this->request->data['Matrimonio']['estado_nacimiento_novia'] = $this->request->data['Matrimonio']['estado_nacimiento_novia_2'];
                 $this->request->data['Matrimonio']['ciudad_nacimiento_novia'] = $this->request->data['Matrimonio']['ciudad_nacimiento_novia_2'];
             }
-            
+
             if($this->request->data('Matrimonio.pais_actual_novia') != 'Venezuela') {
                 $this->request->data['Matrimonio']['estado_actual_novia'] = $this->request->data['Matrimonio']['estado_actual_novia_2'];
                 $this->request->data['Matrimonio']['ciudad_actual_novia'] = $this->request->data['Matrimonio']['ciudad_actual_novia_2'];
@@ -75,7 +75,7 @@ class MatrimoniosController extends AppController {
                 $this->set('estado_actual_selected', parent::getEstado());
                 $this->set('ciudad_actual_selected', parent::getCiudad());
                 $this->set('pais_actual_selected', 'Venezuela');
-                
+
                 $this->set('ciudades_novia', parent::getCiudades());
                 $this->set('estado_selected_novia', parent::getEstado());
                 $this->set('ciudad_selected_novia', parent::getCiudad());
@@ -86,7 +86,7 @@ class MatrimoniosController extends AppController {
                 $this->set('pais_actual_selected_novia', 'Venezuela');
         }
     }
-    
+
     function eliminar($id) {
     	if(parent::isAdmin()) {
     		$this->Matrimonio->delete($id);
@@ -113,12 +113,12 @@ class MatrimoniosController extends AppController {
                 $this->request->data['Matrimonio']['estado_actual_novio'] = $this->request->data['Matrimonio']['estado_actual_novio_2'];
                 $this->request->data['Matrimonio']['ciudad_actual_novio'] = $this->request->data['Matrimonio']['ciudad_actual_novio_2'];
             }
-            
+
             if($this->request->data('Matrimonio.pais_nacimiento_novia') != 'Venezuela') {
                 $this->request->data['Matrimonio']['estado_nacimiento_novia'] = $this->request->data['Matrimonio']['estado_nacimiento_novia_2'];
                 $this->request->data['Matrimonio']['ciudad_nacimiento_novia'] = $this->request->data['Matrimonio']['ciudad_nacimiento_novia_2'];
             }
-            
+
             if($this->request->data('Matrimonio.pais_actual_novia') != 'Venezuela') {
                 $this->request->data['Matrimonio']['estado_actual_novia'] = $this->request->data['Matrimonio']['estado_actual_novia_2'];
                 $this->request->data['Matrimonio']['ciudad_actual_novia'] = $this->request->data['Matrimonio']['ciudad_actual_novia_2'];
@@ -146,7 +146,7 @@ class MatrimoniosController extends AppController {
             $this->set('estado_selected', $this->request->data('Matrimonio.estado_nacimiento_novio'));
             $this->set('ciudad_selected', $this->request->data('Matrimonio.ciudad_nacimiento_novio'));
         }
-        
+
         if($this->request->data('Matrimonio.pais_actual_novio') != 'Venezuela') {
             $this->request->data['Matrimonio']['estado_actual_novio_2'] = $this->request->data['Matrimonio']['estado_actual_novio'];
             $this->request->data['Matrimonio']['ciudad_actual_novio_2'] = $this->request->data['Matrimonio']['ciudad_actual_novio'];
@@ -158,7 +158,7 @@ class MatrimoniosController extends AppController {
             $this->set('estado_actual_selected', $this->request->data('Matrimonio.estado_actual_novio'));
             $this->set('ciudad_actual_selected', $this->request->data('Matrimonio.ciudad_actual_novio'));
         }
-        
+
         // NOVIA
 
         if($this->request->data('Matrimonio.pais_nacimiento_novia') != 'Venezuela') {
@@ -172,7 +172,7 @@ class MatrimoniosController extends AppController {
             $this->set('estado_selected_novia', $this->request->data('Matrimonio.estado_nacimiento_novia'));
             $this->set('ciudad_selected_novia', $this->request->data('Matrimonio.ciudad_nacimiento_novia'));
         }
-        
+
         if($this->request->data('Matrimonio.pais_actual_novia') != 'Venezuela') {
             $this->request->data['Matrimonio']['estado_actual_novia_2'] = $this->request->data['Matrimonio']['estado_actual_novia'];
             $this->request->data['Matrimonio']['ciudad_actual_novia_2'] = $this->request->data['Matrimonio']['ciudad_actual_novia'];
@@ -220,7 +220,7 @@ class MatrimoniosController extends AppController {
         $this->set('q', $q);
     }
 
-	function certificado($id) {
+	function certificado($id, $motivo = null) {
 		Configure::write('debug',0);
 
 		$this->autoRender = false;
@@ -271,7 +271,7 @@ class MatrimoniosController extends AppController {
 		$columna2 .= '<tr><td><b>Desposada hija de: </b></td><td>' . $padres_novia . '</td></tr>';
 		$columna2 .= '<tr><td><b>Testigos Eclesiásticos: </b></td><td>' . $matrimonio['Matrimonio']['nombre_testigo_novio'] . ' y ' . $matrimonio['Matrimonio']['nombre_testigo_novia'] . '</td></tr>';
 		$columna2 .= '<tr><td><b>Ministro celebrante: </b></td><td>' . $matrimonio['Matrimonio']['ministro'] . '</td></tr>';
-		$columna2 .= '<tr><td><b>Se pide este certificado para fines: </b></td><td></td></tr>';
+		$columna2 .= '<tr><td><b>Se pide este certificado para fines: </b></td><td>' . $motivo . '</td></tr>';
 		$columna2 .= '</table>';
 
 		$html = '<div class="titulo">CERTIFICADO DE MATRIMONIO</div><br><br>';
@@ -289,34 +289,120 @@ class MatrimoniosController extends AppController {
 	}
 
 	function expediente($id) {
-		/*
-        TODO:
 		Configure::write('debug',0);
 		$this->autoRender = false;
 		$this->response->type('application/pdf');
+		$this->loadModel('Configuracion');
 
 		$this->Matrimonio->id = $id;
         $matrimonio = $this->Matrimonio->read();
+		$config = $this->Configuracion->find('all');
 
+		$presbitero = '';
+
+		foreach($config as $e)
+			if($e['Configuracion']['parametro'] == 'presbitero') {
+				$presbitero = $e['Configuracion']['valor'];
+				break;
+			}
+
+		// Variables...
 		$novio = $matrimonio['Matrimonio']['nombres_novio'] . ' ' . $matrimonio['Matrimonio']['apellidos_novio'];
 		$novia = $matrimonio['Matrimonio']['nombres_novia'] . ' ' . $matrimonio['Matrimonio']['apellidos_novia'];
+		$cedula_novio = $matrimonio['Matrimonio']['cedula_novio'];
+		$cedula_novia = $matrimonio['Matrimonio']['cedula_novia'];
+        $padre_novio = $matrimonio['Matrimonio']['padre_novio'];
+        $padre_novia = $matrimonio['Matrimonio']['padre_novia'];
+        $madre_novio = $matrimonio['Matrimonio']['madre_novio'];
+        $madre_novia = $matrimonio['Matrimonio']['madre_novia'];
+		$ciudad_nacimiento_novio = $matrimonio['Matrimonio']['ciudad_nacimiento_novio'];
+		$ciudad_nacimiento_novia = $matrimonio['Matrimonio']['ciudad_nacimiento_novia'];
+		$estado_nacimiento_novio = $matrimonio['Matrimonio']['estado_nacimiento_novio'];
+		$estado_nacimiento_novia = $matrimonio['Matrimonio']['estado_nacimiento_novia'];
+		$fecha_nacimiento_novio = str_replace('/', '.', $matrimonio['Matrimonio']['fecha_nacimiento_novio']);
+		$fecha_nacimiento_novia = str_replace('/', '.', $matrimonio['Matrimonio']['fecha_nacimiento_novia']);
+		$dia_novio = date('d', strtotime($fecha_nacimiento_novio));
+		$dia_novia = date('d', strtotime($fecha_nacimiento_novia));
+		$mes_novio = parent::month2string(date('m', strtotime($fecha_nacimiento_novio)));
+		$mes_novia = parent::month2string(date('m', strtotime($fecha_nacimiento_novia)));
+		$ano_novio = date('Y', strtotime($fecha_nacimiento_novio));
+		$ano_novia = date('Y', strtotime($fecha_nacimiento_novia));
+		$ciudad_novio = $matrimonio['Matrimonio']['ciudad_actual_novio'];
+		$ciudad_novia = $matrimonio['Matrimonio']['ciudad_actual_novia'];
+		$estado_novio = $matrimonio['Matrimonio']['estado_actual_novio'];
+		$estado_novia = $matrimonio['Matrimonio']['estado_actual_novia'];
+		$pais_novio = $matrimonio['Matrimonio']['pais_actual_novio'];
+		$pais_novia = $matrimonio['Matrimonio']['pais_actual_novia'];
+		$nombre_testigo_novio = $matrimonio['Matrimonio']['nombre_testigo_novio'];
+		$nombre_testigo_novia = $matrimonio['Matrimonio']['nombre_testigo_novia'];
+		$cedula_testigo_novio = $matrimonio['Matrimonio']['cedula_testigo_novio'];
+		$cedula_testigo_novia = $matrimonio['Matrimonio']['cedula_testigo_novia'];
+		$direccion_testigo_novio = $matrimonio['Matrimonio']['direccion_testigo_novio'];
+		$direccion_testigo_novia = $matrimonio['Matrimonio']['direccion_testigo_novia'];
+
+		// Titulo del documento
 		$titulo = 'EXPEDIENTE MATRIMONIAL';
 
+		// Página principal con los documentos
 		$html = '<div class="titulo">' . $titulo . '</div><br><br>';
-		$html .= '<u><b>DOCUMENTOS QUE PERTENECEN A ESTE EXPEDIENTE</b></u><br><br>';
+		/*$html .= '<u><b>DOCUMENTOS QUE PERTENECEN A ESTE EXPEDIENTE</b></u><br><br>';
 		$html .= '<table class="documentos">';
 		$html .= '<tr><td>Partida de Bautismo de <b>' . $novio . '</b> y de <b>' . $novia . '</b></td></tr>';
 		$html .= '<tr><td>Certificado de Proclamas de la Parroquia Jesús Nazareno</td></tr>';
 		$html .= '<tr><td>Constancia del Curso Prematrimonial X de fecha Y</td></tr>';
 		$html .= '<tr><td>Documentos de la curia</td></tr>';
-		$html .= '</table>';
+		$html .= '</table>';*/
+		$html .= 'Tabla con los documentos';
 
-		$mpdf = new mPDF('BLANK', 'Letter', '11', 'Arial', 10, 10, 35, 5, 3, 3);
-		$mpdf->writeHTML('.documentos td { padding: 8px; border-bottom: #ccc 1px solid } #logo { text-align:center } #footer { text-align: center; font-size:12px; border-top: 1px solid #666; padding-top: 5px } .titulo { text-align: center; font-size: 17px; font-weight: bold; }', 1);
+		// Declaración del novio
+		$html2  = '<div class="subtitulo">ACTA DE EXPLORACIÓN DE VOLUNTADES<br>DECLARACIÓN DEL NOVIO</div><br>';
+		$html2 .= '<div class="just">';
+		$html2 .= 'El día X del mes de X del año X compareció ante el infrascrito párroco ';
+		$html2 .= '<b>Pbro. ' . $presbitero . '</b> de la Parroquia Jesús Nazareno, en Villa Brasil, ';
+		$html2 .= 'Puerto Ordaz el señor <b>' . $novio . '</b> con cédula de identidad <b>' . $cedula_novio . '</b>';
+		$html2 .= ' soltero, nacido en <b>' . $ciudad_nacimiento_novio . ', Estado ' . $estado_nacimiento_novio . '</b>';
+		$html2 .= ' el día <b>' . $dia_novio . ' de ' . $mes_novio . ' de ' . $ano_novio . '</b>,';
+		$html2 .= ' de ' . parent::age(strtotime($fecha_nacimiento_novio)) . ' años de edad,';
+		$html2 .= ' vecino de la DIRECCIÓN, ' . $ciudad_novio . ', ' . $estado_novio . ', ' . $pais_novio . '.';
+		$html2 .= ' Hijo de ' . $padre_novio . ' y de ' . $madre_novio . ' y declaró bajo juramento';
+		$html2 .= ' que hizo en nombre de Dios:<br><br>';
+		$html2 .= '<ul style="list-style-type:upper-alpha;">';
+		$html2 .= '<li>Que consiente y libremente desea contraer Matrimonio con la Srta. ' . $novia . '.<br><br></li>';
+		$html2 .= '<li>Que libremente acepta las propiedades esenciales del Matrimonio:';
+		$html2 .= ' Unidad e Indisolubilidad, procreación y obligación de educar en la Doctrina';
+		$html2 .= ' Católica a los hijos.<br><br></li>';
+		$html2 .= '<li>Que ha residido, después de la pubertad, por X o más en X.<br><br></li>';
+		$html2 .= '<li>Que no tiene impedimento de X que obstaculice a la Celebración del Matrimonio.<br><br></li>';
+		$html2 .= '<li>¿Procede libremente a su Matrimonio?<br><br></li>';
+		$html2 .= '<li>¿Pone condición al Matrimonio?<br><br></li>';
+		$html2 .= '<li>¿Conoce las obligaciones y derechos de Matrimonio?<br><br></li>';
+		$html2 .= '</ul>';
+		$html2 .= 'Le instruí convenientemente y le advertí sobre el deber de recibir el';
+		$html2 .= ' Sacramento en gracia de Dios y participar en la Eucaristía. Falta la Confirmación<br>';
+		$html2 .= 'En fe de lo anteriormente expuesto firmamos esta declaración.<br><br><br><br><br>';
+		$html2 .= '<table style="width:80%;margin:auto;text-align:center"><tr><td></td><td></td></tr>';
+		$html2 .= '<tr><td><b>Firma del Novio</b></td><td><b>Firma del Párroco</b></td></tr>';
+		$html2 .= '</table>';
+		$html2 .= '</div>';
+		$html2 .= '<br><br><div class="subtitulo">DECLARACIÓN DEL PRIMER TESTIGO</div><br>';
+		$html2 .= '<div class="just">';
+		$html2 .= 'Ante mí compareció <b>' . $nombre_testigo_novio . '</b> C.I. <b>' . $cedula_testigo_novio;
+		$html2 .= '</b> mayor de edad y vecino(a) de ' . $direccion_testigo_novio . ', quien bajo';
+		$html2 .= ' juramento que hizo en nombre de Dios, declaró: que conoce perfectamente al novio';
+		$html2 .= ' desde hace X (X) años y a la novia desde hace X (X) años y le consta que son solteros;';
+		$html2 .= ' que han residido después de la pubertad, por X o más, en XXXXX y que no tienen impedimento';
+		$html2 .= ' de ningún tipo que obstaculice a la celebración del Matrimonio.<br><br><br><br><br>';
+		$html2 .= '<p align="center"><b>Firma del Testigo</b></p>';
+		$html2 .= '</div>';
+
+		$mpdf = new mPDF('BLANK', 'Legal', '11', 'Arial', 10, 10, 35, 5, 3, 3);
+		$mpdf->writeHTML('.just { text-align: justify; } .documentos td { padding: 8px; border-bottom: #ccc 1px solid } #logo { text-align:center } #footer { text-align: center; font-size:12px; border-top: 1px solid #666; padding-top: 5px } .titulo { text-align: center; font-size: 17px; font-weight: bold; } .subtitulo { text-align: left; font-size: 14px; font-weight: bold; }', 1);
 		$mpdf->setHTMLHeader('<div id="logo"><img src="' . Router::url('/img/logo.png') . '"></div>');
 		$mpdf->setHTMLFooter('<div id="footer">Urbanización Villa Brasil, Final Senda Curitiva. Puerto Ordaz, Estado Bolívar.<br><b>Telf.:</b> (0286) 923.27.85</div>');
 		$mpdf->WriteHTML($html, 2);
-		$mpdf->Output('Expediente Matrimonial de ' . $novio . ' y ' . $novia, 'I'); */
+		$mpdf->AddPage();
+		$mpdf->WriteHTML($html2, 2);
+		$mpdf->Output('Expediente Matrimonial de ' . $novio . ' y ' . $novia, 'I');
 	}
 }
 ?>
