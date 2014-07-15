@@ -18,6 +18,8 @@ if (!count($matrimonios)) {
         ?>
         <th>Acción</th>
         <?php } ?>
+		<th>Certificado</th>
+		<th>Expediente</th>
     </tr>
     <?php
         foreach($matrimonios as $e) {
@@ -33,6 +35,8 @@ if (!count($matrimonios)) {
 		?>
 		<td><a href="<?php echo Router::url(array('action' => 'modificar', $e['Matrimonio']['id'])); ?>"><i class="fa fa-edit"></i> Modificar</a><br><a href="<?php echo Router::url(array('action' => 'eliminar', $e['Matrimonio']['id'])); ?>" onclick="javascript: return confirm('¿Está seguro que desea eliminar el matriominio de <?php echo $e['Matrimonio']['nombres_novio'].' '.$e['Matrimonio']['apellidos_novio'];?> y <?php echo $e['Matrimonio']['nombres_novia'].' '.$e['Matrimonio']['apellidos_novia'];?>?');" alt="Eliminar"><i class="fa fa-times"></i> Eliminar</a></td>
 		<?php } ?>
+		<td><a href="javascript:void();" data-id="<?php echo $e['Matrimonio']['id']; ?>" class="certificado">Generar<br>certificado</a></td>
+		<td><a href="<?php echo Router::url('/matrimonios/expediente/' . $e['Matrimonio']['id']); ?>" target="_blank">Generar<br>expediente</a></td>
     </tr>
     <?php } ?>
 </table>
