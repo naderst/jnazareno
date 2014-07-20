@@ -2,8 +2,11 @@ $(document).ready(function() {
 
 	$('.certificado').click(function() {
 		var motivo = prompt('Se pide este certificado para fines:', '');
-		var id = $(this).attr('data-id');
-		window.open(baseDir + 'matrimonios/certificado/' + id + '/' + motivo, '_blank').focus();
+		
+		if(motivo != null) {
+			var id = $(this).attr('data-id');
+			window.open(baseDir + 'matrimonios/certificado/' + id + '/' + motivo, '_blank').focus();
+		}
 	});
 
     $('#datetimepicker').datetimepicker({
@@ -17,7 +20,7 @@ $(document).ready(function() {
         timepicker: false,
         format: 'd/m/Y'
     });
-    
+
     $('#datetimepicker3').datetimepicker({
         lang: 'es',
         timepicker: false,
