@@ -62,10 +62,16 @@ echo $this->Form->create('Bautizo', array(
         <td><?php echo $this->Form->input('prefectura_libro', array('label' => 'Libro')); ?></td>
     </tr>
     <tr>
-      <td colspan="2"><h3>Nota marginal</h3></td>
-    </tr>   
+      <td colspan="2"><h3>Notas y observaciones</h3></td>
+    </tr>
     <tr>
       <td colspan="2"><?php echo $this->Form->input('nota_marginal', array('type' => 'textarea', 'style' => 'width:100%')); ?></td>
+    </tr>
+    <tr>
+      <td colspan="2"><?php echo $this->Form->input('observaciones', array('type' => 'textarea', 'style' => 'width:100%')); ?></td>
+    </tr>
+    <tr>
+      <td colspan="2"><?php echo $this->Form->input('nota', array('type' => 'textarea', 'style' => 'width:100%')); ?></td>
     </tr>
 </table><br>
     <?php
