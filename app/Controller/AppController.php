@@ -127,6 +127,7 @@ class AppController extends Controller {
 
         foreach($this->estados[$estado] as $c)
             $ciudades[$c] = $c;
+		$ciudades['Otra'] = 'Otra';
         return $ciudades;
     }
 

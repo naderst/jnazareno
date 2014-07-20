@@ -53,7 +53,7 @@ class BautizosController extends AppController {
 	    	} else {
 	    		$this->Session->setFlash('Ha ocurrido un error agregando el bautizo', 'default', array(), 'bad');
 	    	}
-    
+
     	} else {
     		$this->set('ciudades', parent::getCiudades());
     		$this->set('estado_selected', parent::getEstado());
@@ -133,6 +133,7 @@ class BautizosController extends AppController {
         $this->layout = 'ajax';
 
         $ciudades = parent::getRawEstados();
+		$ciudades[$estado][] = 'Otra';
         $this->set('ciudades', $ciudades[$estado]);
     }
 

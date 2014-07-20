@@ -33,7 +33,7 @@ foreach($bautizos as $e) {
 		<td><?php echo $e['Bautizo']['fecha']; ?></td>
 		<td><?php echo $nombre; ?> <?php echo $apellido; ?></td>
 		<td><?php echo $e['Bautizo']['fecha_nacimiento']; ?></td>
-		<td><?php echo $e['Bautizo']['ciudad_nacimiento']; ?><br><?php echo $e['Bautizo']['estado_nacimiento']; ?><br><?php echo $e['Bautizo']['pais_nacimiento']; ?></td>
+		<td><?php echo $e['Bautizo']['ciudad_nacimiento'] == 'Otra' ? $e['Bautizo']['ciudad_nacimiento_otra'] : $e['Bautizo']['ciudad_nacimiento']; ?><br><?php echo $e['Bautizo']['estado_nacimiento']; ?><br><?php echo $e['Bautizo']['pais_nacimiento']; ?></td>
 		<td><b><?php echo $e['Bautizo']['padre']; ?></b> y<br><b><?php echo $e['Bautizo']['madre']; ?></b></td>
 		<td><b><?php echo $e['Bautizo']['padrino']; ?></b> y<br><b><?php echo $e['Bautizo']['madrina']; ?></b></td>
 		<td><?php echo $e['Bautizo']['ministro']; ?></td>

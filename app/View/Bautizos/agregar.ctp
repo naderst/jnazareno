@@ -24,7 +24,7 @@ echo $this->Form->create('Bautizo', array(
         <td><?php echo $this->Form->input('estado_nacimiento', array('label' => 'Estado de nacimiento', 'type' => 'select', 'options' => $estados, 'selected' => $estado_selected)); ?><?php echo $this->Form->input('estado_nacimiento_2', array('label' => 'Estado de nacimiento')); ?></td>
     </tr>
     <tr>
-        <td><?php echo $this->Form->input('ciudad_nacimiento', array('label' => 'Ciudad de nacimiento', 'type' => 'select', 'options' => $ciudades, 'selected' => $ciudad_selected)); ?><?php echo $this->Form->input('ciudad_nacimiento_2', array('label' => 'Ciudad de nacimiento')); ?><div id="loading">Cargando ciudades...</div></td>
+        <td><?php echo $this->Form->input('ciudad_nacimiento', array('label' => 'Ciudad de nacimiento', 'type' => 'select', 'options' => $ciudades, 'selected' => $ciudad_selected)); ?><?php echo $this->Form->input('ciudad_nacimiento_2', array('label' => 'Ciudad de nacimiento')); ?><?php echo $this->Form->input('ciudad_nacimiento_otra', array('label' => 'Especifíque...')); ?><div id="loading">Cargando ciudades...</div></td>
         <td><?php echo $this->Form->input('padre'); ?></td>
     </tr>
     <tr>
