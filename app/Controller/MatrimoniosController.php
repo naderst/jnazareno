@@ -306,7 +306,6 @@ class MatrimoniosController extends AppController {
 				break;
 			}
 
-		// Variables...
 		$novio = $matrimonio['Matrimonio']['nombres_novio'] . ' ' . $matrimonio['Matrimonio']['apellidos_novio'];
 		$novia = $matrimonio['Matrimonio']['nombres_novia'] . ' ' . $matrimonio['Matrimonio']['apellidos_novia'];
 		$cedula_novio = $matrimonio['Matrimonio']['cedula_novio'];
@@ -339,20 +338,57 @@ class MatrimoniosController extends AppController {
 		$cedula_testigo_novia = $matrimonio['Matrimonio']['cedula_testigo_novia'];
 		$direccion_testigo_novio = $matrimonio['Matrimonio']['direccion_testigo_novio'];
 		$direccion_testigo_novia = $matrimonio['Matrimonio']['direccion_testigo_novia'];
+		$tnovio_testigo_novio = $matrimonio['Matrimonio']['tnovio_testigo_novio'];
+		$tnovio_testigo_novia = $matrimonio['Matrimonio']['tnovio_testigo_novia'];
+		$tnovia_testigo_novio = $matrimonio['Matrimonio']['tnovia_testigo_novio'];
+		$tnovia_testigo_novia = $matrimonio['Matrimonio']['tnovia_testigo_novia'];
+		$bautizo_libro_novio = $matrimonio['Matrimonio']['bautizo_libro_novio'];
+		$bautizo_libro_novia = $matrimonio['Matrimonio']['bautizo_libro_novia'];
+		$bautizo_folio_novio = $matrimonio['Matrimonio']['bautizo_folio_novio'];
+		$bautizo_folio_novia = $matrimonio['Matrimonio']['bautizo_folio_novia'];
+		$bautizo_numero_novio = $matrimonio['Matrimonio']['bautizo_numero_novio'];
+		$bautizo_numero_novia = $matrimonio['Matrimonio']['bautizo_numero_novia'];
+		$bautizo_parroquia_novio = $matrimonio['Matrimonio']['bautizo_parroquia_novio'];
+		$bautizo_parroquia_novia = $matrimonio['Matrimonio']['bautizo_parroquia_novia'];
+		$nombre_testigo_novio = $matrimonio['Matrimonio']['nombre_testigo_novio'];
+		$nombre_testigo_novia = $matrimonio['Matrimonio']['nombre_testigo_novia'];
+
+		$fecha_proclamas = $matrimonio['Matrimonio']['fecha_proclamas'];
+		$parroquia_proclamas = $matrimonio['Matrimonio']['parroquia_proclamas'];
+		$fecha_constancia_curso_prematrimonial = $matrimonio['Matrimonio']['fecha_constancia_curso_prematrimonial'];
+		$certificado_matrimonio_civil = $matrimonio['Matrimonio']['certificado_matrimonio_civil'];
+		$documentos_curia = $matrimonio['Matrimonio']['documentos_curia'];
+		$fecha = $matrimonio['Matrimonio']['fecha'];
 
 		// Titulo del documento
-		$titulo = 'EXPEDIENTE MATRIMONIAL';
+		$titulo = $novio . '<br>' . $novia;
 
 		// Página principal con los documentos
-		$html = '<div class="titulo">' . $titulo . '</div><br><br>';
-		/*$html .= '<u><b>DOCUMENTOS QUE PERTENECEN A ESTE EXPEDIENTE</b></u><br><br>';
-		$html .= '<table class="documentos">';
-		$html .= '<tr><td>Partida de Bautismo de <b>' . $novio . '</b> y de <b>' . $novia . '</b></td></tr>';
-		$html .= '<tr><td>Certificado de Proclamas de la Parroquia Jesús Nazareno</td></tr>';
-		$html .= '<tr><td>Constancia del Curso Prematrimonial X de fecha Y</td></tr>';
-		$html .= '<tr><td>Documentos de la curia</td></tr>';
-		$html .= '</table>';*/
-		$html .= 'Tabla con los documentos';
+		$html = '<div class="titulo">' . parent::strtoupper_utf8($titulo) . '</div><br><br>';
+		$html .= '<b>DOCUMENTOS QUE PERTENECEN A ESTE EXPEDIENTE</b><br><br>';
+		$html .= '<ul style="list-style-type:upper-alpha;">';
+		$html .= '<li>Partida de Bautismo de los novios</li>';
+		$html .= '<li>Certificado de Proclamas de la Parroquía de '.$parroquia_proclamas.'</li>';
+		$html .= '<li>Constancia de Curso Prematrimonial de fecha: '.$fecha_constancia_curso_prematrimonial.'</li>';
+		$html .= '<li>Certificado del Matrimonio Civil '.$certificado_matrimonio_civil.'</li>';
+		$html .= '<li>Documentos de la Curia Parroquia: '.$documentos_curia.'</li>';
+		$html .= '<li>La partida de bautismo de la novia se encuentra en el Libro '.$bautizo_libro_novia.', Folio '.$bautizo_folio_novia;
+		$html .= ', Nro. '.$bautizo_numero_novia.' del archivo parroquial de la Parroquia '.$bautizo_parroquia_novia.'</li>';
+		$html .= '<li>La partida de bautismo del novio se encuentra en el Libro '.$bautizo_libro_novio.', Folio '.$bautizo_folio_novio;
+		$html .= ', Nro. '.$bautizo_numero_novio.' del archivo parroquial de la Parroquia '.$bautizo_parroquia_novio.'</li>';		$html .= '</ul>';
+		$html .= '<br><br><div class="subtitulo">OBSERVACIONES</div><br>';
+		$html .= '<ul style="list-style-type:decimal;">';
+		$html .= '<li>Fecha de Proclamas: '.$fecha_proclamas.'</li>';
+		$html .= '<li>El Matrimonio se efectuó el día: '.$fecha.'</li>';
+		$html .= '<li>Fueron testigos: '.$nombre_testigo_novio.' y '.$nombre_testigo_novia.'</li>';
+		$html .= '<li>Su partida se encuentra en el Libro: X de Matrimonio, Folio X Nro X</li>';
+		$html .= '<li>Para los efectos de la nota marginal fue participado el Matrimonio a X y a X</li>';
+		$html .= '</ul>';
+		$html .= '<br><br><br><br><p align="center"><b>Firma del Párroco</b></p>';
+		$html .= '<p align="center"><b>FÓRMULA PARA LOS NOVIOS Y LOS TESTIGOS</b><br>
+        Yo, NN, con mi mano sobre los Santos Evangelios, y teniendo como testigo a Jesucristo Crucificado,
+		que me ha de juzgar, juro que diré toda y sólo la verdad acerca de lo que se me pregunte.
+		</p>';
 
 		// Declaración del novio
 		$html2  = '<div class="subtitulo">ACTA DE EXPLORACIÓN DE VOLUNTADES<br>DECLARACIÓN DEL NOVIO</div><br>';
@@ -367,15 +403,15 @@ class MatrimoniosController extends AppController {
 		$html2 .= ' Hijo de ' . $padre_novio . ' y de ' . $madre_novio . ' y declaró bajo juramento';
 		$html2 .= ' que hizo en nombre de Dios:<br><br>';
 		$html2 .= '<ul style="list-style-type:upper-alpha;">';
-		$html2 .= '<li>Que consiente y libremente desea contraer Matrimonio con la Srta. ' . $novia . '.<br><br></li>';
+		$html2 .= '<li>Que consiente y libremente desea contraer Matrimonio con la Srta. ' . $novia . '.</li>';
 		$html2 .= '<li>Que libremente acepta las propiedades esenciales del Matrimonio:';
 		$html2 .= ' Unidad e Indisolubilidad, procreación y obligación de educar en la Doctrina';
-		$html2 .= ' Católica a los hijos.<br><br></li>';
-		$html2 .= '<li>Que ha residido, después de la pubertad, por X o más en X.<br><br></li>';
-		$html2 .= '<li>Que no tiene impedimento de X que obstaculice a la Celebración del Matrimonio.<br><br></li>';
-		$html2 .= '<li>¿Procede libremente a su Matrimonio?<br><br></li>';
-		$html2 .= '<li>¿Pone condición al Matrimonio?<br><br></li>';
-		$html2 .= '<li>¿Conoce las obligaciones y derechos de Matrimonio?<br><br></li>';
+		$html2 .= ' Católica a los hijos.</li>';
+		$html2 .= '<li>Que ha residido, después de la pubertad, por X o más en X.</li>';
+		$html2 .= '<li>Que no tiene impedimento de X que obstaculice a la Celebración del Matrimonio.</li>';
+		$html2 .= '<li>¿Procede libremente a su Matrimonio?</li>';
+		$html2 .= '<li>¿Pone condición al Matrimonio?</li>';
+		$html2 .= '<li>¿Conoce las obligaciones y derechos de Matrimonio?</li>';
 		$html2 .= '</ul>';
 		$html2 .= 'Le instruí convenientemente y le advertí sobre el deber de recibir el';
 		$html2 .= ' Sacramento en gracia de Dios y participar en la Eucaristía. Falta la Confirmación<br>';
@@ -389,19 +425,31 @@ class MatrimoniosController extends AppController {
 		$html2 .= 'Ante mí compareció <b>' . $nombre_testigo_novio . '</b> C.I. <b>' . $cedula_testigo_novio;
 		$html2 .= '</b> mayor de edad y vecino(a) de ' . $direccion_testigo_novio . ', quien bajo';
 		$html2 .= ' juramento que hizo en nombre de Dios, declaró: que conoce perfectamente al novio';
-		$html2 .= ' desde hace X (X) años y a la novia desde hace X (X) años y le consta que son solteros;';
+		$html2 .= ' desde hace ' . parent::number2word($tnovio_testigo_novio) . ' (' . $tnovio_testigo_novio . ')';
+		$html2 .= ' años y a la novia desde hace ' . parent::number2word($tnovia_testigo_novio) . ' (' . $tnovia_testigo_novio . ')';
+		$html2 .= ' años y le consta que son solteros;';
 		$html2 .= ' que han residido después de la pubertad, por X o más, en XXXXX y que no tienen impedimento';
 		$html2 .= ' de ningún tipo que obstaculice a la celebración del Matrimonio.<br><br><br><br><br>';
 		$html2 .= '<p align="center"><b>Firma del Testigo</b></p>';
 		$html2 .= '</div>';
 
-		$mpdf = new mPDF('BLANK', 'Legal', '11', 'Arial', 10, 10, 35, 5, 3, 3);
+		// Declaración de la novia
+		$html3 = 'Página 3';
+
+		// Fijación del día y fecha
+		$html4 = 'Página 4';
+
+		$mpdf = new mPDF('BLANK', 'Letter', '11', 'Arial', 10, 10, 35, 5, 3, 3);
 		$mpdf->writeHTML('.just { text-align: justify; } .documentos td { padding: 8px; border-bottom: #ccc 1px solid } #logo { text-align:center } #footer { text-align: center; font-size:12px; border-top: 1px solid #666; padding-top: 5px } .titulo { text-align: center; font-size: 17px; font-weight: bold; } .subtitulo { text-align: left; font-size: 14px; font-weight: bold; }', 1);
 		$mpdf->setHTMLHeader('<div id="logo"><img src="' . Router::url('/img/logo.png') . '"></div>');
 		$mpdf->setHTMLFooter('<div id="footer">Urbanización Villa Brasil, Final Senda Curitiva. Puerto Ordaz, Estado Bolívar.<br><b>Telf.:</b> (0286) 923.27.85</div>');
-		$mpdf->WriteHTML($html, 2);
+		$mpdf->writeHTML($html, 2);
 		$mpdf->AddPage();
-		$mpdf->WriteHTML($html2, 2);
+		$mpdf->writeHTML($html2, 2);
+		$mpdf->AddPage();
+		$mpdf->writeHTML($html3, 2);
+		$mpdf->AddPage();
+		$mpdf->writeHTML($html4, 2);
 		$mpdf->Output('Expediente Matrimonial de ' . $novio . ' y ' . $novia, 'I');
 	}
 }

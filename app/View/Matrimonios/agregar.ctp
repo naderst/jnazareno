@@ -25,9 +25,20 @@ echo $this->Form->create('Matrimonio', array(
         <td><?php echo $this->Form->input('madrina_nombre', array('label' => 'Nombre de la madrina')); ?></td>
     </tr>
     <tr>
-        <td><?php echo $this->Form->input('fecha_proclamas', array('label' => 'Fecha de proclamas (separadas por coma)')); ?></td>
-        <td><?php echo $this->Form->input('observaciones', array('type' => 'textarea', 'style' => 'width:100%')); ?></td>
+        <td><?php echo $this->Form->input('fecha_proclamas', array('label' => 'Fecha de proclamas')); ?></td>
+		<td><?php echo $this->Form->input('parroquia_proclamas', array('label' => 'Certificado de proclamas de la Parroquia de')); ?></td>
     </tr>
+	<tr>
+    	<td><?php echo $this->Form->input('fecha_constancia_curso_prematrimonial', array('label' => 'Constancia de Curso Prematrimonial de fecha')); ?></td>
+    	<td><?php echo $this->Form->input('certificado_matrimonio_civil', array('label' => 'Certificado del Matrimonio Civil')); ?></td>
+	</tr>
+	<tr>
+    	<td><?php echo $this->Form->input('documentos_curia', array('label' => 'Documentos de la Curia Parroquia')); ?></td>
+		<td></td>
+	</tr>
+	<tr>
+        <td colspan="2"><?php echo $this->Form->input('observaciones', array('type' => 'textarea', 'label' => 'Nota marginal', 'style' => 'width:100%')); ?></td>
+	</tr>
     <tr>
         <td colspan="2"><h3>Datos del novio</h3></td>
     </tr>
