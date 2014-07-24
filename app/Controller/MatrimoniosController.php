@@ -358,7 +358,7 @@ class MatrimoniosController extends AppController {
 		$nombre_testigo_novia = $matrimonio['Matrimonio']['nombre_testigo_novia'];
 
 		$fecha_proclamas = $matrimonio['Matrimonio']['fecha_proclamas'];
-		$fecha_declaracion = $matrimonio['Matrimonio']['fecha_declaracion'];
+		$fecha_declaracion = str_replace('/', '.', $matrimonio['Matrimonio']['fecha_declaracion']);
 		$declaracion_dia = date('d', strtotime($fecha_declaracion));
 		$declaracion_mes = parent::month2string(date('m', strtotime($fecha_declaracion)));
 		$declaracion_ano = date('Y', strtotime($fecha_declaracion));
@@ -366,7 +366,10 @@ class MatrimoniosController extends AppController {
 		$fecha_constancia_curso_prematrimonial = $matrimonio['Matrimonio']['fecha_constancia_curso_prematrimonial'];
 		$certificado_matrimonio_civil = $matrimonio['Matrimonio']['certificado_matrimonio_civil'];
 		$documentos_curia = $matrimonio['Matrimonio']['documentos_curia'];
-		$fecha = $matrimonio['Matrimonio']['fecha'];
+		$fecha = str_replace('/', '.', $matrimonio['Matrimonio']['fecha']);
+		$fecha_dia = date('d', strtotime($fecha));
+		$fecha_mes = parent::month2string(date('m', strtotime($fecha)));
+		$fecha_ano = date('Y', strtotime($fecha));
 
 		// Titulo del documento
 		$titulo = $novio . '<br>' . $novia;
@@ -485,7 +488,38 @@ class MatrimoniosController extends AppController {
 		$html3 .= '</div>';
 
 		// Fijación del día y fecha
-		$html4 = 'Página 4';
+		$html4  = '<div class="just">';
+		$html4 .= '<div class="subtitulo">FIJACIÓN DEL DÍA Y FECHA</div>';
+		$html4 .= 'Hacemos constar que nosotros ' . $novio . ' y ' . $novia;
+		$html4 .= ' hemos convenido contraer Matrimonio en la Iglesia Parroquial Jesús Nazareno el día ';
+		$html4 .= 'XX de XXXXX del año XXXX a las X:XX PM<br><br><br>';
+		$html4 .= '<table style="width:80%;margin:auto;text-align:center"><tr><td></td><td></td></tr>';
+		$html4 .= '<tr><td><b>Firma del Novio</b></td><td><b>Firma de la Novia</b></td></tr>';
+		$html4 .= '<tr><td colspan="2"><br><br><br><b>Firma del Párroco</b></td></tr>';
+		$html4 .= '</table><br>';
+		$html4 .= '<div class="subtitulo">DELEGACIÓN PARA PRESENCIAR EL MATRIMONIO OTRO SACERDO</div>';
+		$html4 .= 'Yo, ____________________________________________ Párroco de la Parroquia Jesús Nazareno, de la';
+		$html4 .= ' diócesis de Ciudad Guayana, Venezuela, delego en él ____________________________________________ para';
+		$html4 .= ' que presencie el presente Matrimonio de ' . $novio . ' y ' . $novia . ' en la Parroquia Jesús Nazareno.';
+		$html4 .= '<br>L.S.<p align="right"><b>Firma del Párroco</b></p>';
+		$html4 .= '<br><div class="subtitulo">AUTENTICACIÓN DE LA CANCILLERÍA DE LA DIÓCESIS</div>';
+		$html4 .= 'El infrascrito, ______________________________________________________________________________________________ ';
+		$html4 .= 'Canciller de la Diócesis de Ciudad Guayana, certifica que la firma del Párroco que aparece en este documento';
+		$html4 .= 'es autentica.';
+		$html4 .= '<br>L.S.<p align="right"><b>Firma del Secretario Canciller</b></p>';
+		$html4 .= '<p align="center"><b>ACTA DEL MATRIMONIO</b></p>';
+		$html4 .= 'En Puerto Ordaz, Parroquia Jesús Nazareno, después de haber recabado todos los documentos ';
+		$html4 .= 'canónicos y llenadas las distintas instancias establecidas por la Santa Madre Iglesia, se efectuó';
+		$html4 .= ' el matrimonio al que se refiere este expediente entre ' . $novia . ' y ' . $novia . ' y fueron testigos';
+		$html4 .= ' ' . $nombre_testigo_novio . ' C.I. '.$cedula_testigo_novio.' y ' . $nombre_testigo_novia . ' C.I. ' . $cedula_testigo_novia;
+		$html4 .= ' lo que doy fe con mi firma, la de los contrayentes y testigos.<br>';
+		$html4 .= 'En Ciudad Guayana, a ' . $fecha_dia . ' días del mes de ' . $fecha_mes . ', del año ' . $fecha_ano;
+		$html4 .= '<br><br><table style="width:100%;margin:auto;text-align:center"><tr><td></td><td></td></tr>';
+		$html4 .= '<tr><td><br><b>Firma del Novio</b></td><td><br><b>Firma de la Novia</b></td></tr>';
+		$html4 .= '<tr><td style="text-align:left;"><br><b>Firma del Testigo</b></td><td style="text-align:right;"><br><b>Firma del Testigo</b></td></tr>';
+		$html4 .= '<tr><td colspan="2"><b>Firma del Párroco</b></td></tr>';
+		$html4 .= '</table><br>';
+		$html4 .= '</div>';
 
 		$mpdf = new mPDF('BLANK', 'Letter', '11', 'Arial', 10, 10, 35, 5, 3, 3);
 		$mpdf->writeHTML('.just { text-align: justify; } .documentos td { padding: 8px; border-bottom: #ccc 1px solid } #logo { text-align:center } #footer { text-align: center; font-size:12px; border-top: 1px solid #666; padding-top: 5px } .titulo { text-align: center; font-size: 17px; font-weight: bold; } .subtitulo { text-align: left; font-size: 14px; font-weight: bold; }', 1);
