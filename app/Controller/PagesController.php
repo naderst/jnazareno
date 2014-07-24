@@ -155,7 +155,10 @@ class PagesController extends AppController {
 				break;
 			}
 		$html = '<div class="titulo">' . parent::strtoupper_utf8($title) . '</div><br><br>';
-		$html .= '<p align="center"><img src="'.$url.'"><img src="' . $url2 . '"></p>';
+		
+		if($totalbautizos)
+			$html .= '<p align="center"><img src="'.$url.'"><img src="' . $url2 . '"></p>';
+		
 		$html .= '<br><table id="sacramentos"><tr><th>Sacramento</th><th>Total</th></tr><tr>
 			<td>Bautizos</td>
 			<td class="total">'.$totalbautizos.'</td>
