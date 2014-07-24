@@ -2,223 +2,223 @@
 App::import('Vendor', 'MPDF57/mpdf');
 
 class MatrimoniosController extends AppController {
-    public $components = array('Paginator');
-    public $helpers = array('Paginator');
-    public $paginate = array(
-        'limit' => 5,
-        'order' => array('Matrimonio.id' => 'DESC')
-    );
+	public $components = array('Paginator');
+	public $helpers = array('Paginator');
+	public $paginate = array(
+		'limit' => 5,
+		'order' => array('Matrimonio.id' => 'DESC')
+	);
 
-    function index() {
-        $this->Paginator->settings = $this->paginate;
-        $this->set('matrimonios', $this->Paginator->paginate('Matrimonio'));
-    }
+	function index() {
+		$this->Paginator->settings = $this->paginate;
+		$this->set('matrimonios', $this->Paginator->paginate('Matrimonio'));
+	}
 
-    function agregar() {
-        $this->set('paises', parent::getPaises());
-        $this->set('estados', parent::getEstados());
+	function agregar() {
+		$this->set('paises', parent::getPaises());
+		$this->set('estados', parent::getEstados());
 
-        if($this->request->is('post')) {
-            $this->set('ciudades', parent::getCiudades($this->request->data('Matrimonio.estado_nacimiento_novio')));
-            $this->set('estado_selected', $this->request->data('Matrimonio.estado_nacimiento_novio'));
-            $this->set('ciudad_selected', $this->request->data('Matrimonio.ciudad_nacimiento_novio'));
-            $this->set('pais_selected', $this->request->data('Matrimonio.pais_nacimiento_novio'));
-            $this->set('ciudades_actual', parent::getCiudades($this->request->data('Matrimonio.estado_actual_novio')));
-            $this->set('estado_actual_selected', $this->request->data('Matrimonio.estado_actual_novio'));
-            $this->set('ciudad_actual_selected', $this->request->data('Matrimonio.ciudad_actual_novio'));
-            $this->set('pais_actual_selected', $this->request->data('Matrimonio.pais_actual_novio'));
+		if($this->request->is('post')) {
+			$this->set('ciudades', parent::getCiudades($this->request->data('Matrimonio.estado_nacimiento_novio')));
+			$this->set('estado_selected', $this->request->data('Matrimonio.estado_nacimiento_novio'));
+			$this->set('ciudad_selected', $this->request->data('Matrimonio.ciudad_nacimiento_novio'));
+			$this->set('pais_selected', $this->request->data('Matrimonio.pais_nacimiento_novio'));
+			$this->set('ciudades_actual', parent::getCiudades($this->request->data('Matrimonio.estado_actual_novio')));
+			$this->set('estado_actual_selected', $this->request->data('Matrimonio.estado_actual_novio'));
+			$this->set('ciudad_actual_selected', $this->request->data('Matrimonio.ciudad_actual_novio'));
+			$this->set('pais_actual_selected', $this->request->data('Matrimonio.pais_actual_novio'));
 
-            $this->set('ciudades_novia', parent::getCiudades($this->request->data('Matrimonio.estado_nacimiento_novia')));
-            $this->set('estado_selected_novia', $this->request->data('Matrimonio.estado_nacimiento_novia'));
-            $this->set('ciudad_selected_novia', $this->request->data('Matrimonio.ciudad_nacimiento_novia'));
-            $this->set('pais_selected_novia', $this->request->data('Matrimonio.pais_nacimiento_novia'));
-            $this->set('ciudades_actual_novia', parent::getCiudades($this->request->data('Matrimonio.estado_actual_novia')));
-            $this->set('estado_actual_selected_novia', $this->request->data('Matrimonio.estado_actual_novia'));
-            $this->set('ciudad_actual_selected_novia', $this->request->data('Matrimonio.ciudad_actual_novia'));
-            $this->set('pais_actual_selected_novia', $this->request->data('Matrimonio.pais_actual_novia'));
-
-
-            if($this->request->data('Matrimonio.pais_nacimiento_novio') != 'Venezuela') {
-                $this->request->data['Matrimonio']['estado_nacimiento_novio'] = $this->request->data['Matrimonio']['estado_nacimiento_novio_2'];
-                $this->request->data['Matrimonio']['ciudad_nacimiento_novio'] = $this->request->data['Matrimonio']['ciudad_nacimiento_novio_2'];
-            }
-
-             if($this->request->data('Matrimonio.pais_actual_novio') != 'Venezuela') {
-                $this->request->data['Matrimonio']['estado_actual_novio'] = $this->request->data['Matrimonio']['estado_actual_novio_2'];
-                $this->request->data['Matrimonio']['ciudad_actual_novio'] = $this->request->data['Matrimonio']['ciudad_actual_novio_2'];
-            }
-
-            if($this->request->data('Matrimonio.pais_nacimiento_novia') != 'Venezuela') {
-                $this->request->data['Matrimonio']['estado_nacimiento_novia'] = $this->request->data['Matrimonio']['estado_nacimiento_novia_2'];
-                $this->request->data['Matrimonio']['ciudad_nacimiento_novia'] = $this->request->data['Matrimonio']['ciudad_nacimiento_novia_2'];
-            }
-
-            if($this->request->data('Matrimonio.pais_actual_novia') != 'Venezuela') {
-                $this->request->data['Matrimonio']['estado_actual_novia'] = $this->request->data['Matrimonio']['estado_actual_novia_2'];
-                $this->request->data['Matrimonio']['ciudad_actual_novia'] = $this->request->data['Matrimonio']['ciudad_actual_novia_2'];
-            }
-
-            if($this->Matrimonio->save($this->request->data)) {
-	    		$this->Session->setFlash('Matrimonio agregado con éxito', 'default', array(), 'good');
-	    		$this->redirect(array('action' => 'index'));
-	    	} else {
-	    		$this->Session->setFlash('Ha ocurrido un error agregando el matrimonio', 'default', array(), 'bad');
-	    	}
+			$this->set('ciudades_novia', parent::getCiudades($this->request->data('Matrimonio.estado_nacimiento_novia')));
+			$this->set('estado_selected_novia', $this->request->data('Matrimonio.estado_nacimiento_novia'));
+			$this->set('ciudad_selected_novia', $this->request->data('Matrimonio.ciudad_nacimiento_novia'));
+			$this->set('pais_selected_novia', $this->request->data('Matrimonio.pais_nacimiento_novia'));
+			$this->set('ciudades_actual_novia', parent::getCiudades($this->request->data('Matrimonio.estado_actual_novia')));
+			$this->set('estado_actual_selected_novia', $this->request->data('Matrimonio.estado_actual_novia'));
+			$this->set('ciudad_actual_selected_novia', $this->request->data('Matrimonio.ciudad_actual_novia'));
+			$this->set('pais_actual_selected_novia', $this->request->data('Matrimonio.pais_actual_novia'));
 
 
-        } else {
-                $this->set('ciudades', parent::getCiudades());
-                $this->set('estado_selected', parent::getEstado());
-                $this->set('ciudad_selected', parent::getCiudad());
-                $this->set('pais_selected', 'Venezuela');
-                $this->set('ciudades_actual', parent::getCiudades());
-                $this->set('estado_actual_selected', parent::getEstado());
-                $this->set('ciudad_actual_selected', parent::getCiudad());
-                $this->set('pais_actual_selected', 'Venezuela');
+			if($this->request->data('Matrimonio.pais_nacimiento_novio') != 'Venezuela') {
+				$this->request->data['Matrimonio']['estado_nacimiento_novio'] = $this->request->data['Matrimonio']['estado_nacimiento_novio_2'];
+				$this->request->data['Matrimonio']['ciudad_nacimiento_novio'] = $this->request->data['Matrimonio']['ciudad_nacimiento_novio_2'];
+			}
 
-                $this->set('ciudades_novia', parent::getCiudades());
-                $this->set('estado_selected_novia', parent::getEstado());
-                $this->set('ciudad_selected_novia', parent::getCiudad());
-                $this->set('pais_selected_novia', 'Venezuela');
-                $this->set('ciudades_actual_novia', parent::getCiudades());
-                $this->set('estado_actual_selected_novia', parent::getEstado());
-                $this->set('ciudad_actual_selected_novia', parent::getCiudad());
-                $this->set('pais_actual_selected_novia', 'Venezuela');
-        }
-    }
+			 if($this->request->data('Matrimonio.pais_actual_novio') != 'Venezuela') {
+				$this->request->data['Matrimonio']['estado_actual_novio'] = $this->request->data['Matrimonio']['estado_actual_novio_2'];
+				$this->request->data['Matrimonio']['ciudad_actual_novio'] = $this->request->data['Matrimonio']['ciudad_actual_novio_2'];
+			}
 
-    function eliminar($id) {
-    	if(parent::isAdmin()) {
-    		$this->Matrimonio->delete($id);
-	        $this->Session->setFlash('Matrimonio eliminado con éxito', 'default', array(), 'good');
-	        $this->redirect(array('action' => 'index'));
-    	} else {
-    		throw new NotFoundException('La página no existe');
-    	}
-    }
+			if($this->request->data('Matrimonio.pais_nacimiento_novia') != 'Venezuela') {
+				$this->request->data['Matrimonio']['estado_nacimiento_novia'] = $this->request->data['Matrimonio']['estado_nacimiento_novia_2'];
+				$this->request->data['Matrimonio']['ciudad_nacimiento_novia'] = $this->request->data['Matrimonio']['ciudad_nacimiento_novia_2'];
+			}
 
-    function modificar($id) {
-        if(!parent::isAdmin())
-            throw new NotFoundException('La página no existe');
+			if($this->request->data('Matrimonio.pais_actual_novia') != 'Venezuela') {
+				$this->request->data['Matrimonio']['estado_actual_novia'] = $this->request->data['Matrimonio']['estado_actual_novia_2'];
+				$this->request->data['Matrimonio']['ciudad_actual_novia'] = $this->request->data['Matrimonio']['ciudad_actual_novia_2'];
+			}
 
-        $this->Matrimonio->id = $id;
-
-    	if($this->request->is('put')) {
-            if($this->request->data('Matrimonio.pais_nacimiento_novio') != 'Venezuela') {
-                $this->request->data['Matrimonio']['estado_nacimiento_novio'] = $this->request->data['Matrimonio']['estado_nacimiento_novio_2'];
-                $this->request->data['Matrimonio']['ciudad_nacimiento_novio'] = $this->request->data['Matrimonio']['ciudad_nacimiento_novio_2'];
-            }
-
-             if($this->request->data('Matrimonio.pais_actual_novio') != 'Venezuela') {
-                $this->request->data['Matrimonio']['estado_actual_novio'] = $this->request->data['Matrimonio']['estado_actual_novio_2'];
-                $this->request->data['Matrimonio']['ciudad_actual_novio'] = $this->request->data['Matrimonio']['ciudad_actual_novio_2'];
-            }
-
-            if($this->request->data('Matrimonio.pais_nacimiento_novia') != 'Venezuela') {
-                $this->request->data['Matrimonio']['estado_nacimiento_novia'] = $this->request->data['Matrimonio']['estado_nacimiento_novia_2'];
-                $this->request->data['Matrimonio']['ciudad_nacimiento_novia'] = $this->request->data['Matrimonio']['ciudad_nacimiento_novia_2'];
-            }
-
-            if($this->request->data('Matrimonio.pais_actual_novia') != 'Venezuela') {
-                $this->request->data['Matrimonio']['estado_actual_novia'] = $this->request->data['Matrimonio']['estado_actual_novia_2'];
-                $this->request->data['Matrimonio']['ciudad_actual_novia'] = $this->request->data['Matrimonio']['ciudad_actual_novia_2'];
-            }
-
-            if($this->Matrimonio->save($this->request->data)) {
-                $this->Session->setFlash('Se ha modificado el matrimonio con éxito', 'default', array(), 'good');
-            } else {
-                $this->Session->setFlash('Ha ocurrido un error modificando el matrimonio', 'default', array(), 'bad');
-            }
-    	}
-
-    	$this->request->data = $this->Matrimonio->read();
-        $this->set('paises', parent::getPaises());
-        $this->set('estados', parent::getEstados());
-
-        if($this->request->data('Matrimonio.pais_nacimiento_novio') != 'Venezuela') {
-            $this->request->data['Matrimonio']['estado_nacimiento_novio_2'] = $this->request->data['Matrimonio']['estado_nacimiento_novio'];
-            $this->request->data['Matrimonio']['ciudad_nacimiento_novio_2'] = $this->request->data['Matrimonio']['ciudad_nacimiento_novio'];
-            $this->set('ciudades', parent::getCiudades());
-            $this->set('estado_selected', parent::getEstado());
-            $this->set('ciudad_selected', parent::getCiudad());
-        } else {
-            $this->set('ciudades', parent::getCiudades($this->request->data('Matrimonio.estado_nacimiento_novio')));
-            $this->set('estado_selected', $this->request->data('Matrimonio.estado_nacimiento_novio'));
-            $this->set('ciudad_selected', $this->request->data('Matrimonio.ciudad_nacimiento_novio'));
-        }
-
-        if($this->request->data('Matrimonio.pais_actual_novio') != 'Venezuela') {
-            $this->request->data['Matrimonio']['estado_actual_novio_2'] = $this->request->data['Matrimonio']['estado_actual_novio'];
-            $this->request->data['Matrimonio']['ciudad_actual_novio_2'] = $this->request->data['Matrimonio']['ciudad_actual_novio'];
-            $this->set('ciudades_actual', parent::getCiudades());
-            $this->set('estado_actual_selected', parent::getEstado());
-            $this->set('ciudad_actual_selected', parent::getCiudad());
-        } else {
-            $this->set('ciudades_actual', parent::getCiudades($this->request->data('Matrimonio.estado_actual_novio')));
-            $this->set('estado_actual_selected', $this->request->data('Matrimonio.estado_actual_novio'));
-            $this->set('ciudad_actual_selected', $this->request->data('Matrimonio.ciudad_actual_novio'));
-        }
-
-        // NOVIA
-
-        if($this->request->data('Matrimonio.pais_nacimiento_novia') != 'Venezuela') {
-            $this->request->data['Matrimonio']['estado_nacimiento_novia_2'] = $this->request->data['Matrimonio']['estado_nacimiento_novia'];
-            $this->request->data['Matrimonio']['ciudad_nacimiento_novia_2'] = $this->request->data['Matrimonio']['ciudad_nacimiento_novia'];
-            $this->set('ciudades_novia', parent::getCiudades());
-            $this->set('estado_selected_novia', parent::getEstado());
-            $this->set('ciudad_selected_novia', parent::getCiudad());
-        } else {
-            $this->set('ciudades_novia', parent::getCiudades($this->request->data('Matrimonio.estado_nacimiento_novia')));
-            $this->set('estado_selected_novia', $this->request->data('Matrimonio.estado_nacimiento_novia'));
-            $this->set('ciudad_selected_novia', $this->request->data('Matrimonio.ciudad_nacimiento_novia'));
-        }
-
-        if($this->request->data('Matrimonio.pais_actual_novia') != 'Venezuela') {
-            $this->request->data['Matrimonio']['estado_actual_novia_2'] = $this->request->data['Matrimonio']['estado_actual_novia'];
-            $this->request->data['Matrimonio']['ciudad_actual_novia_2'] = $this->request->data['Matrimonio']['ciudad_actual_novia'];
-            $this->set('ciudades_actual_novia', parent::getCiudades());
-            $this->set('estado_actual_selected_novia', parent::getEstado());
-            $this->set('ciudad_actual_selected_novia', parent::getCiudad());
-        } else {
-            $this->set('ciudades_actual_novia', parent::getCiudades($this->request->data('Matrimonio.estado_actual_novia')));
-            $this->set('estado_actual_selected_novia', $this->request->data('Matrimonio.estado_actual_novia'));
-            $this->set('ciudad_actual_selected_novia', $this->request->data('Matrimonio.ciudad_actual_novia'));
-        }
+			if($this->Matrimonio->save($this->request->data)) {
+				$this->Session->setFlash('Matrimonio agregado con éxito', 'default', array(), 'good');
+				$this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash('Ha ocurrido un error agregando el matrimonio', 'default', array(), 'bad');
+			}
 
 
-        $this->set('pais_selected', $this->request->data('Matrimonio.pais_nacimiento_novio'));
-        $this->set('pais_actual_selected', $this->request->data('Matrimonio.pais_actual_novio'));
-        $this->set('pais_selected_novia', $this->request->data('Matrimonio.pais_nacimiento_novia'));
-        $this->set('pais_actual_selected_novia', $this->request->data('Matrimonio.pais_actual_novia'));
+		} else {
+				$this->set('ciudades', parent::getCiudades());
+				$this->set('estado_selected', parent::getEstado());
+				$this->set('ciudad_selected', parent::getCiudad());
+				$this->set('pais_selected', 'Venezuela');
+				$this->set('ciudades_actual', parent::getCiudades());
+				$this->set('estado_actual_selected', parent::getEstado());
+				$this->set('ciudad_actual_selected', parent::getCiudad());
+				$this->set('pais_actual_selected', 'Venezuela');
 
-    	$this->render('agregar');
-    }
+				$this->set('ciudades_novia', parent::getCiudades());
+				$this->set('estado_selected_novia', parent::getEstado());
+				$this->set('ciudad_selected_novia', parent::getCiudad());
+				$this->set('pais_selected_novia', 'Venezuela');
+				$this->set('ciudades_actual_novia', parent::getCiudades());
+				$this->set('estado_actual_selected_novia', parent::getEstado());
+				$this->set('ciudad_actual_selected_novia', parent::getCiudad());
+				$this->set('pais_actual_selected_novia', 'Venezuela');
+		}
+	}
 
-    function buscar() {
-        $q = $_GET['q'];
+	function eliminar($id) {
+		if(parent::isAdmin()) {
+			$this->Matrimonio->delete($id);
+			$this->Session->setFlash('Matrimonio eliminado con éxito', 'default', array(), 'good');
+			$this->redirect(array('action' => 'index'));
+		} else {
+			throw new NotFoundException('La página no existe');
+		}
+	}
 
-        if(empty($q))
-            $keywords = array();
-        else
-            $keywords = preg_split('/ /', $q);
+	function modificar($id) {
+		if(!parent::isAdmin())
+			throw new NotFoundException('La página no existe');
 
-        $like = '';
+		$this->Matrimonio->id = $id;
 
-        foreach($keywords as $k => $v) {
-            $v = trim($v);
+		if($this->request->is('put')) {
+			if($this->request->data('Matrimonio.pais_nacimiento_novio') != 'Venezuela') {
+				$this->request->data['Matrimonio']['estado_nacimiento_novio'] = $this->request->data['Matrimonio']['estado_nacimiento_novio_2'];
+				$this->request->data['Matrimonio']['ciudad_nacimiento_novio'] = $this->request->data['Matrimonio']['ciudad_nacimiento_novio_2'];
+			}
 
-            if(!empty($v))
-                $like .= 'LOWER(nombres_novio) LIKE \'%' . $v . '%\' OR LOWER(apellidos_novio) LIKE \'%' . $v . '%\' OR LOWER(cedula_novio) LIKE \'%' . $v . '%\' OR LOWER(nombres_novia) LIKE \'%' . $v . '%\' OR LOWER(apellidos_novia) LIKE \'%' . $v . '%\' OR LOWER(cedula_novia) LIKE \'%' . $v . '%\' OR fecha LIKE \'%' . $v . '%\' OR ';
-        }
+			 if($this->request->data('Matrimonio.pais_actual_novio') != 'Venezuela') {
+				$this->request->data['Matrimonio']['estado_actual_novio'] = $this->request->data['Matrimonio']['estado_actual_novio_2'];
+				$this->request->data['Matrimonio']['ciudad_actual_novio'] = $this->request->data['Matrimonio']['ciudad_actual_novio_2'];
+			}
 
-        $like = substr($like, 0, strlen($like)-3);
+			if($this->request->data('Matrimonio.pais_nacimiento_novia') != 'Venezuela') {
+				$this->request->data['Matrimonio']['estado_nacimiento_novia'] = $this->request->data['Matrimonio']['estado_nacimiento_novia_2'];
+				$this->request->data['Matrimonio']['ciudad_nacimiento_novia'] = $this->request->data['Matrimonio']['ciudad_nacimiento_novia_2'];
+			}
 
-        $this->paginate['conditions'] = ' ' . $like;
-        $this->Paginator->settings = $this->paginate;
+			if($this->request->data('Matrimonio.pais_actual_novia') != 'Venezuela') {
+				$this->request->data['Matrimonio']['estado_actual_novia'] = $this->request->data['Matrimonio']['estado_actual_novia_2'];
+				$this->request->data['Matrimonio']['ciudad_actual_novia'] = $this->request->data['Matrimonio']['ciudad_actual_novia_2'];
+			}
 
-        $this->set('matrimonios', $this->Paginator->paginate('Matrimonio'));
-        $this->set('q', $q);
-    }
+			if($this->Matrimonio->save($this->request->data)) {
+				$this->Session->setFlash('Se ha modificado el matrimonio con éxito', 'default', array(), 'good');
+			} else {
+				$this->Session->setFlash('Ha ocurrido un error modificando el matrimonio', 'default', array(), 'bad');
+			}
+		}
+
+		$this->request->data = $this->Matrimonio->read();
+		$this->set('paises', parent::getPaises());
+		$this->set('estados', parent::getEstados());
+
+		if($this->request->data('Matrimonio.pais_nacimiento_novio') != 'Venezuela') {
+			$this->request->data['Matrimonio']['estado_nacimiento_novio_2'] = $this->request->data['Matrimonio']['estado_nacimiento_novio'];
+			$this->request->data['Matrimonio']['ciudad_nacimiento_novio_2'] = $this->request->data['Matrimonio']['ciudad_nacimiento_novio'];
+			$this->set('ciudades', parent::getCiudades());
+			$this->set('estado_selected', parent::getEstado());
+			$this->set('ciudad_selected', parent::getCiudad());
+		} else {
+			$this->set('ciudades', parent::getCiudades($this->request->data('Matrimonio.estado_nacimiento_novio')));
+			$this->set('estado_selected', $this->request->data('Matrimonio.estado_nacimiento_novio'));
+			$this->set('ciudad_selected', $this->request->data('Matrimonio.ciudad_nacimiento_novio'));
+		}
+
+		if($this->request->data('Matrimonio.pais_actual_novio') != 'Venezuela') {
+			$this->request->data['Matrimonio']['estado_actual_novio_2'] = $this->request->data['Matrimonio']['estado_actual_novio'];
+			$this->request->data['Matrimonio']['ciudad_actual_novio_2'] = $this->request->data['Matrimonio']['ciudad_actual_novio'];
+			$this->set('ciudades_actual', parent::getCiudades());
+			$this->set('estado_actual_selected', parent::getEstado());
+			$this->set('ciudad_actual_selected', parent::getCiudad());
+		} else {
+			$this->set('ciudades_actual', parent::getCiudades($this->request->data('Matrimonio.estado_actual_novio')));
+			$this->set('estado_actual_selected', $this->request->data('Matrimonio.estado_actual_novio'));
+			$this->set('ciudad_actual_selected', $this->request->data('Matrimonio.ciudad_actual_novio'));
+		}
+
+		// NOVIA
+
+		if($this->request->data('Matrimonio.pais_nacimiento_novia') != 'Venezuela') {
+			$this->request->data['Matrimonio']['estado_nacimiento_novia_2'] = $this->request->data['Matrimonio']['estado_nacimiento_novia'];
+			$this->request->data['Matrimonio']['ciudad_nacimiento_novia_2'] = $this->request->data['Matrimonio']['ciudad_nacimiento_novia'];
+			$this->set('ciudades_novia', parent::getCiudades());
+			$this->set('estado_selected_novia', parent::getEstado());
+			$this->set('ciudad_selected_novia', parent::getCiudad());
+		} else {
+			$this->set('ciudades_novia', parent::getCiudades($this->request->data('Matrimonio.estado_nacimiento_novia')));
+			$this->set('estado_selected_novia', $this->request->data('Matrimonio.estado_nacimiento_novia'));
+			$this->set('ciudad_selected_novia', $this->request->data('Matrimonio.ciudad_nacimiento_novia'));
+		}
+
+		if($this->request->data('Matrimonio.pais_actual_novia') != 'Venezuela') {
+			$this->request->data['Matrimonio']['estado_actual_novia_2'] = $this->request->data['Matrimonio']['estado_actual_novia'];
+			$this->request->data['Matrimonio']['ciudad_actual_novia_2'] = $this->request->data['Matrimonio']['ciudad_actual_novia'];
+			$this->set('ciudades_actual_novia', parent::getCiudades());
+			$this->set('estado_actual_selected_novia', parent::getEstado());
+			$this->set('ciudad_actual_selected_novia', parent::getCiudad());
+		} else {
+			$this->set('ciudades_actual_novia', parent::getCiudades($this->request->data('Matrimonio.estado_actual_novia')));
+			$this->set('estado_actual_selected_novia', $this->request->data('Matrimonio.estado_actual_novia'));
+			$this->set('ciudad_actual_selected_novia', $this->request->data('Matrimonio.ciudad_actual_novia'));
+		}
+
+
+		$this->set('pais_selected', $this->request->data('Matrimonio.pais_nacimiento_novio'));
+		$this->set('pais_actual_selected', $this->request->data('Matrimonio.pais_actual_novio'));
+		$this->set('pais_selected_novia', $this->request->data('Matrimonio.pais_nacimiento_novia'));
+		$this->set('pais_actual_selected_novia', $this->request->data('Matrimonio.pais_actual_novia'));
+
+		$this->render('agregar');
+	}
+
+	function buscar() {
+		$q = $_GET['q'];
+
+		if(empty($q))
+			$keywords = array();
+		else
+			$keywords = preg_split('/ /', $q);
+
+		$like = '';
+
+		foreach($keywords as $k => $v) {
+			$v = trim($v);
+
+			if(!empty($v))
+				$like .= 'LOWER(nombres_novio) LIKE \'%' . $v . '%\' OR LOWER(apellidos_novio) LIKE \'%' . $v . '%\' OR LOWER(cedula_novio) LIKE \'%' . $v . '%\' OR LOWER(nombres_novia) LIKE \'%' . $v . '%\' OR LOWER(apellidos_novia) LIKE \'%' . $v . '%\' OR LOWER(cedula_novia) LIKE \'%' . $v . '%\' OR fecha LIKE \'%' . $v . '%\' OR ';
+		}
+
+		$like = substr($like, 0, strlen($like)-3);
+
+		$this->paginate['conditions'] = ' ' . $like;
+		$this->Paginator->settings = $this->paginate;
+
+		$this->set('matrimonios', $this->Paginator->paginate('Matrimonio'));
+		$this->set('q', $q);
+	}
 
 	function certificado($id, $motivo = null) {
 		Configure::write('debug',0);
@@ -295,7 +295,7 @@ class MatrimoniosController extends AppController {
 		$this->loadModel('Configuracion');
 
 		$this->Matrimonio->id = $id;
-        $matrimonio = $this->Matrimonio->read();
+		$matrimonio = $this->Matrimonio->read();
 		$config = $this->Configuracion->find('all');
 
 		$presbitero = '';
@@ -310,27 +310,27 @@ class MatrimoniosController extends AppController {
 		$novia = $matrimonio['Matrimonio']['nombres_novia'] . ' ' . $matrimonio['Matrimonio']['apellidos_novia'];
 		$cedula_novio = $matrimonio['Matrimonio']['cedula_novio'];
 		$cedula_novia = $matrimonio['Matrimonio']['cedula_novia'];
-        $padre_novio = $matrimonio['Matrimonio']['padre_novio'];
-        $padre_novia = $matrimonio['Matrimonio']['padre_novia'];
-        $madre_novio = $matrimonio['Matrimonio']['madre_novio'];
-        $madre_novia = $matrimonio['Matrimonio']['madre_novia'];
+		$padre_novio = $matrimonio['Matrimonio']['padre_novio'];
+		$padre_novia = $matrimonio['Matrimonio']['padre_novia'];
+		$madre_novio = $matrimonio['Matrimonio']['madre_novio'];
+		$madre_novia = $matrimonio['Matrimonio']['madre_novia'];
 		$ciudad_nacimiento_novio = $matrimonio['Matrimonio']['ciudad_nacimiento_novio'];
 		$ciudad_nacimiento_novia = $matrimonio['Matrimonio']['ciudad_nacimiento_novia'];
 		$estado_nacimiento_novio = $matrimonio['Matrimonio']['estado_nacimiento_novio'];
 		$estado_nacimiento_novia = $matrimonio['Matrimonio']['estado_nacimiento_novia'];
-        $pais_nacimiento_novio = $matrimonio['Matrimonio']['pais_nacimiento_novio'];
-        $pais_nacimiento_novia = $matrimonio['Matrimonio']['pais_nacimiento_novia'];
+		$pais_nacimiento_novio = $matrimonio['Matrimonio']['pais_nacimiento_novio'];
+		$pais_nacimiento_novia = $matrimonio['Matrimonio']['pais_nacimiento_novia'];
 		$fecha_nacimiento_novio = str_replace('/', '.', $matrimonio['Matrimonio']['fecha_nacimiento_novio']);
 		$fecha_nacimiento_novia = str_replace('/', '.', $matrimonio['Matrimonio']['fecha_nacimiento_novia']);
-        $dia_novio = date('d', strtotime($fecha_nacimiento_novio));
+		$dia_novio = date('d', strtotime($fecha_nacimiento_novio));
 		$dia_novia = date('d', strtotime($fecha_nacimiento_novia));
 		$mes_novio = parent::month2string(date('m', strtotime($fecha_nacimiento_novio)));
 		$mes_novia = parent::month2string(date('m', strtotime($fecha_nacimiento_novia)));
 		$ano_novio = date('Y', strtotime($fecha_nacimiento_novio));
 		$ano_novia = date('Y', strtotime($fecha_nacimiento_novia));
 		$direccion_novio = $matrimonio['Matrimonio']['direccion_novio'];
-        $direccion_novia = $matrimonio['Matrimonio']['direccion_novia'];
-        $ciudad_novio = $matrimonio['Matrimonio']['ciudad_actual_novio'];
+		$direccion_novia = $matrimonio['Matrimonio']['direccion_novia'];
+		$ciudad_novio = $matrimonio['Matrimonio']['ciudad_actual_novio'];
 		$ciudad_novia = $matrimonio['Matrimonio']['ciudad_actual_novia'];
 		$estado_novio = $matrimonio['Matrimonio']['estado_actual_novio'];
 		$estado_novia = $matrimonio['Matrimonio']['estado_actual_novia'];
@@ -358,10 +358,10 @@ class MatrimoniosController extends AppController {
 		$nombre_testigo_novia = $matrimonio['Matrimonio']['nombre_testigo_novia'];
 
 		$fecha_proclamas = $matrimonio['Matrimonio']['fecha_proclamas'];
-        $fecha_declaracion = $matrimonio['Matrimonio']['fecha_declaracion'];
-        $declaracion_dia = date('d', strtotime($fecha_declaracion));
-        $declaracion_mes = parent::month2string(date('m', strtotime($fecha_declaracion)));
-        $declaracion_ano = date('Y', strtotime($fecha_declaracion));
+		$fecha_declaracion = $matrimonio['Matrimonio']['fecha_declaracion'];
+		$declaracion_dia = date('d', strtotime($fecha_declaracion));
+		$declaracion_mes = parent::month2string(date('m', strtotime($fecha_declaracion)));
+		$declaracion_ano = date('Y', strtotime($fecha_declaracion));
 		$parroquia_proclamas = $matrimonio['Matrimonio']['parroquia_proclamas'];
 		$fecha_constancia_curso_prematrimonial = $matrimonio['Matrimonio']['fecha_constancia_curso_prematrimonial'];
 		$certificado_matrimonio_civil = $matrimonio['Matrimonio']['certificado_matrimonio_civil'];
@@ -394,7 +394,7 @@ class MatrimoniosController extends AppController {
 		$html .= '</ul>';
 		$html .= '<br><br><br><br><p align="center"><b>Firma del Párroco</b></p>';
 		$html .= '<p align="center"><b>FÓRMULA PARA LOS NOVIOS Y LOS TESTIGOS</b><br>
-        Yo, NN, con mi mano sobre los Santos Evangelios, y teniendo como testigo a Jesucristo Crucificado,
+		Yo, NN, con mi mano sobre los Santos Evangelios, y teniendo como testigo a Jesucristo Crucificado,
 		que me ha de juzgar, juro que diré toda y sólo la verdad acerca de lo que se me pregunte.
 		</p>';
 
