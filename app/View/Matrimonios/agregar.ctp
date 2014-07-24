@@ -17,6 +17,10 @@ echo $this->Form->create('Matrimonio', array(
         <td><?php echo $this->Form->input('ministro', array('label' => 'Ministro')); ?></td>
     </tr>
     <tr>
+        <td><?php echo $this->Form->input('fecha_declaracion', array('label' => 'Fecha de la declaración jurada', 'class' => 'datetimepicker4')); ?></td>
+        <td><?php echo $this->Form->input('fecha_fijacion', array('label' => 'Fecha de fijación', 'class' => 'datetimepicker4')); ?></td>
+    </tr>
+    <tr>
         <td><?php echo $this->Form->input('padrino_cedula', array('label' => 'Cédula del padrino')); ?></td>
         <td><?php echo $this->Form->input('padrino_nombre', array('label' => 'Nombre del padrino')); ?></td>
     </tr>
@@ -91,6 +95,10 @@ echo $this->Form->create('Matrimonio', array(
         <td><?php echo $this->Form->input('telefono_novio', array('label' => 'Teléfono')); ?></td>
     </tr>
     <tr>
+        <td><?php echo $this->Form->input('direccion_novio', array('label' => 'Dirección')); ?></td>
+        <td></td>
+    </tr>
+    <tr>
         <td colspan="2"><h4>Información de testigo</h4></td>
     </tr>
     <tr>
@@ -155,6 +163,10 @@ echo $this->Form->create('Matrimonio', array(
     <tr>
         <td><?php echo $this->Form->input('ciudad_actual_novia', array('label' => 'Ciudad actual', 'type' => 'select', 'options' => $ciudades_actual_novia, 'selected' => $ciudad_actual_selected_novia)); ?><?php echo $this->Form->input('ciudad_actual_novia_2', array('label' => 'Ciudad actual')); ?><div id="loading_actual_novia">Cargando ciudades...</div></td>
         <td><?php echo $this->Form->input('telefono_novia', array('label' => 'Teléfono')); ?></td>
+    </tr>
+    <tr>
+        <td><?php echo $this->Form->input('direccion_novia', array('label' => 'Dirección')); ?></td>
+        <td></td>
     </tr>
     <tr>
         <td colspan="2"><h4>Información de testigo</h4></td>

@@ -26,6 +26,12 @@ $(document).ready(function() {
         timepicker: false,
         format: 'd/m/Y'
     });
+
+    $('.datetimepicker4').datetimepicker({
+        lang: 'es',
+        timepicker: false,
+        format: 'd/m/Y'
+    });
     
     $('#MatrimonioEstadoNacimientoNovio').change(function(){
             $.ajax({

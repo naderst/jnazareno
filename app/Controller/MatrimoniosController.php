@@ -318,15 +318,19 @@ class MatrimoniosController extends AppController {
 		$ciudad_nacimiento_novia = $matrimonio['Matrimonio']['ciudad_nacimiento_novia'];
 		$estado_nacimiento_novio = $matrimonio['Matrimonio']['estado_nacimiento_novio'];
 		$estado_nacimiento_novia = $matrimonio['Matrimonio']['estado_nacimiento_novia'];
+        $pais_nacimiento_novio = $matrimonio['Matrimonio']['pais_nacimiento_novio'];
+        $pais_nacimiento_novia = $matrimonio['Matrimonio']['pais_nacimiento_novia'];
 		$fecha_nacimiento_novio = str_replace('/', '.', $matrimonio['Matrimonio']['fecha_nacimiento_novio']);
 		$fecha_nacimiento_novia = str_replace('/', '.', $matrimonio['Matrimonio']['fecha_nacimiento_novia']);
-		$dia_novio = date('d', strtotime($fecha_nacimiento_novio));
+        $dia_novio = date('d', strtotime($fecha_nacimiento_novio));
 		$dia_novia = date('d', strtotime($fecha_nacimiento_novia));
 		$mes_novio = parent::month2string(date('m', strtotime($fecha_nacimiento_novio)));
 		$mes_novia = parent::month2string(date('m', strtotime($fecha_nacimiento_novia)));
 		$ano_novio = date('Y', strtotime($fecha_nacimiento_novio));
 		$ano_novia = date('Y', strtotime($fecha_nacimiento_novia));
-		$ciudad_novio = $matrimonio['Matrimonio']['ciudad_actual_novio'];
+		$direccion_novio = $matrimonio['Matrimonio']['direccion_novio'];
+        $direccion_novia = $matrimonio['Matrimonio']['direccion_novia'];
+        $ciudad_novio = $matrimonio['Matrimonio']['ciudad_actual_novio'];
 		$ciudad_novia = $matrimonio['Matrimonio']['ciudad_actual_novia'];
 		$estado_novio = $matrimonio['Matrimonio']['estado_actual_novio'];
 		$estado_novia = $matrimonio['Matrimonio']['estado_actual_novia'];
@@ -354,6 +358,10 @@ class MatrimoniosController extends AppController {
 		$nombre_testigo_novia = $matrimonio['Matrimonio']['nombre_testigo_novia'];
 
 		$fecha_proclamas = $matrimonio['Matrimonio']['fecha_proclamas'];
+        $fecha_declaracion = $matrimonio['Matrimonio']['fecha_declaracion'];
+        $declaracion_dia = date('d', strtotime($fecha_declaracion));
+        $declaracion_mes = parent::month2string(date('m', strtotime($fecha_declaracion)));
+        $declaracion_ano = date('Y', strtotime($fecha_declaracion));
 		$parroquia_proclamas = $matrimonio['Matrimonio']['parroquia_proclamas'];
 		$fecha_constancia_curso_prematrimonial = $matrimonio['Matrimonio']['fecha_constancia_curso_prematrimonial'];
 		$certificado_matrimonio_civil = $matrimonio['Matrimonio']['certificado_matrimonio_civil'];
@@ -393,13 +401,13 @@ class MatrimoniosController extends AppController {
 		// Declaración del novio
 		$html2  = '<div class="subtitulo">ACTA DE EXPLORACIÓN DE VOLUNTADES<br>DECLARACIÓN DEL NOVIO</div><br>';
 		$html2 .= '<div class="just">';
-		$html2 .= 'El día X del mes de X del año X compareció ante el infrascrito párroco ';
-		$html2 .= '<b>Pbro. ' . $presbitero . '</b> de la Parroquia Jesús Nazareno, en Villa Brasil, ';
-		$html2 .= 'Puerto Ordaz el señor <b>' . $novio . '</b> con cédula de identidad <b>' . $cedula_novio . '</b>';
-		$html2 .= ' soltero, nacido en <b>' . $ciudad_nacimiento_novio . ', Estado ' . $estado_nacimiento_novio . '</b>';
+		$html2 .= 'El día '.$declaracion_dia.' del mes de '.$declaracion_mes.' del año '.$declaracion_ano.' compareció ante el infrascrito párroco ';
+		$html2 .= '<b>Pbro. ' . $presbitero . '</b> de la Parroquia Jesús Nazareno, de la Diócesis de Ciudad Guayana, Venezuela, ';
+		$html2 .= 'el señor <b>' . $novio . '</b> con cédula de identidad <b>' . $cedula_novio . '</b>';
+		$html2 .= ' soltero, nacido en <b>' . $ciudad_nacimiento_novio . ', Estado ' . $estado_nacimiento_novio . ', '.$pais_nacimiento_novio.'</b>';
 		$html2 .= ' el día <b>' . $dia_novio . ' de ' . $mes_novio . ' de ' . $ano_novio . '</b>,';
 		$html2 .= ' de ' . parent::age(strtotime($fecha_nacimiento_novio)) . ' años de edad,';
-		$html2 .= ' vecino de la DIRECCIÓN, ' . $ciudad_novio . ', ' . $estado_novio . ', ' . $pais_novio . '.';
+		$html2 .= ' vecino de '.$direccion_novio.', ' . $ciudad_novio . ', ' . $estado_novio . ', ' . $pais_novio . '.';
 		$html2 .= ' Hijo de ' . $padre_novio . ' y de ' . $madre_novio . ' y declaró bajo juramento';
 		$html2 .= ' que hizo en nombre de Dios:<br><br>';
 		$html2 .= '<ul style="list-style-type:upper-alpha;">';
@@ -407,14 +415,14 @@ class MatrimoniosController extends AppController {
 		$html2 .= '<li>Que libremente acepta las propiedades esenciales del Matrimonio:';
 		$html2 .= ' Unidad e Indisolubilidad, procreación y obligación de educar en la Doctrina';
 		$html2 .= ' Católica a los hijos.</li>';
-		$html2 .= '<li>Que ha residido, después de la pubertad, por X o más en X.</li>';
-		$html2 .= '<li>Que no tiene impedimento de X que obstaculice a la Celebración del Matrimonio.</li>';
-		$html2 .= '<li>¿Procede libremente a su Matrimonio?</li>';
-		$html2 .= '<li>¿Pone condición al Matrimonio?</li>';
-		$html2 .= '<li>¿Conoce las obligaciones y derechos de Matrimonio?</li>';
+		$html2 .= '<li>Que ha residido, después de la pubertad, por seis meses o más en '.$ciudad_novio.', Estado '.$estado_novio.'.</li>';
+		$html2 .= '<li>Que no tiene impedimento de NINGÚN TIPO que obstaculice la Celebración del Matrimonio.</li>';
+		$html2 .= '<li>¿Procede libremente a su Matrimonio? SÍ</li>';
+		$html2 .= '<li>¿Pone condición al Matrimonio? NO</li>';
+		$html2 .= '<li>¿Conoce las obligaciones y derechos de Matrimonio? SÍ</li>';
 		$html2 .= '</ul>';
 		$html2 .= 'Le instruí convenientemente y le advertí sobre el deber de recibir el';
-		$html2 .= ' Sacramento en gracia de Dios y participar en la Eucaristía. Falta la Confirmación<br>';
+		$html2 .= ' Sacramento en gracia de Dios y participar en la Eucaristía.<br>';
 		$html2 .= 'En fe de lo anteriormente expuesto firmamos esta declaración.<br><br><br><br><br>';
 		$html2 .= '<table style="width:80%;margin:auto;text-align:center"><tr><td></td><td></td></tr>';
 		$html2 .= '<tr><td><b>Firma del Novio</b></td><td><b>Firma del Párroco</b></td></tr>';
@@ -428,8 +436,8 @@ class MatrimoniosController extends AppController {
 		$html2 .= ' desde hace ' . parent::number2word($tnovio_testigo_novio) . ' (' . $tnovio_testigo_novio . ')';
 		$html2 .= ' años y a la novia desde hace ' . parent::number2word($tnovia_testigo_novio) . ' (' . $tnovia_testigo_novio . ')';
 		$html2 .= ' años y le consta que son solteros;';
-		$html2 .= ' que han residido después de la pubertad, por X o más, en XXXXX y que no tienen impedimento';
-		$html2 .= ' de ningún tipo que obstaculice a la celebración del Matrimonio.<br><br><br><br><br>';
+		$html2 .= ' que han residido después de la pubertad, por seis meses o más, en '.$ciudad_novio.' y que NO tienen impedimento';
+		$html2 .= ' de NINGÚN TIPO que obstaculice a la celebración del Matrimonio. Y para que conste firma la presente declaración.<br><br><br><br><br>';
 		$html2 .= '<p align="center"><b>Firma del Testigo</b></p>';
 		$html2 .= '</div>';
 
