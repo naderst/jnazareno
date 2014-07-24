@@ -442,7 +442,47 @@ class MatrimoniosController extends AppController {
 		$html2 .= '</div>';
 
 		// Declaración de la novia
-		$html3 = 'Página 3';
+		$html3  = '<div class="subtitulo">ACTA DE EXPLORACIÓN DE VOLUNTADES<br>DECLARACIÓN DE LA NOVIA</div><br>';
+		$html3 .= '<div class="just">';
+		$html3 .= 'El día '.$declaracion_dia.' del mes de '.$declaracion_mes.' del año '.$declaracion_ano.' compareció ante el infrascrito párroco ';
+		$html3 .= '<b>Pbro. ' . $presbitero . '</b> de la Parroquia Jesús Nazareno, de la Diócesis de Ciudad Guayana, Venezuela, ';
+		$html3 .= 'la señorita <b>' . $novia . '</b> con cédula de identidad <b>' . $cedula_novia . '</b>';
+		$html3 .= ' soltera, nacida en <b>' . $ciudad_nacimiento_novia . ', Estado ' . $estado_nacimiento_novia . ', '.$pais_nacimiento_novia.'</b>';
+		$html3 .= ' el día <b>' . $dia_novia . ' de ' . $mes_novia . ' de ' . $ano_novia . '</b>,';
+		$html3 .= ' de ' . parent::age(strtotime($fecha_nacimiento_novia)) . ' años de edad,';
+		$html3 .= ' vecina de '.$direccion_novia.', ' . $ciudad_novia . ', ' . $estado_novia . ', ' . $pais_novia . '.';
+		$html3 .= ' Hija de ' . $padre_novia . ' y de ' . $madre_novia . ' y declaró bajo juramento';
+		$html3 .= ' que hizo en nombre de Dios:<br><br>';
+		$html3 .= '<ul style="list-style-type:upper-alpha;">';
+		$html3 .= '<li>Que consiente y libremente desea contraer Matrimonio con el Sr. ' . $novio . '.</li>';
+		$html3 .= '<li>Que libremente acepta las propiedades esenciales del Matrimonio:';
+		$html3 .= ' Unidad e Indisolubilidad, procreación y obligación de educar en la Doctrina';
+		$html3 .= ' Católica a los hijos.</li>';
+		$html3 .= '<li>Que ha residido, después de la pubertad, por seis meses o más en '.$ciudad_novia.', Estado '.$estado_novia.'.</li>';
+		$html3 .= '<li>Que no tiene impedimento de NINGÚN TIPO que obstaculice la Celebración del Matrimonio.</li>';
+		$html3 .= '<li>¿Procede libremente a su Matrimonio? SÍ</li>';
+		$html3 .= '<li>¿Pone condición al Matrimonio? NO</li>';
+		$html3 .= '<li>¿Conoce las obligaciones y derechos de Matrimonio? SÍ</li>';
+		$html3 .= '</ul>';
+		$html3 .= 'Le instruí convenientemente y le advertí sobre el deber de recibir el';
+		$html3 .= ' Sacramento en gracia de Dios y participar en la Eucaristía.<br>';
+		$html3 .= 'En fe de lo anteriormente expuesto firmamos esta declaración.<br><br><br><br><br>';
+		$html3 .= '<table style="width:80%;margin:auto;text-align:center"><tr><td></td><td></td></tr>';
+		$html3 .= '<tr><td><b>Firma de la Novia</b></td><td><b>Firma del Párroco</b></td></tr>';
+		$html3 .= '</table>';
+		$html3 .= '</div>';
+		$html3 .= '<br><br><div class="subtitulo">DECLARACIÓN DEL PRIMER TESTIGO</div><br>';
+		$html3 .= '<div class="just">';
+		$html3 .= 'Ante mí compareció <b>' . $nombre_testigo_novia . '</b> C.I. <b>' . $cedula_testigo_novia;
+		$html3 .= '</b> mayor de edad y vecino(a) de ' . $direccion_testigo_novia . ', quien bajo';
+		$html3 .= ' juramento que hizo en nombre de Dios, declaró: que conoce perfectamente a la novia';
+		$html3 .= ' desde hace ' . parent::number2word($tnovia_testigo_novia) . ' (' . $tnovia_testigo_novia . ')';
+		$html3 .= ' años y al novio desde hace ' . parent::number2word($tnovio_testigo_novia) . ' (' . $tnovio_testigo_novia . ')';
+		$html3 .= ' años y le consta que son solteros;';
+		$html3 .= ' que han residido después de la pubertad, por seis meses o más, en '.$ciudad_novia.' y que NO tienen impedimento';
+		$html3 .= ' de NINGÚN TIPO que obstaculice a la celebración del Matrimonio. Y para que conste firma la presente declaración.<br><br><br><br><br>';
+		$html3 .= '<p align="center"><b>Firma del Testigo</b></p>';
+		$html3 .= '</div>';
 
 		// Fijación del día y fecha
 		$html4 = 'Página 4';
