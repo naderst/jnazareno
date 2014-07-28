@@ -44,5 +44,20 @@ if (!count($matrimonios)) {
 <?php } ?>
 <br>
 <center>
+<?php
+if(count($matrimonios)) {
+	echo '<b>'.$this->Paginator->counter(array(
+	    'format' => 'Página {:page} de {:pages}, mostrando {:current} matrimonio(s) de
+	             {:count} totales'
+	)).'</b><br><br>';
+	echo $this->Paginator->first('<input type="button" value="<<">', array('escape' => false));
+	echo $this->Paginator->prev('<input type="button" value="< Anterior">', array('escape' => false), ' ',array()).' ';
+	echo $this->Paginator->next('<input type="button" value="Siguiente >">', array('escape' => false), ' ',array());
+	echo $this->Paginator->last('<input type="button" value=">>">', array('escape' => false));
+}
+?>
     <input type="button" value="Nuevo matrimonio" onclick="javascript:document.location = '<?php echo Router::url('/matrimonios/agregar'); ?>';"><br><br>
+<?php
+echo $this->Paginator->numbers(array('before' => '<b>Ir a la página:</b> '));
+?>
 </center>
