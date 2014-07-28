@@ -18,7 +18,7 @@ echo $this->Form->create('Matrimonio', array(
     </tr>
     <tr>
         <td><?php echo $this->Form->input('fecha_declaracion', array('label' => 'Fecha de la declaración jurada', 'class' => 'datetimepicker4')); ?></td>
-        <td><?php echo $this->Form->input('fecha_fijacion', array('label' => 'Fecha de fijación', 'class' => 'datetimepicker4')); ?></td>
+        <td><?php echo $this->Form->input('fecha_fijacion', array('label' => 'Fecha de fijación', 'class' => 'datetimepicker5')); ?></td>
     </tr>
     <tr>
         <td><?php echo $this->Form->input('padrino_cedula', array('label' => 'Cédula del padrino')); ?></td>

@@ -33,6 +33,12 @@ $(document).ready(function() {
         format: 'd/m/Y'
     });
     
+    $('.datetimepicker5').datetimepicker({
+        lang: 'es',
+        format: 'd/m/Y h:i a',
+        pick12HourFormat: true  
+    });
+
     $('#MatrimonioEstadoNacimientoNovio').change(function(){
             $.ajax({
                     url: baseDir + '/bautizos/ciudades/' + $(this).val(),
