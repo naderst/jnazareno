@@ -38,7 +38,11 @@ echo $this->Form->create('Matrimonio', array(
 	</tr>
 	<tr>
     	<td><?php echo $this->Form->input('documentos_curia', array('label' => 'Documentos de la Curia Parroquia')); ?></td>
-		<td></td>
+		<td><?php echo $this->Form->input('libro'); ?></td>
+	</tr>
+	<tr>
+    	<td><?php echo $this->Form->input('folio'); ?></td>
+		<td><?php echo $this->Form->input('numero', array('label' => 'Número')); ?></td>
 	</tr>
 	<tr>
         <td colspan="2"><?php echo $this->Form->input('observaciones', array('type' => 'textarea', 'label' => 'Nota marginal', 'style' => 'width:100%')); ?></td>

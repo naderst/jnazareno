@@ -370,6 +370,9 @@ class MatrimoniosController extends AppController {
 		$fecha_dia = date('d', strtotime($fecha));
 		$fecha_mes = parent::month2string(date('m', strtotime($fecha)));
 		$fecha_ano = date('Y', strtotime($fecha));
+		$libro = $matrimonio['Matrimonio']['libro'];
+		$folio = $matrimonio['Matrimonio']['folio'];
+		$numero = $matrimonio['Matrimonio']['numero'];
 
 		// Titulo del documento
 		$titulo = $novio . '<br>' . $novia;
@@ -392,7 +395,7 @@ class MatrimoniosController extends AppController {
 		$html .= '<li>Fecha de Proclamas: '.$fecha_proclamas.'</li>';
 		$html .= '<li>El Matrimonio se efectuó el día: '.$fecha.'</li>';
 		$html .= '<li>Fueron testigos: '.$nombre_testigo_novio.' y '.$nombre_testigo_novia.'</li>';
-		$html .= '<li>Su partida se encuentra en el Libro: X de Matrimonio, Folio X Nro X</li>';
+		$html .= '<li>Su partida se encuentra en el Libro: '.$libro.' de Matrimonio, Folio '.$folio.' Nro '.$numero.'</li>';
 		$html .= '<li>Para los efectos de la nota marginal fue participado el Matrimonio a X y a X</li>';
 		$html .= '</ul>';
 		$html .= '<br><br><br><br><p align="center"><b>Firma del Párroco</b></p>';
