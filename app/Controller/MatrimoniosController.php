@@ -373,6 +373,11 @@ class MatrimoniosController extends AppController {
 		$libro = $matrimonio['Matrimonio']['libro'];
 		$folio = $matrimonio['Matrimonio']['folio'];
 		$numero = $matrimonio['Matrimonio']['numero'];
+		$fecha_fijacion = strtotime(str_replace('/', '.', $matrimonio['Matrimonio']['fecha_fijacion']));
+		$dia_fijacion = date('d', $fecha_fijacion);
+		$mes_fijacion = parent::month2string(date('m', $fecha_fijacion));
+		$ano_fijacion = date('Y', $fecha_fijacion);
+		$hora_fijacion = date('h:i a', $fecha_fijacion);
 
 		// Titulo del documento
 		$titulo = $novio . '<br>' . $novia;
@@ -495,7 +500,7 @@ class MatrimoniosController extends AppController {
 		$html4 .= '<div class="subtitulo">FIJACIÓN DEL DÍA Y FECHA</div>';
 		$html4 .= 'Hacemos constar que nosotros ' . $novio . ' y ' . $novia;
 		$html4 .= ' hemos convenido contraer Matrimonio en la Iglesia Parroquial Jesús Nazareno el día ';
-		$html4 .= 'XX de XXXXX del año XXXX a las X:XX PM<br><br><br>';
+		$html4 .= $dia_fijacion . ' de ' . $mes_fijacion . ' del año ' . $ano_fijacion . ' a las '.$hora_fijacion.'<br><br><br>';
 		$html4 .= '<table style="width:80%;margin:auto;text-align:center"><tr><td></td><td></td></tr>';
 		$html4 .= '<tr><td><b>Firma del Novio</b></td><td><b>Firma de la Novia</b></td></tr>';
 		$html4 .= '<tr><td colspan="2"><br><br><br><b>Firma del Párroco</b></td></tr>';
