@@ -37,11 +37,13 @@ $(document).ready(function() {
         if($('#del').prop('checked')) {
             window.open('estadisticas/del/' + $('#delselect').val());
         } else {
-            var desde = $('#desde').val().replace(/\//g, '.');
-            var hasta = $('#hasta').val().replace(/\//g, '.');
+            var desde = $('#desde').val().replace(/([0-9]{2})\/([0-9]{2})\/([0-9]{4})/g, '$2-$1-$3');
+            var hasta = $('#hasta').val().replace(/([0-9]{2})\/([0-9]{2})\/([0-9]{4})/g, '$2-$1-$3');
+            var desde_guion = $('#desde').val().replace(/([0-9]{2})\/([0-9]{2})\/([0-9]{4})/g, '$1-$2-$3');
+            var hasta_guion = $('#hasta').val().replace(/([0-9]{2})\/([0-9]{2})\/([0-9]{4})/g, '$1-$2-$3');
             
             if(new Date(desde).getTime() <= new Date(hasta).getTime()) {
-                window.open('estadisticas/rango/' + desde + '/' + hasta, '_blank').focus();
+                window.open('estadisticas/rango/' + desde_guion + '/' + hasta_guion, '_blank').focus();
             } else {
                 alert('La fecha desde debe ser menor o igual a la fecha hasta');   
             }
