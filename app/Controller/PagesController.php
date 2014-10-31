@@ -113,11 +113,11 @@ class PagesController extends AppController {
             $db = ConnectionManager::getDataSource('default');
             
             $totalmatrimonios = $db->query("
-                SELECT COUNT(*) AS total FROM matrimonios AS Matrimonio WHERE STR_TO_DATE(REPLACE(Matrimonio.fecha, '/', '.'), '%d.%m.%Y') >= STR_TO_DATE(REPLACE('$_param1', '/', '.'), '%d.%m.%Y') AND STR_TO_DATE(REPLACE(Matrimonio.fecha, '/', '.'), '%d.%m.%Y') <= STR_TO_DATE(REPLACE('$_param2', '/', '.'), '%d.%m.%Y')
+                SELECT COUNT(*) AS total FROM matrimonios AS Matrimonio WHERE STR_TO_DATE(REPLACE(Matrimonio.fecha, '/', '.'), '%d.%m.%Y') >= STR_TO_DATE(REPLACE('$param1', '-', '.'), '%d.%m.%Y') AND STR_TO_DATE(REPLACE(Matrimonio.fecha, '/', '.'), '%d.%m.%Y') <= STR_TO_DATE(REPLACE('$param2', '-', '.'), '%d.%m.%Y')
             ")[0][0]['total'];
             
             $totalbautizos = $db->query("
-                SELECT COUNT(*) AS total FROM bautizos AS Bautizo WHERE STR_TO_DATE(REPLACE(Bautizo.fecha, '/', '.'), '%d.%m.%Y') >= STR_TO_DATE(REPLACE('$_param1', '/', '.'), '%d.%m.%Y') AND STR_TO_DATE(REPLACE(Bautizo.fecha, '/', '.'), '%d.%m.%Y') <= STR_TO_DATE(REPLACE('$_param2', '/', '.'), '%d.%m.%Y')
+                SELECT COUNT(*) AS total FROM bautizos AS Bautizo WHERE STR_TO_DATE(REPLACE(Bautizo.fecha, '/', '.'), '%d.%m.%Y') >= STR_TO_DATE(REPLACE('$param1', '-', '.'), '%d.%m.%Y') AND STR_TO_DATE(REPLACE(Bautizo.fecha, '/', '.'), '%d.%m.%Y') <= STR_TO_DATE(REPLACE('$param2', '-', '.'), '%d.%m.%Y')
             ")[0][0]['total'];
 
 			$diadesde = date('d', $_param1);
