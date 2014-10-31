@@ -39,6 +39,7 @@ $(document).ready(function() {
         } else {
             var desde = $('#desde').val().replace(/([0-9]{2})\/([0-9]{2})\/([0-9]{4})/g, '$2-$1-$3');
             var hasta = $('#hasta').val().replace(/([0-9]{2})\/([0-9]{2})\/([0-9]{4})/g, '$2-$1-$3');
+            
             var desde_guion = $('#desde').val().replace(/([0-9]{2})\/([0-9]{2})\/([0-9]{4})/g, '$1-$2-$3');
             var hasta_guion = $('#hasta').val().replace(/([0-9]{2})\/([0-9]{2})\/([0-9]{4})/g, '$1-$2-$3');
             

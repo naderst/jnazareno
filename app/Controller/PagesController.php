@@ -109,14 +109,16 @@ class PagesController extends AppController {
 		} elseif($tipo == 'rango') {
 			$_param1 = strtotime($param1);
 			$_param2 = strtotime($param2);
-
-			$totalbautizos = $this->Bautizo->find('count', array(
-				'conditions' => array('STR_TO_DATE(REPLACE(Bautizo.fecha, \'/\', \'.\'), \'%d.%m.%Y\') BETWEEN ? AND ?' => array(date('d.m.Y', $_param1), date('d.m.Y', $_param2)))
-			));
-
-			$totalmatrimonios = $this->Matrimonio->find('count', array(
-				'conditions' => array('STR_TO_DATE(REPLACE(Matrimonio.fecha, \'/\', \'.\'), \'%d.%m.%Y\') BETWEEN ? AND ?' => array(date('d.m.Y', $_param1), date('d.m.Y', $_param2)))
-			));
+            
+            $db = ConnectionManager::getDataSource('default');
+            
+            $totalmatrimonios = $db->query("
+                SELECT COUNT(*) AS total FROM matrimonios AS Matrimonio WHERE STR_TO_DATE(REPLACE(Matrimonio.fecha, '/', '.'), '%d.%m.%Y') >= STR_TO_DATE(REPLACE('$_param1', '/', '.'), '%d.%m.%Y') AND STR_TO_DATE(REPLACE(Matrimonio.fecha, '/', '.'), '%d.%m.%Y') <= STR_TO_DATE(REPLACE('$_param2', '/', '.'), '%d.%m.%Y')
+            ")[0][0]['total'];
+            
+            $totalbautizos = $db->query("
+                SELECT COUNT(*) AS total FROM bautizos AS Bautizo WHERE STR_TO_DATE(REPLACE(Bautizo.fecha, '/', '.'), '%d.%m.%Y') >= STR_TO_DATE(REPLACE('$_param1', '/', '.'), '%d.%m.%Y') AND STR_TO_DATE(REPLACE(Bautizo.fecha, '/', '.'), '%d.%m.%Y') <= STR_TO_DATE(REPLACE('$_param2', '/', '.'), '%d.%m.%Y')
+            ")[0][0]['total'];
 
 			$diadesde = date('d', $_param1);
 			$mesdesde = parent::month2string(date('m', $_param1));
