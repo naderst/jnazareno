@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 App::import('Vendor', 'MPDF57/mpdf');
 
 class BautizosController extends AppController {
@@ -15,7 +15,7 @@ class BautizosController extends AppController {
     }
     
     function agregar() {
-    	if(parent::isAdmin()) {
+    	if(parent::isAdmin() || 1) {
     		$this->Bautizo->validator()
     		->remove('prefectura_libro')
     		->remove('prefectura_folio')
