@@ -6,7 +6,7 @@ class BautizosController extends AppController {
     public $helpers = array('Paginator');
     public $paginate = array(
         'limit' => 5,
-        'order' => 'STR_TO_DATE(REPLACE(Bautizo.fecha, \'/\', \'.\'), \'%d.%m.%Y\') DESC'
+        'order' => 'Bautizo.numero ASC'
     );
 
     function index() {
