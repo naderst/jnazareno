@@ -12,5 +12,16 @@ class ConfirmacionesController extends AppController {
     $this->Paginator->settings = $this->paginate;
     $this->set('confirmaciones', $this->Paginator->paginate('Confirmacion'));
   }
+  
+
+  function eliminar($id = null) {
+    if(parent::isAdmin() && $id != null) {
+      $this->Confirmacion->delete($id);
+      $this->Session->setFlash('Confirmación eliminada con éxito', 'default', array(), 'good');
+      $this->redirect(array('action' => 'index'));
+    } else {
+      throw new NotFoundException('La página no existe');
+    }
+  }
 }
 ?>
