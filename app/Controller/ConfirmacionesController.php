@@ -12,7 +12,6 @@ class ConfirmacionesController extends AppController {
     $this->Paginator->settings = $this->paginate;
     $this->set('confirmaciones', $this->Paginator->paginate('Confirmacion'));
   }
-  
 
   function eliminar($id = null) {
     if(parent::isAdmin() && $id != null) {
@@ -22,6 +21,32 @@ class ConfirmacionesController extends AppController {
     } else {
       throw new NotFoundException('La página no existe');
     }
+  }
+
+  function buscar() {
+    $q = $_GET['q'];
+
+    if(empty($q))
+      $keywords = array();
+    else
+      $keywords = preg_split('/ /', $q);
+
+    $like = '';
+
+    foreach($keywords as $k => $v) {
+      $v = trim($v);
+
+      if(!empty($v))
+        $like .= 'LOWER(nombres) LIKE \'%' . $v . '%\' OR LOWER(apellidos) LIKE \'%' . $v . '%\' OR ';
+    }
+
+    $like = substr($like, 0, strlen($like)-3);
+
+    $this->paginate['conditions'] = ' ' . $like;
+    $this->Paginator->settings = $this->paginate;
+
+    $this->set('confirmaciones', $this->Paginator->paginate('Confirmacion'));
+    $this->set('q', $q);
   }
 }
 ?>
