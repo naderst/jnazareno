@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10deb1
+-- version 4.1.12
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Jul 27, 2014 at 11:47 PM
--- Server version: 5.5.38-0ubuntu0.14.04.1
--- PHP Version: 5.5.9-1ubuntu4.3
+-- Host: 127.0.0.1
+-- Generation Time: Dec 29, 2014 at 07:26 PM
+-- Server version: 5.6.16
+-- PHP Version: 5.5.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -71,17 +71,36 @@ CREATE TABLE IF NOT EXISTS `configuracion` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `confirmaciones`
+--
+
+CREATE TABLE IF NOT EXISTS `confirmaciones` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombres` varchar(50) COLLATE utf8_bin NOT NULL,
+  `apellidos` varchar(50) COLLATE utf8_bin NOT NULL,
+  `padre` varchar(100) COLLATE utf8_bin NOT NULL,
+  `madre` varchar(100) COLLATE utf8_bin NOT NULL,
+  `fecha` varchar(10) COLLATE utf8_bin NOT NULL,
+  `padrino` varchar(100) COLLATE utf8_bin NOT NULL,
+  `ministro` varchar(100) COLLATE utf8_bin NOT NULL,
+  `lote` varchar(20) COLLATE utf8_bin NOT NULL,
+  `numero` varchar(20) COLLATE utf8_bin NOT NULL,
+  `nota_marginal` text COLLATE utf8_bin NOT NULL,
+  `observaciones` text COLLATE utf8_bin NOT NULL,
+  `nota` text COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `matrimonios`
 --
 
 CREATE TABLE IF NOT EXISTS `matrimonios` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `fecha` varchar(10) NOT NULL,
-  `fecha_fijacion` varchar(20) NOT NULL,
-  `fecha_declaracion` varchar(10) NOT NULL,
-  `libro` varchar(20) NOT NULL,
-  `folio` varchar(20) NOT NULL,
-  `numero` varchar(20) NOT NULL,
+  `fecha_fijacion` varchar(10) NOT NULL,
   `padrino_nombre` varchar(100) NOT NULL,
   `padrino_cedula` varchar(15) NOT NULL,
   `madrina_nombre` varchar(100) NOT NULL,
@@ -102,7 +121,6 @@ CREATE TABLE IF NOT EXISTS `matrimonios` (
   `ciudad_nacimiento_novio` varchar(30) NOT NULL,
   `estado_nacimiento_novio` varchar(30) NOT NULL,
   `pais_nacimiento_novio` varchar(30) NOT NULL,
-  `direccion_novio` varchar(100) DEFAULT NULL,
   `ciudad_actual_novio` varchar(30) NOT NULL,
   `estado_actual_novio` varchar(30) NOT NULL,
   `pais_actual_novio` varchar(30) NOT NULL,
@@ -127,7 +145,6 @@ CREATE TABLE IF NOT EXISTS `matrimonios` (
   `ciudad_nacimiento_novia` varchar(30) NOT NULL,
   `estado_nacimiento_novia` varchar(30) NOT NULL,
   `pais_nacimiento_novia` varchar(30) NOT NULL,
-  `direccion_novia` varchar(100) DEFAULT NULL,
   `ciudad_actual_novia` varchar(30) NOT NULL,
   `estado_actual_novia` varchar(30) NOT NULL,
   `pais_actual_novia` varchar(30) NOT NULL,
