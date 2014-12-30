@@ -263,7 +263,7 @@ class MatrimoniosController extends AppController {
 		$columna1 .= '</table>';
 
 		$columna2 = 'El presbitero <b>' . parent::strtoupper_utf8($presbitero) . '</b>,';
-		$columna2 .= ' párroco encargado de esta Parroquia, certifica que según consta del acta reseñada al margen correspondiente al libro de Matrimonio: ';
+		$columna2 .= ' párroco encargado de esta Parroquia, certifica que según consta del acta reseñada al margen correspondiente al libro de Matrimonios: ';
 		$columna2 .= '<br><br><br><div class="titulo">' . parent::strtoupper_utf8($novio) . '<br>y<br>' . parent::strtoupper_utf8($novia) . '</div><br><br>';
 		$columna2 .= 'Recibieron Sacramento de Matrimonio Eclesiástico, en la Parroquia Jesús Nazareno, en Puerto Ordaz, Estado Bolívar, el ' . $fecha_dia . ' de ' . $fecha_mes . ' de ' . $fecha_ano . '.';
 		$columna2 .= '<br><br><table>';
