@@ -72,7 +72,7 @@ class ConfirmacionesController extends AppController {
   }
 
 
-  function certificado($id) {
+  function certificado($id, $motivo = null) {
     Configure::write('debug',0);
 
     $this->autoRender = false;
@@ -138,6 +138,7 @@ class ConfirmacionesController extends AppController {
     $columna2 .= '<tr><td><b>Madre:</b></td><td>' . parent::strtoupper_utf8($madre) . '</b></td></tr>';
     $columna2 .= '<tr><td><b>Padrino / Madrina:</b></td><td>' . parent::strtoupper_utf8($padrino) . '</b></td></tr>';
     $columna2 .= '<tr><td><b>Ministro:</b></td><td>' . parent::strtoupper_utf8($ministro) . '</b></td></tr>';
+    $columna2 .= '<tr><td><b>Se pide este certificado para fines: </b></td><td>' . parent::strtoupper_utf8($motivo) . '</b></td></tr>';
     $columna2 .= '</table>';
 
     $html = '<div class="titulo">CERTIFICADO DE CONFIRMACIÓN</div><br><br>';

@@ -39,7 +39,7 @@ foreach($confirmaciones as $e) {
 		?>
 		<td><a href="<?php echo Router::url(array('action' => 'modificar', $e['Confirmacion']['id'])); ?>"><i class="fa fa-edit"></i> Modificar</a><br><a href="<?php echo Router::url(array('action' => 'eliminar', $e['Confirmacion']['id'])); ?>" onclick="javascript: return confirm('¿Está seguro que desea eliminar el confirmacion de <?php echo $e['Confirmacion']['nombres'].' '.$e['Confirmacion']['apellidos'];?>?');" alt="Eliminar"><i class="fa fa-times"></i> Eliminar</a></td>
 		<?php } ?>
-		<td><a href="<?php echo Router::url('/confirmaciones/certificado/' . $e['Confirmacion']['id']); ?>" target="_blank">Generar<br>certificado</a></td>
+		<td><a href="javascript:void();" data-id="<?php echo $e['Confirmacion']['id']; ?>" class="certificado">Generar<br>certificado</a></td>
 		<td><?php echo empty($e['Confirmacion']['observaciones']) ? 'Ninguna' : $e['Confirmacion']['observaciones']; ?></td>
 		<td><?php echo empty($e['Confirmacion']['nota']) ? 'Ninguna' : $e['Confirmacion']['nota']; ?></td>
 	</tr>
