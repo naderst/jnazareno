@@ -12,6 +12,28 @@ class ConfirmacionesController extends AppController {
     $this->Paginator->settings = $this->paginate;
     $this->set('confirmaciones', $this->Paginator->paginate('Confirmacion'));
   }
+  
+  function agregar() {
+    if($this->request->is('post')) {
+
+      $existeConfirmacion = $this->Confirmacion->find('first', array(
+        'conditions' => array(
+          'Confirmacion.lote' => $this->request->data('Confirmacion.lote'),
+          'Confirmacion.numero' => $this->request->data('Confirmacion.numero')
+        )
+      ));
+
+      if($existeConfirmacion) {
+        $this->Session->setFlash('Ya existe una confirmación con el mismo lote y número', 'default', array(), 'bad');
+      } elseif($this->Confirmacion->save($this->request->data)) {
+        $this->Session->setFlash('Confirmación agregada con éxito', 'default', array(), 'good');
+        $this->redirect(array('action' => 'index'));
+      } else {
+        $this->Session->setFlash('Ha ocurrido un error agregando la confirmación', 'default', array(), 'bad');
+      }
+
+    } 
+  }
 
   function eliminar($id = null) {
     if(parent::isAdmin() && $id != null) {

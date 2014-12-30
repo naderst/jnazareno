@@ -55,6 +55,8 @@
                 echo $this->Html->script('pages')."\n";
             if($this->name == 'Bautizos')
                 echo $this->Html->script('bautizos')."\n";
+            if($this->name == 'Confirmaciones')
+                echo $this->Html->script('confirmaciones')."\n";
             if($this->name == 'Documentos')
                 echo $this->Html->script('documentos')."\n";
             if($this->name == 'Matrimonios')
