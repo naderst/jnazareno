@@ -34,8 +34,32 @@ class ConfirmacionesController extends AppController {
 
     } 
   }
+  
+  function modificar($id) {
+    $this->Confirmacion->id = $id;
+    
+    if ($this->request->is('put')) {
+      $existeConfirmacion = $this->Confirmacion->find('first', array(
+        'conditions' => array(
+          'Confirmacion.lote' => $this->request->data('Confirmacion.lote'),
+          'Confirmacion.numero' => $this->request->data('Confirmacion.numero')
+        )
+      ));
+      
+      if ($existeConfirmacion && $existeConfirmacion['Confirmacion']['id'] != $id) {
+         $this->Session->setFlash('Ya existe una confirmación con el mismo lote y número', 'default', array(), 'bad');
+      } elseif ($this->Confirmacion->save($this->request->data)) {
+        $this->Session->setFlash('Se ha modificado la confirmación con éxito', 'default', array(), 'good');
+      } else {
+        $this->Session->setFlash('Ha ocurrido un error modificando el bautizo', 'default', array(), 'bad');
+      }
+    }
+    
+    $this->request->data = $this->Confirmacion->read();
+    $this->render('agregar');
+  }
 
-  function eliminar($id = null) {
+  function eliminar($id) {
     if(parent::isAdmin() && $id != null) {
       $this->Confirmacion->delete($id);
       $this->Session->setFlash('Confirmación eliminada con éxito', 'default', array(), 'good');
