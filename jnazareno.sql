@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 29, 2014 at 07:26 PM
+-- Generation Time: Dec 31, 2014 at 03:49 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -53,7 +53,30 @@ CREATE TABLE IF NOT EXISTS `bautizos` (
   `observaciones` text,
   `nota` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comuniones`
+--
+
+CREATE TABLE IF NOT EXISTS `comuniones` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombres` varchar(50) COLLATE utf8_bin NOT NULL,
+  `apellidos` varchar(50) COLLATE utf8_bin NOT NULL,
+  `padre` varchar(100) COLLATE utf8_bin NOT NULL,
+  `madre` varchar(100) COLLATE utf8_bin NOT NULL,
+  `fecha` varchar(10) COLLATE utf8_bin NOT NULL,
+  `ministro` varchar(100) COLLATE utf8_bin NOT NULL,
+  `libro` varchar(20) COLLATE utf8_bin NOT NULL,
+  `folio` varchar(20) COLLATE utf8_bin NOT NULL,
+  `numero` varchar(20) COLLATE utf8_bin NOT NULL,
+  `nota_marginal` text COLLATE utf8_bin NOT NULL,
+  `observaciones` text COLLATE utf8_bin NOT NULL,
+  `nota` text COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -66,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `configuracion` (
   `parametro` char(20) NOT NULL,
   `valor` char(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -89,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `confirmaciones` (
   `observaciones` text COLLATE utf8_bin NOT NULL,
   `nota` text COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -161,7 +184,7 @@ CREATE TABLE IF NOT EXISTS `matrimonios` (
   `certificado_matrimonio_civil` varchar(30) DEFAULT NULL,
   `documentos_curia` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -176,7 +199,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `rol` char(1) NOT NULL DEFAULT 'N' COMMENT 'N = Normal A = Admin',
   PRIMARY KEY (`id`),
   UNIQUE KEY `usuario` (`usuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
