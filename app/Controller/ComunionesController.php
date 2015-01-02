@@ -13,6 +13,29 @@ class ComunionesController extends AppController {
     $this->set('comuniones', $this->Paginator->paginate('Comunion'));
   }
   
+  function agregar() {
+    if($this->request->is('post')) {
+
+      $existeComunion = $this->Comunion->find('first', array(
+        'conditions' => array(
+          'Comunion.libro' => $this->request->data('Comunion.libro'),
+          'Comunion.folio' => $this->request->data('Comunion.folio'),
+          'Comunion.numero' => $this->request->data('Comunion.numero')
+        )
+      ));
+
+      if($existeComunion) {
+        $this->Session->setFlash('Ya existe una comunión con el mismo libro, folio y número', 'default', array(), 'bad');
+      } elseif($this->Comunion->save($this->request->data)) {
+        $this->Session->setFlash('Comunión agregada con éxito', 'default', array(), 'good');
+        $this->redirect(array('action' => 'index'));
+      } else {
+        $this->Session->setFlash('Ha ocurrido un error agregando la comunión', 'default', array(), 'bad');
+      }
+
+    } 
+  }
+  
   function eliminar($id) {
     if(parent::isAdmin() && $id != null) {
       $this->Comunion->delete($id);
