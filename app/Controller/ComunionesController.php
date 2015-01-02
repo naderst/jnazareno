@@ -22,5 +22,31 @@ class ComunionesController extends AppController {
       throw new NotFoundException('La página no existe');
     }
   }
+  
+  function buscar() {
+    $q = $_GET['q'];
+
+    if(empty($q))
+      $keywords = array();
+    else
+      $keywords = preg_split('/ /', $q);
+
+    $like = '';
+
+    foreach($keywords as $k => $v) {
+      $v = trim($v);
+
+      if(!empty($v))
+        $like .= 'LOWER(nombres) LIKE \'%' . $v . '%\' OR LOWER(apellidos) LIKE \'%' . $v . '%\' OR ';
+    }
+
+    $like = substr($like, 0, strlen($like)-3);
+
+    $this->paginate['conditions'] = ' ' . $like;
+    $this->Paginator->settings = $this->paginate;
+
+    $this->set('comuniones', $this->Paginator->paginate('Comunion'));
+    $this->set('q', $q);
+  }
 }
 ?>
