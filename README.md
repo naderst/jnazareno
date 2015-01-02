@@ -1,25 +1,17 @@
 <p align="center"><img src="/app/webroot/img/logo.png"></p>
-Sistema de la parroquia Jesús Nazareno
----------------------------------------
+#Sistema para la Gestión de los Sacramentos de la Iglesia Jesús Nazareno
 
-Este es un proyecto de servicio comunitario de la UCAB Guayana
-desarrollado para la parroquia Jesús Nazareno ubicada en 
-Villa Brasil, Puerto Ordaz. Edo. Bolívar. Venezuela.
+###Requerimientos:
 
-El proyecto se encarga de automatizar la gestión de los distintos
-sacramentos de dicha parroquia, estos sacramentos son las secciones
-principales del sistema:
+- Git
+- Composer
+- Servidor LAMP
 
--	 Bautizos
--	 Comuniones
--	 Confirmaciones
--	 Matrimonios
+###Pasos para la instalación:
 
-El sistema está desarrollado con el framework MVC CakePHP y con
-el SGBD MySQL.
-
-Desarrollado por
------------------
-Nader Abu Fakhr  
-@naderst  
-naderst@gmail.com
+1. git clone https://github.com/naderst/jnazareno.git
+2. composer install
+3. Crear la BD jnazareno e importar el archivo jnazareno.sql
+4. Copiar app/Config/database.php.default -> app/Config/database.php
+5. Configurar la conexión a la BD en app/Config/database.php
+6. Por defecto, el usuario y la contraseña del superusuario en el sistema es admin
