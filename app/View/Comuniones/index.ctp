@@ -35,7 +35,7 @@ foreach($comuniones as $e) {
 		<?php
 		if($rol == 'A') {
 		?>
-		<td><a href="<?php echo Router::url(array('action' => 'modificar', $e['Comunion']['id'])); ?>"><i class="fa fa-edit"></i> Modificar</a><br><a href="<?php echo Router::url(array('action' => 'eliminar', $e['Comunion']['id'])); ?>" onclick="javascript: return confirm('¿Está seguro que desea eliminar la comunion de <?php echo $e['Comunion']['nombres'].' '.$e['Comunion']['apellidos'];?>?');" alt="Eliminar"><i class="fa fa-times"></i> Eliminar</a></td>
+		<td><a href="<?php echo Router::url(array('action' => 'modificar', $e['Comunion']['id'])); ?>"><i class="fa fa-edit"></i> Modificar</a><br><a href="<?php echo Router::url(array('action' => 'eliminar', $e['Comunion']['id'])); ?>" onclick="javascript: return confirm('¿Está seguro que desea eliminar la comunión de <?php echo $e['Comunion']['nombres'].' '.$e['Comunion']['apellidos'];?>?');" alt="Eliminar"><i class="fa fa-times"></i> Eliminar</a></td>
 		<?php } ?>
 		<td><a href="javascript:void();" data-id="<?php echo $e['Comunion']['id']; ?>" class="certificado">Generar<br>certificado</a></td>
 		<td><?php echo empty($e['Comunion']['observaciones']) ? 'Ninguna' : $e['Comunion']['observaciones']; ?></td>
