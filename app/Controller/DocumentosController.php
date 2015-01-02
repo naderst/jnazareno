@@ -9,7 +9,7 @@ class DocumentosController extends AppController {
 
 		if($dr !== FALSE) {
 			while(($file = readdir($dr)) !== FALSE) {
-				if($file != '.' && $file != '..' && !preg_match('/^readme(\.(.+))?/i', $file))
+				if($file != '.' && $file != '..' && !preg_match('/^readme(\.(.+))?/i', $file) && !preg_match('/^\.(.+)$/', $file))
 					$files[] = $file;
 			}
 
