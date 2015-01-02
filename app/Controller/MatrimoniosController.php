@@ -1,5 +1,5 @@
 <?php
-App::import('Vendor', 'MPDF57/mpdf');
+App::import('Vendor', 'mpdf/mpdf/mpdf');
 
 class MatrimoniosController extends AppController {
 	public $components = array('Paginator');

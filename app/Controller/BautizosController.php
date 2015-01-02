@@ -1,5 +1,5 @@
-﻿<?php
-App::import('Vendor', 'MPDF57/mpdf');
+<?php
+App::import('Vendor', 'mpdf/mpdf/mpdf');
 
 class BautizosController extends AppController {
     public $components = array('Paginator');

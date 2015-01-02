@@ -1,6 +1,6 @@
 <?php
-App::import('Vendor', 'jpgraph/jpgraph');
-App::import('Vendor', 'jpgraph/jpgraph_pie');
+App::import('Vendor', 'jpgraph/jpgraph/lib/JpGraph/src/jpgraph');
+App::import('Vendor', 'jpgraph/jpgraph/lib/JpGraph/src/jpgraph_pie');
 
 class GraficosController extends AppController {
 	public $uses = array();

@@ -1,5 +1,5 @@
 <?php
-App::import('Vendor', 'MPDF57/mpdf');
+App::import('Vendor', 'mpdf/mpdf/mpdf');
 
 class ConfirmacionesController extends AppController {
   public $uses = 'Confirmacion';

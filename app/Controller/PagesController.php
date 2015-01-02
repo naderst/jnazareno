@@ -20,7 +20,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 App::uses('AppController', 'Controller');
-App::import('Vendor', 'MPDF57/mpdf');
+App::import('Vendor', 'mpdf/mpdf/mpdf');
 
 /**
  * Static content controller

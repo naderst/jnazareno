@@ -1,5 +1,5 @@
 <?php
-App::import('Vendor', 'MPDF57/mpdf');
+App::import('Vendor', 'mpdf/mpdf/mpdf');
 
 class ComunionesController extends AppController {
   public $uses = 'Comunion';
