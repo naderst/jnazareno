@@ -66,6 +66,7 @@ class PagesController extends AppController {
 		$this->response->type('application/pdf');
 		$this->loadModel('Configuracion');
 		$this->loadModel('Bautizo');
+        $this->loadModel('Comunion');
         $this->loadModel('Confirmacion');
 		$this->loadModel('Matrimonio');
 
@@ -77,6 +78,9 @@ class PagesController extends AppController {
 				$totalbautizos = $this->Bautizo->find('count', array(
 					'conditions' => array('Bautizo.fecha' => date('d/m/Y', $time))
 				));
+				$totalcomuniones = $this->Comunion->find('count', array(
+					'conditions' => array('Comunion.fecha' => date('d/m/Y', $time))
+				));              
 				$totalconfirmaciones = $this->Confirmacion->find('count', array(
 					'conditions' => array('Confirmacion.fecha' => date('d/m/Y', $time))
 				));
@@ -89,6 +93,9 @@ class PagesController extends AppController {
 				$title = 'Estadística del mes de ' . $fecha;
 				$totalbautizos = $this->Bautizo->find('count', array(
 					'conditions' => array('MONTH(STR_TO_DATE(REPLACE(Bautizo.fecha, \'/\', \'.\'), \'%d.%m.%Y\'))' => date('n', $time))
+				));
+				$totalcomuniones = $this->Comunion->find('count', array(
+					'conditions' => array('MONTH(STR_TO_DATE(REPLACE(Comunion.fecha, \'/\', \'.\'), \'%d.%m.%Y\'))' => date('n', $time))
 				));
 				$totalconfirmaciones = $this->Confirmacion->find('count', array(
 					'conditions' => array('MONTH(STR_TO_DATE(REPLACE(Confirmacion.fecha, \'/\', \'.\'), \'%d.%m.%Y\'))' => date('n', $time))
@@ -103,6 +110,9 @@ class PagesController extends AppController {
 				$totalbautizos = $this->Bautizo->find('count', array(
 					'conditions' => array('YEAR(STR_TO_DATE(REPLACE(Bautizo.fecha, \'/\', \'.\'), \'%d.%m.%Y\'))' => $fecha)
 				));
+				$totalcomuniones = $this->Comunion->find('count', array(
+					'conditions' => array('YEAR(STR_TO_DATE(REPLACE(Comunion.fecha, \'/\', \'.\'), \'%d.%m.%Y\'))' => $fecha)
+				));
 				$totalconfirmaciones = $this->Confirmacion->find('count', array(
 					'conditions' => array('YEAR(STR_TO_DATE(REPLACE(Confirmacion.fecha, \'/\', \'.\'), \'%d.%m.%Y\'))' => $fecha)
 				));
@@ -112,6 +122,7 @@ class PagesController extends AppController {
 			} elseif($param1 == 'todos') {
 				$title = 'Estadística de todos los tiempos';
 				$totalbautizos = $this->Bautizo->find('count');
+                $totalcomuniones = $this->Comunion->find('count');
                 $totalconfirmaciones = $this->Confirmacion->find('count');
 				$totalmatrimonios = $this->Matrimonio->find('count');
 			} else {
@@ -133,6 +144,10 @@ class PagesController extends AppController {
           
             $totalconfirmaciones = $db->query("
                 SELECT COUNT(*) AS total FROM confirmaciones AS Confirmacion WHERE STR_TO_DATE(REPLACE(Confirmacion.fecha, '/', '.'), '%d.%m.%Y') >= STR_TO_DATE(REPLACE('$param1', '-', '.'), '%d.%m.%Y') AND STR_TO_DATE(REPLACE(Confirmacion.fecha, '/', '.'), '%d.%m.%Y') <= STR_TO_DATE(REPLACE('$param2', '-', '.'), '%d.%m.%Y')
+            ")[0][0]['total'];
+          
+            $totalcomuniones = $db->query("
+                SELECT COUNT(*) AS total FROM comuniones AS Comunion WHERE STR_TO_DATE(REPLACE(Comunion.fecha, '/', '.'), '%d.%m.%Y') >= STR_TO_DATE(REPLACE('$param1', '-', '.'), '%d.%m.%Y') AND STR_TO_DATE(REPLACE(Comunion.fecha, '/', '.'), '%d.%m.%Y') <= STR_TO_DATE(REPLACE('$param2', '-', '.'), '%d.%m.%Y')
             ")[0][0]['total'];
 
 			$diadesde = date('d', $_param1);
@@ -186,7 +201,7 @@ class PagesController extends AppController {
 			</tr>
 			<tr>
 			<td>Comuniones</td>
-			<td class="total">0</td>
+			<td class="total">'.$totalcomuniones.'</td>
 			</tr>
 			<tr>
 			<td>Matrimonios</td>
