@@ -5,7 +5,7 @@
 
 - Git
 - Composer
-- Servidor LAMP
+- Servidor LAMP (PHP 5.4 en adelante)
 
 ###Pasos para la instalación:
 
