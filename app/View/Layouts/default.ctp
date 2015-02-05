@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+﻿<!DOCTYPE HTML>
 <html lang="es">
     <head>
         <title>Parroquia Jesús Nazareno</title>
@@ -44,7 +44,7 @@
             <?php #echo $this->element('sql_dump'); ?>
         </section>
         <script type="text/javascript">
-            baseDir = '<?php echo Router::url('/'); ?>';
+            baseDir = '<?php echo Router::url('/') == '/' ? '' : Router::url('/'); ?>';
             controller = '<?php echo strtolower($this->name); ?>';
         </script>
         <?php echo $this->Html->script('jquery-1.10.2.min')."\n"; ?>
