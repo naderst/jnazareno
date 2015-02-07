@@ -92,17 +92,21 @@ class PagesController extends AppController {
 				$fecha = parent::month2string(date('m',$time)) . ' de ' . date('Y', $time);
 				$title = 'Estadística del mes de ' . $fecha;
 				$totalbautizos = $this->Bautizo->find('count', array(
-					'conditions' => array('MONTH(STR_TO_DATE(REPLACE(Bautizo.fecha, \'/\', \'.\'), \'%d.%m.%Y\'))' => date('n', $time))
-				));
+					'conditions' => array('MONTH(STR_TO_DATE(REPLACE(Bautizo.fecha, \'/\', \'.\'), \'%d.%m.%Y\'))' => date('n', $time),
+													'YEAR(STR_TO_DATE(REPLACE(Bautizo.fecha, \'/\', \'.\'), \'%d.%m.%Y\'))' => date('Y', $time)
+				)));
 				$totalcomuniones = $this->Comunion->find('count', array(
-					'conditions' => array('MONTH(STR_TO_DATE(REPLACE(Comunion.fecha, \'/\', \'.\'), \'%d.%m.%Y\'))' => date('n', $time))
-				));
+					'conditions' => array('MONTH(STR_TO_DATE(REPLACE(Comunion.fecha, \'/\', \'.\'), \'%d.%m.%Y\'))' => date('n', $time),
+													'YEAR(STR_TO_DATE(REPLACE(Comunion.fecha, \'/\', \'.\'), \'%d.%m.%Y\'))' => date('Y', $time)
+				)));
 				$totalconfirmaciones = $this->Confirmacion->find('count', array(
-					'conditions' => array('MONTH(STR_TO_DATE(REPLACE(Confirmacion.fecha, \'/\', \'.\'), \'%d.%m.%Y\'))' => date('n', $time))
-				));
+					'conditions' => array('MONTH(STR_TO_DATE(REPLACE(Confirmacion.fecha, \'/\', \'.\'), \'%d.%m.%Y\'))' => date('n', $time),
+													'YEAR(STR_TO_DATE(REPLACE(Confirmacion.fecha, \'/\', \'.\'), \'%d.%m.%Y\'))' => date('Y', $time)
+				)));
 				$totalmatrimonios = $this->Matrimonio->find('count', array(
-					'conditions' => array('MONTH(STR_TO_DATE(REPLACE(Matrimonio.fecha, \'/\', \'.\'), \'%d.%m.%Y\'))' => date('n', $time))
-				));
+					'conditions' => array('MONTH(STR_TO_DATE(REPLACE(Matrimonio.fecha, \'/\', \'.\'), \'%d.%m.%Y\'))' => date('n', $time),
+													'YEAR(STR_TO_DATE(REPLACE(Matrimonio.fecha, \'/\', \'.\'), \'%d.%m.%Y\'))' => date('Y', $time)
+				)));
 			} elseif($param1 == 'ano') {
 				$time = time();
 				$fecha = date('Y', $time);

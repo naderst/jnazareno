@@ -49,7 +49,8 @@ class GraficosController extends AppController {
             }
             
             $timestamp = strtotime(str_replace('/', '-', $e['Bautizo']['fecha_nacimiento']));
-            $edad = $hoy - $timestamp;
+            $bautizo_timestamp = strtotime(str_replace('/', '-', $e['Bautizo']['fecha']));
+            $edad = $bautizo_timestamp - $timestamp;
             
             if($edad < $unanyo)
                 ++$hasta;
@@ -60,6 +61,7 @@ class GraficosController extends AppController {
         }
 
 		$data = array($hasta,$entre,$mayor);
+
 		$legends = array('Hasta 1 año (' . $hasta . ')','De 1 a 7 años (' . $entre . ')','Mayores de 7 años (' . $mayor . ')'); 
 		 
 		$graph = new PieGraph(300,300);
